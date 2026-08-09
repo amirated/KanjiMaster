@@ -1,0 +1,1315 @@
+{
+  "meta": {
+    "schema_version": 1,
+    "jlpt_level": "N5",
+    "count": 50,
+    "generated": "2026-08-08",
+    "sources": [
+      "Curated for Kanji Rush V0.1. Schema aligned to KANJIDIC2 (EDRDG) for future enrichment; JLPT N5 classification."
+    ],
+    "license_note": "V0.1 kanji facts (readings/meanings) are a curated compilation. If enriched from KANJIDIC2/KanjiVG (EDRDG, CC BY-SA), attribution and share-alike obligations apply — see docs/LICENSES.md.",
+    "prompt_types": [
+      "meaning",
+      "onyomi",
+      "kunyomi",
+      "reading_to_kanji"
+    ]
+  },
+  "kanji": [
+    {
+      "id": 0,
+      "char": "一",
+      "meanings": [
+        "one"
+      ],
+      "onyomi": [
+        "イチ",
+        "イツ"
+      ],
+      "kunyomi": [
+        "ひと"
+      ],
+      "primary_reading": "いち",
+      "romaji": "ichi",
+      "strokes": 1,
+      "tier": 1,
+      "confusions": [
+        "二",
+        "三",
+        "十"
+      ],
+      "confusions_in_set": [
+        "二",
+        "三",
+        "十"
+      ]
+    },
+    {
+      "id": 1,
+      "char": "二",
+      "meanings": [
+        "two"
+      ],
+      "onyomi": [
+        "ニ"
+      ],
+      "kunyomi": [
+        "ふた"
+      ],
+      "primary_reading": "に",
+      "romaji": "ni",
+      "strokes": 2,
+      "tier": 1,
+      "confusions": [
+        "一",
+        "三"
+      ],
+      "confusions_in_set": [
+        "一",
+        "三"
+      ]
+    },
+    {
+      "id": 2,
+      "char": "三",
+      "meanings": [
+        "three"
+      ],
+      "onyomi": [
+        "サン"
+      ],
+      "kunyomi": [
+        "みっ"
+      ],
+      "primary_reading": "さん",
+      "romaji": "san",
+      "strokes": 3,
+      "tier": 1,
+      "confusions": [
+        "二",
+        "一",
+        "川"
+      ],
+      "confusions_in_set": [
+        "二",
+        "一",
+        "川"
+      ]
+    },
+    {
+      "id": 3,
+      "char": "四",
+      "meanings": [
+        "four"
+      ],
+      "onyomi": [
+        "シ"
+      ],
+      "kunyomi": [
+        "よん",
+        "よっ"
+      ],
+      "primary_reading": "よん",
+      "romaji": "yon",
+      "strokes": 5,
+      "tier": 1,
+      "confusions": [
+        "西",
+        "匹",
+        "口"
+      ],
+      "confusions_in_set": [
+        "口"
+      ]
+    },
+    {
+      "id": 4,
+      "char": "五",
+      "meanings": [
+        "five"
+      ],
+      "onyomi": [
+        "ゴ"
+      ],
+      "kunyomi": [
+        "いつ"
+      ],
+      "primary_reading": "ご",
+      "romaji": "go",
+      "strokes": 4,
+      "tier": 1,
+      "confusions": [
+        "互",
+        "二",
+        "三"
+      ],
+      "confusions_in_set": [
+        "二",
+        "三"
+      ]
+    },
+    {
+      "id": 5,
+      "char": "六",
+      "meanings": [
+        "six"
+      ],
+      "onyomi": [
+        "ロク"
+      ],
+      "kunyomi": [
+        "むっ"
+      ],
+      "primary_reading": "ろく",
+      "romaji": "roku",
+      "strokes": 4,
+      "tier": 1,
+      "confusions": [
+        "大",
+        "穴"
+      ],
+      "confusions_in_set": [
+        "大"
+      ]
+    },
+    {
+      "id": 6,
+      "char": "七",
+      "meanings": [
+        "seven"
+      ],
+      "onyomi": [
+        "シチ"
+      ],
+      "kunyomi": [
+        "なな"
+      ],
+      "primary_reading": "なな",
+      "romaji": "nana",
+      "strokes": 2,
+      "tier": 1,
+      "confusions": [
+        "十",
+        "九"
+      ],
+      "confusions_in_set": [
+        "十",
+        "九"
+      ]
+    },
+    {
+      "id": 7,
+      "char": "八",
+      "meanings": [
+        "eight"
+      ],
+      "onyomi": [
+        "ハチ"
+      ],
+      "kunyomi": [
+        "やっ"
+      ],
+      "primary_reading": "はち",
+      "romaji": "hachi",
+      "strokes": 2,
+      "tier": 1,
+      "confusions": [
+        "人",
+        "入"
+      ],
+      "confusions_in_set": [
+        "人"
+      ]
+    },
+    {
+      "id": 8,
+      "char": "九",
+      "meanings": [
+        "nine"
+      ],
+      "onyomi": [
+        "キュウ",
+        "ク"
+      ],
+      "kunyomi": [
+        "ここの"
+      ],
+      "primary_reading": "きゅう",
+      "romaji": "kyuu",
+      "strokes": 2,
+      "tier": 1,
+      "confusions": [
+        "力",
+        "七"
+      ],
+      "confusions_in_set": [
+        "七"
+      ]
+    },
+    {
+      "id": 9,
+      "char": "十",
+      "meanings": [
+        "ten"
+      ],
+      "onyomi": [
+        "ジュウ"
+      ],
+      "kunyomi": [
+        "とお"
+      ],
+      "primary_reading": "じゅう",
+      "romaji": "juu",
+      "strokes": 2,
+      "tier": 1,
+      "confusions": [
+        "千",
+        "土",
+        "七"
+      ],
+      "confusions_in_set": [
+        "千",
+        "土",
+        "七"
+      ]
+    },
+    {
+      "id": 10,
+      "char": "百",
+      "meanings": [
+        "hundred"
+      ],
+      "onyomi": [
+        "ヒャク"
+      ],
+      "kunyomi": [],
+      "primary_reading": "ひゃく",
+      "romaji": "hyaku",
+      "strokes": 6,
+      "tier": 2,
+      "confusions": [
+        "白",
+        "自",
+        "目"
+      ],
+      "confusions_in_set": [
+        "目"
+      ]
+    },
+    {
+      "id": 11,
+      "char": "千",
+      "meanings": [
+        "thousand"
+      ],
+      "onyomi": [
+        "セン"
+      ],
+      "kunyomi": [
+        "ち"
+      ],
+      "primary_reading": "せん",
+      "romaji": "sen",
+      "strokes": 3,
+      "tier": 2,
+      "confusions": [
+        "干",
+        "十"
+      ],
+      "confusions_in_set": [
+        "十"
+      ]
+    },
+    {
+      "id": 12,
+      "char": "大",
+      "meanings": [
+        "big",
+        "large"
+      ],
+      "onyomi": [
+        "ダイ",
+        "タイ"
+      ],
+      "kunyomi": [
+        "おお"
+      ],
+      "primary_reading": "おお",
+      "romaji": "oo",
+      "strokes": 3,
+      "tier": 1,
+      "confusions": [
+        "太",
+        "犬",
+        "人"
+      ],
+      "confusions_in_set": [
+        "人"
+      ]
+    },
+    {
+      "id": 13,
+      "char": "小",
+      "meanings": [
+        "small",
+        "little"
+      ],
+      "onyomi": [
+        "ショウ"
+      ],
+      "kunyomi": [
+        "ちい",
+        "こ"
+      ],
+      "primary_reading": "ちいさい",
+      "romaji": "chiisai",
+      "strokes": 3,
+      "tier": 1,
+      "confusions": [
+        "少",
+        "大"
+      ],
+      "confusions_in_set": [
+        "大"
+      ]
+    },
+    {
+      "id": 14,
+      "char": "日",
+      "meanings": [
+        "day",
+        "sun"
+      ],
+      "onyomi": [
+        "ニチ",
+        "ジツ"
+      ],
+      "kunyomi": [
+        "ひ",
+        "か"
+      ],
+      "primary_reading": "ひ",
+      "romaji": "hi",
+      "strokes": 4,
+      "tier": 1,
+      "confusions": [
+        "目",
+        "白",
+        "月"
+      ],
+      "confusions_in_set": [
+        "目",
+        "月"
+      ]
+    },
+    {
+      "id": 15,
+      "char": "月",
+      "meanings": [
+        "month",
+        "moon"
+      ],
+      "onyomi": [
+        "ゲツ",
+        "ガツ"
+      ],
+      "kunyomi": [
+        "つき"
+      ],
+      "primary_reading": "つき",
+      "romaji": "tsuki",
+      "strokes": 4,
+      "tier": 1,
+      "confusions": [
+        "日",
+        "肉",
+        "用"
+      ],
+      "confusions_in_set": [
+        "日"
+      ]
+    },
+    {
+      "id": 16,
+      "char": "火",
+      "meanings": [
+        "fire"
+      ],
+      "onyomi": [
+        "カ"
+      ],
+      "kunyomi": [
+        "ひ"
+      ],
+      "primary_reading": "ひ",
+      "romaji": "hi",
+      "strokes": 4,
+      "tier": 1,
+      "confusions": [
+        "大",
+        "人",
+        "水"
+      ],
+      "confusions_in_set": [
+        "大",
+        "人",
+        "水"
+      ]
+    },
+    {
+      "id": 17,
+      "char": "水",
+      "meanings": [
+        "water"
+      ],
+      "onyomi": [
+        "スイ"
+      ],
+      "kunyomi": [
+        "みず"
+      ],
+      "primary_reading": "みず",
+      "romaji": "mizu",
+      "strokes": 4,
+      "tier": 1,
+      "confusions": [
+        "氷",
+        "永",
+        "火"
+      ],
+      "confusions_in_set": [
+        "火"
+      ]
+    },
+    {
+      "id": 18,
+      "char": "木",
+      "meanings": [
+        "tree",
+        "wood"
+      ],
+      "onyomi": [
+        "モク",
+        "ボク"
+      ],
+      "kunyomi": [
+        "き"
+      ],
+      "primary_reading": "き",
+      "romaji": "ki",
+      "strokes": 4,
+      "tier": 1,
+      "confusions": [
+        "本",
+        "休",
+        "林"
+      ],
+      "confusions_in_set": [
+        "本"
+      ]
+    },
+    {
+      "id": 19,
+      "char": "金",
+      "meanings": [
+        "gold",
+        "money"
+      ],
+      "onyomi": [
+        "キン",
+        "コン"
+      ],
+      "kunyomi": [
+        "かね"
+      ],
+      "primary_reading": "かね",
+      "romaji": "kane",
+      "strokes": 8,
+      "tier": 1,
+      "confusions": [
+        "全",
+        "食",
+        "土"
+      ],
+      "confusions_in_set": [
+        "食",
+        "土"
+      ]
+    },
+    {
+      "id": 20,
+      "char": "土",
+      "meanings": [
+        "earth",
+        "soil"
+      ],
+      "onyomi": [
+        "ド",
+        "ト"
+      ],
+      "kunyomi": [
+        "つち"
+      ],
+      "primary_reading": "つち",
+      "romaji": "tsuchi",
+      "strokes": 3,
+      "tier": 1,
+      "confusions": [
+        "士",
+        "王",
+        "十"
+      ],
+      "confusions_in_set": [
+        "十"
+      ]
+    },
+    {
+      "id": 21,
+      "char": "山",
+      "meanings": [
+        "mountain"
+      ],
+      "onyomi": [
+        "サン"
+      ],
+      "kunyomi": [
+        "やま"
+      ],
+      "primary_reading": "やま",
+      "romaji": "yama",
+      "strokes": 3,
+      "tier": 1,
+      "confusions": [
+        "川",
+        "止"
+      ],
+      "confusions_in_set": [
+        "川"
+      ]
+    },
+    {
+      "id": 22,
+      "char": "川",
+      "meanings": [
+        "river"
+      ],
+      "onyomi": [
+        "セン"
+      ],
+      "kunyomi": [
+        "かわ"
+      ],
+      "primary_reading": "かわ",
+      "romaji": "kawa",
+      "strokes": 3,
+      "tier": 1,
+      "confusions": [
+        "山",
+        "三"
+      ],
+      "confusions_in_set": [
+        "山",
+        "三"
+      ]
+    },
+    {
+      "id": 23,
+      "char": "田",
+      "meanings": [
+        "rice field"
+      ],
+      "onyomi": [
+        "デン"
+      ],
+      "kunyomi": [
+        "た"
+      ],
+      "primary_reading": "た",
+      "romaji": "ta",
+      "strokes": 5,
+      "tier": 2,
+      "confusions": [
+        "由",
+        "申",
+        "町",
+        "中"
+      ],
+      "confusions_in_set": [
+        "中"
+      ]
+    },
+    {
+      "id": 24,
+      "char": "天",
+      "meanings": [
+        "heaven",
+        "sky"
+      ],
+      "onyomi": [
+        "テン"
+      ],
+      "kunyomi": [
+        "あま"
+      ],
+      "primary_reading": "てん",
+      "romaji": "ten",
+      "strokes": 4,
+      "tier": 2,
+      "confusions": [
+        "夫",
+        "大",
+        "矢"
+      ],
+      "confusions_in_set": [
+        "大"
+      ]
+    },
+    {
+      "id": 25,
+      "char": "人",
+      "meanings": [
+        "person"
+      ],
+      "onyomi": [
+        "ジン",
+        "ニン"
+      ],
+      "kunyomi": [
+        "ひと"
+      ],
+      "primary_reading": "ひと",
+      "romaji": "hito",
+      "strokes": 2,
+      "tier": 1,
+      "confusions": [
+        "入",
+        "八"
+      ],
+      "confusions_in_set": [
+        "八"
+      ]
+    },
+    {
+      "id": 26,
+      "char": "男",
+      "meanings": [
+        "man",
+        "male"
+      ],
+      "onyomi": [
+        "ダン",
+        "ナン"
+      ],
+      "kunyomi": [
+        "おとこ"
+      ],
+      "primary_reading": "おとこ",
+      "romaji": "otoko",
+      "strokes": 7,
+      "tier": 1,
+      "confusions": [
+        "田",
+        "力"
+      ],
+      "confusions_in_set": [
+        "田"
+      ]
+    },
+    {
+      "id": 27,
+      "char": "女",
+      "meanings": [
+        "woman",
+        "female"
+      ],
+      "onyomi": [
+        "ジョ",
+        "ニョ"
+      ],
+      "kunyomi": [
+        "おんな"
+      ],
+      "primary_reading": "おんな",
+      "romaji": "onna",
+      "strokes": 3,
+      "tier": 1,
+      "confusions": [
+        "安",
+        "好",
+        "大"
+      ],
+      "confusions_in_set": [
+        "大"
+      ]
+    },
+    {
+      "id": 28,
+      "char": "子",
+      "meanings": [
+        "child"
+      ],
+      "onyomi": [
+        "シ",
+        "ス"
+      ],
+      "kunyomi": [
+        "こ"
+      ],
+      "primary_reading": "こ",
+      "romaji": "ko",
+      "strokes": 3,
+      "tier": 1,
+      "confusions": [
+        "了",
+        "字",
+        "女"
+      ],
+      "confusions_in_set": [
+        "女"
+      ]
+    },
+    {
+      "id": 29,
+      "char": "目",
+      "meanings": [
+        "eye"
+      ],
+      "onyomi": [
+        "モク"
+      ],
+      "kunyomi": [
+        "め"
+      ],
+      "primary_reading": "め",
+      "romaji": "me",
+      "strokes": 5,
+      "tier": 1,
+      "confusions": [
+        "日",
+        "自",
+        "月"
+      ],
+      "confusions_in_set": [
+        "日",
+        "月"
+      ]
+    },
+    {
+      "id": 30,
+      "char": "口",
+      "meanings": [
+        "mouth"
+      ],
+      "onyomi": [
+        "コウ",
+        "ク"
+      ],
+      "kunyomi": [
+        "くち"
+      ],
+      "primary_reading": "くち",
+      "romaji": "kuchi",
+      "strokes": 3,
+      "tier": 1,
+      "confusions": [
+        "日",
+        "回",
+        "四"
+      ],
+      "confusions_in_set": [
+        "日",
+        "四"
+      ]
+    },
+    {
+      "id": 31,
+      "char": "手",
+      "meanings": [
+        "hand"
+      ],
+      "onyomi": [
+        "シュ"
+      ],
+      "kunyomi": [
+        "て"
+      ],
+      "primary_reading": "て",
+      "romaji": "te",
+      "strokes": 4,
+      "tier": 1,
+      "confusions": [
+        "毛",
+        "才",
+        "千"
+      ],
+      "confusions_in_set": [
+        "千"
+      ]
+    },
+    {
+      "id": 32,
+      "char": "上",
+      "meanings": [
+        "up",
+        "above"
+      ],
+      "onyomi": [
+        "ジョウ"
+      ],
+      "kunyomi": [
+        "うえ",
+        "あ"
+      ],
+      "primary_reading": "うえ",
+      "romaji": "ue",
+      "strokes": 3,
+      "tier": 1,
+      "confusions": [
+        "下",
+        "止"
+      ],
+      "confusions_in_set": [
+        "下"
+      ]
+    },
+    {
+      "id": 33,
+      "char": "下",
+      "meanings": [
+        "down",
+        "below"
+      ],
+      "onyomi": [
+        "カ",
+        "ゲ"
+      ],
+      "kunyomi": [
+        "した",
+        "さ"
+      ],
+      "primary_reading": "した",
+      "romaji": "shita",
+      "strokes": 3,
+      "tier": 1,
+      "confusions": [
+        "上",
+        "不"
+      ],
+      "confusions_in_set": [
+        "上"
+      ]
+    },
+    {
+      "id": 34,
+      "char": "中",
+      "meanings": [
+        "middle",
+        "inside"
+      ],
+      "onyomi": [
+        "チュウ"
+      ],
+      "kunyomi": [
+        "なか"
+      ],
+      "primary_reading": "なか",
+      "romaji": "naka",
+      "strokes": 4,
+      "tier": 1,
+      "confusions": [
+        "申",
+        "虫",
+        "口"
+      ],
+      "confusions_in_set": [
+        "口"
+      ]
+    },
+    {
+      "id": 35,
+      "char": "左",
+      "meanings": [
+        "left"
+      ],
+      "onyomi": [
+        "サ"
+      ],
+      "kunyomi": [
+        "ひだり"
+      ],
+      "primary_reading": "ひだり",
+      "romaji": "hidari",
+      "strokes": 5,
+      "tier": 1,
+      "confusions": [
+        "右",
+        "在"
+      ],
+      "confusions_in_set": [
+        "右"
+      ]
+    },
+    {
+      "id": 36,
+      "char": "右",
+      "meanings": [
+        "right"
+      ],
+      "onyomi": [
+        "ウ",
+        "ユウ"
+      ],
+      "kunyomi": [
+        "みぎ"
+      ],
+      "primary_reading": "みぎ",
+      "romaji": "migi",
+      "strokes": 5,
+      "tier": 1,
+      "confusions": [
+        "左",
+        "石"
+      ],
+      "confusions_in_set": [
+        "左"
+      ]
+    },
+    {
+      "id": 37,
+      "char": "本",
+      "meanings": [
+        "book",
+        "origin"
+      ],
+      "onyomi": [
+        "ホン"
+      ],
+      "kunyomi": [
+        "もと"
+      ],
+      "primary_reading": "ほん",
+      "romaji": "hon",
+      "strokes": 5,
+      "tier": 1,
+      "confusions": [
+        "木",
+        "休",
+        "体"
+      ],
+      "confusions_in_set": [
+        "木"
+      ]
+    },
+    {
+      "id": 38,
+      "char": "名",
+      "meanings": [
+        "name"
+      ],
+      "onyomi": [
+        "メイ",
+        "ミョウ"
+      ],
+      "kunyomi": [
+        "な"
+      ],
+      "primary_reading": "な",
+      "romaji": "na",
+      "strokes": 6,
+      "tier": 2,
+      "confusions": [
+        "各",
+        "多",
+        "口"
+      ],
+      "confusions_in_set": [
+        "口"
+      ]
+    },
+    {
+      "id": 39,
+      "char": "年",
+      "meanings": [
+        "year"
+      ],
+      "onyomi": [
+        "ネン"
+      ],
+      "kunyomi": [
+        "とし"
+      ],
+      "primary_reading": "とし",
+      "romaji": "toshi",
+      "strokes": 6,
+      "tier": 2,
+      "confusions": [
+        "午",
+        "牛",
+        "生"
+      ],
+      "confusions_in_set": [
+        "生"
+      ]
+    },
+    {
+      "id": 40,
+      "char": "時",
+      "meanings": [
+        "time",
+        "hour"
+      ],
+      "onyomi": [
+        "ジ"
+      ],
+      "kunyomi": [
+        "とき"
+      ],
+      "primary_reading": "とき",
+      "romaji": "toki",
+      "strokes": 10,
+      "tier": 2,
+      "confusions": [
+        "持",
+        "寺",
+        "待",
+        "日"
+      ],
+      "confusions_in_set": [
+        "日"
+      ]
+    },
+    {
+      "id": 41,
+      "char": "分",
+      "meanings": [
+        "minute",
+        "part"
+      ],
+      "onyomi": [
+        "ブン",
+        "フン",
+        "ブ"
+      ],
+      "kunyomi": [
+        "わ"
+      ],
+      "primary_reading": "ふん",
+      "romaji": "fun",
+      "strokes": 4,
+      "tier": 2,
+      "confusions": [
+        "今",
+        "公",
+        "八"
+      ],
+      "confusions_in_set": [
+        "八"
+      ]
+    },
+    {
+      "id": 42,
+      "char": "行",
+      "meanings": [
+        "to go"
+      ],
+      "onyomi": [
+        "コウ",
+        "ギョウ"
+      ],
+      "kunyomi": [
+        "い",
+        "おこな"
+      ],
+      "primary_reading": "いく",
+      "romaji": "iku",
+      "strokes": 6,
+      "tier": 2,
+      "confusions": [
+        "何",
+        "街",
+        "見"
+      ],
+      "confusions_in_set": [
+        "見"
+      ]
+    },
+    {
+      "id": 43,
+      "char": "見",
+      "meanings": [
+        "to see"
+      ],
+      "onyomi": [
+        "ケン"
+      ],
+      "kunyomi": [
+        "み"
+      ],
+      "primary_reading": "みる",
+      "romaji": "miru",
+      "strokes": 7,
+      "tier": 2,
+      "confusions": [
+        "貝",
+        "目",
+        "買"
+      ],
+      "confusions_in_set": [
+        "目"
+      ]
+    },
+    {
+      "id": 44,
+      "char": "食",
+      "meanings": [
+        "to eat",
+        "food"
+      ],
+      "onyomi": [
+        "ショク"
+      ],
+      "kunyomi": [
+        "た"
+      ],
+      "primary_reading": "たべる",
+      "romaji": "taberu",
+      "strokes": 9,
+      "tier": 2,
+      "confusions": [
+        "飲",
+        "飯",
+        "金"
+      ],
+      "confusions_in_set": [
+        "金"
+      ]
+    },
+    {
+      "id": 45,
+      "char": "国",
+      "meanings": [
+        "country"
+      ],
+      "onyomi": [
+        "コク"
+      ],
+      "kunyomi": [
+        "くに"
+      ],
+      "primary_reading": "くに",
+      "romaji": "kuni",
+      "strokes": 8,
+      "tier": 2,
+      "confusions": [
+        "図",
+        "園",
+        "口"
+      ],
+      "confusions_in_set": [
+        "口"
+      ]
+    },
+    {
+      "id": 46,
+      "char": "学",
+      "meanings": [
+        "study",
+        "learning"
+      ],
+      "onyomi": [
+        "ガク"
+      ],
+      "kunyomi": [
+        "まな"
+      ],
+      "primary_reading": "がく",
+      "romaji": "gaku",
+      "strokes": 8,
+      "tier": 2,
+      "confusions": [
+        "字",
+        "覚",
+        "子"
+      ],
+      "confusions_in_set": [
+        "子"
+      ]
+    },
+    {
+      "id": 47,
+      "char": "校",
+      "meanings": [
+        "school"
+      ],
+      "onyomi": [
+        "コウ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "こう",
+      "romaji": "kou",
+      "strokes": 10,
+      "tier": 2,
+      "confusions": [
+        "交",
+        "木"
+      ],
+      "confusions_in_set": [
+        "木"
+      ]
+    },
+    {
+      "id": 48,
+      "char": "先",
+      "meanings": [
+        "previous",
+        "ahead"
+      ],
+      "onyomi": [
+        "セン"
+      ],
+      "kunyomi": [
+        "さき"
+      ],
+      "primary_reading": "さき",
+      "romaji": "saki",
+      "strokes": 6,
+      "tier": 2,
+      "confusions": [
+        "生",
+        "失"
+      ],
+      "confusions_in_set": [
+        "生"
+      ]
+    },
+    {
+      "id": 49,
+      "char": "生",
+      "meanings": [
+        "life",
+        "birth"
+      ],
+      "onyomi": [
+        "セイ",
+        "ショウ"
+      ],
+      "kunyomi": [
+        "い",
+        "う",
+        "なま"
+      ],
+      "primary_reading": "せい",
+      "romaji": "sei",
+      "strokes": 5,
+      "tier": 2,
+      "confusions": [
+        "先",
+        "牛",
+        "主"
+      ],
+      "confusions_in_set": [
+        "先"
+      ]
+    }
+  ]
+}
