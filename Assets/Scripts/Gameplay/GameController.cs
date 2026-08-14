@@ -1,29 +1,36 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using KanjiMaster.Core;
 using KanjiMaster.Kanji;
 using KanjiMaster.Services;
 using KanjiMaster.UI;
 using UnityEngine;
+using Data = KanjiRush.Data;
 
 namespace KanjiMaster.Gameplay
 {
     /// <summary>
-    /// Drives one game session: generates questions, scores answers, tracks combo,
-    /// runs the per-question timer (Timed mode only), then writes a
-    /// <see cref="GameResult"/> to <see cref="GameSession"/> and navigates to Results.
+    /// Drives one run (normal or revision). Builds the full question sequence ONCE
+    /// up front from a unique set of kanji, then scores answers, tracks combo, runs
+    /// the per-question timer (Timed only), records a <see cref="QuestionResult"/>
+    /// per question, and publishes a completed <see cref="GameSession"/> to
+    /// <see cref="SessionContext"/> before navigating to Results.
     ///
-    /// All gameplay rules live here; <see cref="GameHUDView"/> only presents state.
-    /// The UI can be redesigned without touching this file.
+    /// Records correctness/timing only — no mastery or XP. All gameplay rules live
+    /// here; <see cref="GameHUDView"/> only presents state.
     /// </summary>
     public class GameController : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private GameHUDView view;
 
-        [Header("Tuning")]
+        [Header("Run")]
         [SerializeField] private int questionsPerRun = 15;
         [SerializeField] private float questionTimeSeconds = 5f;
-        [SerializeField] private float feedbackSeconds = 0.6f;
+
+        [Header("Feedback (configurable durations)")]
+        [SerializeField] private FeedbackTiming feedback = new FeedbackTiming();
 
         [Header("Scoring")]
         [SerializeField] private int basePoints = 100;
@@ -35,15 +42,15 @@ namespace KanjiMaster.Gameplay
         private static readonly Color BadColor = new Color(0.85f, 0.32f, 0.34f);
 
         private GameConfig _config;
-        private QuestionGenerator _generator;
-        private Question _current;
+        private GameSession _session;
+        private List<Question> _questions;
 
         private int _index;
-        private int _score;
         private int _combo;
-        private int _bestCombo;
-        private int _correct;
+        private int _maxCombo;
+        private int _score;
         private float _remaining;
+        private float _shownAt;
         private bool _running;
         private bool _accepting;
 
@@ -55,22 +62,24 @@ namespace KanjiMaster.Gameplay
                 return;
             }
 
-            _config = GameSession.Config;
+            _config = (SessionContext.NextConfig ?? new GameConfig()).Clone();
 
             try
             {
-                _generator = new QuestionGenerator();
+                BuildQuestionSequence();
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"GameController: failed to load kanji data — {e.Message}");
+                Debug.LogError($"GameController: {e.Message}");
                 view.SetQuestion("!");
-                view.SetFeedback("Could not load kanji data.", BadColor);
+                view.SetFeedback("Could not start run: " + e.Message, BadColor);
                 return;
             }
 
+            _session = new GameSession { Config = _config.Clone(), IsRevision = SessionContext.NextIsRevision };
+
             view.AnswerSelected += OnAnswerSelected;
-            view.SetTimerVisible(_config.TimerMode == TimerMode.Timed);
+            view.SetTimerVisible(_config.Timer == TimerMode.Timed);
 
             StartRun();
         }
@@ -83,20 +92,37 @@ namespace KanjiMaster.Gameplay
         private void Update()
         {
             if (!_running || !_accepting) return;
-            if (_config.TimerMode != TimerMode.Timed) return;
+            if (_config.Timer != TimerMode.Timed) return;
 
             _remaining -= Time.deltaTime;
             view.SetTimerNormalized(_remaining / questionTimeSeconds);
             if (_remaining <= 0f) Resolve(-1); // timeout = wrong
         }
 
+        /// <summary>Select the kanji (unique 15, or the revision set) and generate
+        /// the whole sequence once, guaranteeing no repeats within the run.</summary>
+        private void BuildQuestionSequence()
+        {
+            var rng = new System.Random();
+            var pool = QuestionPool.Load(_config.Level);
+            var generator = new QuestionGenerator(pool.Database, rng);
+
+            List<Data.Kanji> kanji = SessionContext.NextKanji != null
+                ? pool.SelectByChars(SessionContext.NextKanji)   // revision: exactly the mistakes
+                : pool.SelectUnique(questionsPerRun, rng);        // normal: 15 unique
+
+            if (kanji.Count == 0)
+                throw new System.InvalidOperationException("no kanji selected for this run");
+
+            _questions = kanji.Select(k => generator.Build(k, _config.Answer)).ToList();
+        }
+
         private void StartRun()
         {
             _index = 0;
-            _score = 0;
             _combo = 0;
-            _bestCombo = 0;
-            _correct = 0;
+            _maxCombo = 0;
+            _score = 0;
             _running = true;
 
             view.SetScore(0);
@@ -106,21 +132,21 @@ namespace KanjiMaster.Gameplay
 
         private void NextQuestion()
         {
-            if (_index >= questionsPerRun)
+            if (_index >= _questions.Count)
             {
                 FinishRun();
                 return;
             }
 
-            _current = _generator.Next(_config.AnswerLanguage);
-            view.SetQuestion(_current.Prompt);
-            view.SetOptions(_current.Options);
+            var q = _questions[_index];
+            view.SetQuestion(q.Prompt);
+            view.SetOptions(q.Options);
             view.ClearFeedback();
             view.SetAnswersInteractable(true);
 
             _remaining = questionTimeSeconds;
-            if (_config.TimerMode == TimerMode.Timed) view.SetTimerNormalized(1f);
-
+            if (_config.Timer == TimerMode.Timed) view.SetTimerNormalized(1f);
+            _shownAt = Time.time;
             _accepting = true;
         }
 
@@ -135,14 +161,15 @@ namespace KanjiMaster.Gameplay
             _accepting = false;
             view.SetAnswersInteractable(false);
 
+            var q = _questions[_index];
             bool timedOut = selectedIndex < 0;
-            bool correct = !timedOut && selectedIndex == _current.CorrectIndex;
+            bool correct = !timedOut && selectedIndex == q.CorrectIndex;
+            string selected = timedOut ? string.Empty : q.Options[selectedIndex];
 
             if (correct)
             {
-                _correct++;
                 _combo++;
-                if (_combo > _bestCombo) _bestCombo = _combo;
+                if (_combo > _maxCombo) _maxCombo = _combo;
                 _score += PointsForCorrect();
                 view.SetFeedback("Correct!", GoodColor);
             }
@@ -150,26 +177,38 @@ namespace KanjiMaster.Gameplay
             {
                 _combo = 0;
                 string prefix = timedOut ? "Time!" : "Wrong";
-                view.SetFeedback($"{prefix}  →  {_current.CorrectAnswer}", BadColor);
+                view.SetFeedback($"{prefix}  →  {q.CorrectAnswer}", BadColor);
             }
+
+            _session.Results.Add(new QuestionResult
+            {
+                KanjiCharacter = q.KanjiCharacter,
+                CorrectAnswer = q.CorrectAnswer,
+                SelectedAnswer = selected,
+                IsCorrect = correct,
+                TimedOut = timedOut,
+                ResponseTime = Time.time - _shownAt,
+            });
 
             view.SetScore(_score);
             view.SetCombo(_combo);
-            StartCoroutine(AdvanceAfterFeedback());
+
+            // Next question waits until the (mode-dependent) feedback period ends.
+            StartCoroutine(AdvanceAfterFeedback(feedback.For(correct)));
         }
 
         private int PointsForCorrect()
         {
-            int speedBonus = _config.TimerMode == TimerMode.Timed
+            int speedBonus = _config.Timer == TimerMode.Timed
                 ? Mathf.RoundToInt(maxSpeedBonus * Mathf.Clamp01(_remaining / questionTimeSeconds))
                 : 0;
             float multiplier = Mathf.Min(1f + comboStep * (_combo - 1), maxComboMultiplier);
             return Mathf.RoundToInt((basePoints + speedBonus) * multiplier);
         }
 
-        private IEnumerator AdvanceAfterFeedback()
+        private IEnumerator AdvanceAfterFeedback(float seconds)
         {
-            yield return new WaitForSeconds(feedbackSeconds);
+            yield return new WaitForSeconds(seconds);
             _index++;
             NextQuestion();
         }
@@ -179,13 +218,9 @@ namespace KanjiMaster.Gameplay
             _running = false;
             _accepting = false;
 
-            GameSession.LastResult = new GameResult
-            {
-                Score = _score,
-                Correct = _correct,
-                TotalQuestions = questionsPerRun,
-                BestCombo = _bestCombo,
-            };
+            _session.Score = _score;
+            _session.MaxCombo = _maxCombo;
+            SessionContext.LastSession = _session;
 
             SceneLoader.GoToResults();
         }

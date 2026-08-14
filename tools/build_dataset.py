@@ -534,7 +534,7 @@ def write_report(n5, n4, new_n5, overlap_n4_in_n5, curated_chars, api_n5_by,
     A(f"- Records with no in-set confusables (warning count): {no_conf}\n")
 
     A("## Source usage\n")
-    A("- **KanjiAPI `jlpt-5-enriched` / `jlpt-4-enriched`** (https://kanjiapi.dev) — "
+    A("- **KanjiAPI `jlpt-5-enriched` / `jlpt-4-enriched`** — "
       "primary source for new-kanji meanings, on/kun readings, stroke counts, "
       "frequency (`freq_mainichi_shinbun`), and JLPT level. KanjiAPI is itself "
       "derived from KANJIDIC2 + JMdict (EDRDG).")

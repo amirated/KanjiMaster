@@ -2,8 +2,8 @@ namespace KanjiMaster.Kanji
 {
     /// <summary>
     /// A ready-to-present multiple-choice question. The prompt is always the kanji
-    /// glyph; options are either English meanings or kana readings depending on the
-    /// selected answer language. Pure data.
+    /// glyph; options are English meanings, romaji, or kana readings depending on the
+    /// selected AnswerMode (all four options share that one mode). Pure data.
     /// </summary>
     public class Question
     {

@@ -3,30 +3,19 @@ using System;
 namespace KanjiMaster.Core
 {
     /// <summary>
-    /// The set of options that define a game session. Deliberately a bag of
-    /// independent settings (not four fixed "modes"), so new dimensions —
-    /// difficulty, JLPT level, question count, deck, etc. — can be added later
-    /// as fields without redesigning anything that reads GameConfig.
+    /// Independent settings that define a run. A bag of dimensions (not fixed
+    /// "modes"), so more can be added later without redesign. AnswerMode, TimerMode
+    /// and Level are orthogonal — the same game flow is configured by them.
     /// </summary>
     [Serializable]
     public class GameConfig
     {
-        public AnswerLanguage AnswerLanguage = AnswerLanguage.English;
-        public TimerMode TimerMode = TimerMode.Timed;
+        public AnswerMode Answer = AnswerMode.English;
+        public TimerMode Timer = TimerMode.Timed;
+        public KanjiLevel Level = KanjiLevel.N5;
 
-        // Future dimensions go here, e.g.:
-        // public JlptLevel Level = JlptLevel.N5;
-        // public int QuestionsPerRun = 15;
+        public GameConfig Clone() => new GameConfig { Answer = Answer, Timer = Timer, Level = Level };
 
-        public GameConfig Clone()
-        {
-            return new GameConfig
-            {
-                AnswerLanguage = AnswerLanguage,
-                TimerMode = TimerMode,
-            };
-        }
-
-        public override string ToString() => $"{AnswerLanguage} / {TimerMode}";
+        public override string ToString() => $"{Answer} / {Timer} / {Level}";
     }
 }

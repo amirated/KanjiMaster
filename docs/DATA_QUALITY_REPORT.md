@@ -51,7 +51,7 @@ _Generated 2026-08-14 by `tools/build_dataset.py`._
 
 ## Source usage
 
-- **KanjiAPI `jlpt-5-enriched` / `jlpt-4-enriched`** (https://kanjiapi.dev) — primary source for new-kanji meanings, on/kun readings, stroke counts, frequency (`freq_mainichi_shinbun`), and JLPT level. KanjiAPI is itself derived from KANJIDIC2 + JMdict (EDRDG).
+- **KanjiAPI `jlpt-5-enriched` / `jlpt-4-enriched`** — primary source for new-kanji meanings, on/kun readings, stroke counts, frequency (`freq_mainichi_shinbun`), and JLPT level. KanjiAPI is itself derived from KANJIDIC2 + JMdict (EDRDG).
   - Fields obtained: meanings, onyomi, kunyomi, strokes, freq, level.
   - Transformed (not copied): kun readings cleaned to hiragana stems; on readings kept katakana; `primary_reading` chosen by heuristic; `romaji` transliterated (wāpuro Hepburn) from the primary reading.
 - No third source was required: KanjiAPI supplied every game-required field for all N5/N4 kanji, so no values were left unresolved or invented.
