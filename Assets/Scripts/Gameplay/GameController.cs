@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KanjiMaster.Core;
 using KanjiMaster.Kanji;
+using KanjiMaster.Progression;
 using KanjiMaster.Services;
 using KanjiMaster.UI;
 using UnityEngine;
@@ -190,6 +191,11 @@ namespace KanjiMaster.Gameplay
                 ResponseTime = Time.time - _shownAt,
             });
 
+            // Persistent per-kanji mastery (separate from the visible run score).
+            // Uses this run's actual modes, so a revision run (Untimed + inherited
+            // AnswerMode) automatically resolves the correct revision profile.
+            MasteryService.RecordAttempt(q.KanjiCharacter, _config.Answer, _config.Timer, correct);
+
             view.SetScore(_score);
             view.SetCombo(_combo);
 
@@ -221,6 +227,9 @@ namespace KanjiMaster.Gameplay
             _session.Score = _score;
             _session.MaxCombo = _maxCombo;
             SessionContext.LastSession = _session;
+
+            // Count the completed run (normal or revision) for the future XP system.
+            MasteryService.RegisterSessionPlayed();
 
             SceneLoader.GoToResults();
         }
