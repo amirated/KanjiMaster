@@ -7,9 +7,10 @@ using KanjiMaster.Progression;
 namespace KanjiRush.Tests
 {
     /// <summary>
-    /// Tests for the persistence boundary: LocalPlayerProgressStore (JSON, migration,
-    /// atomic write, corrupt recovery), PlayerProgressService (goes through the
-    /// store), and that MasteryService persists via the service rather than the file.
+    /// Tests for the persistence boundary and the nested PlayerProgress model:
+    /// LocalPlayerProgressStore (JSON, migration, atomic write, corrupt recovery),
+    /// PlayerProgressService (goes through the store), the default structure, and
+    /// v1(flat) → v2(nested) migration.
     /// </summary>
     public class PersistenceTests
     {
@@ -29,70 +30,109 @@ namespace KanjiRush.Tests
                 if (File.Exists(_path + ext)) File.Delete(_path + ext);
         }
 
-        // ---- Store: load / default / missing ------------------------------------
+        // small helpers to read/write mastery by character in the nested model
+        private static int Score(PlayerProgress p, string ch) => p.learning.kanjiMastery.GetScore(KanjiId.Of(ch));
+        private static void Set(PlayerProgress p, string ch, int v) => p.learning.kanjiMastery.SetScore(KanjiId.Of(ch), v);
+
+        // ---- Default structure --------------------------------------------------
+        [Test]
+        public void Default_Progress_Has_All_Sections_With_Sensible_Defaults()
+        {
+            var p = new LocalPlayerProgressStore(_path).Load(); // no file → default
+
+            Assert.AreEqual(ProgressMigration.CurrentSchemaVersion, p.schemaVersion);
+            Assert.IsNotNull(p.profile);
+            Assert.IsNotNull(p.learning);
+            Assert.IsNotNull(p.learning.kanjiMastery);
+            Assert.AreEqual(0, p.learning.kanjiMastery.Count);
+            Assert.IsNotNull(p.learning.levelProgress);
+            Assert.AreEqual(PlayerLevel.Novice, p.learning.levelProgress.currentLevel);
+            Assert.IsNotNull(p.activity);
+            Assert.IsNotNull(p.activity.sessions);
+            Assert.AreEqual(0, p.activity.sessions.totalSessions);
+            Assert.IsNotNull(p.activity.streak);
+            Assert.IsNotNull(p.progression);
+            Assert.IsNotNull(p.progression.xp);
+            Assert.AreEqual(0, p.progression.xp.totalXp);
+        }
+
         [Test]
         public void Missing_File_Returns_Default_And_Exists_Is_False()
         {
             var store = new LocalPlayerProgressStore(_path);
             Assert.IsFalse(store.Exists());
-            var p = store.Load();
-            Assert.IsNotNull(p);
-            Assert.AreEqual(ProgressMigration.CurrentSchemaVersion, p.schemaVersion);
-            Assert.AreEqual(0, p.GetScore("水"));
-            Assert.AreEqual(0, p.SessionsPlayed);
+            Assert.AreEqual(0, Score(store.Load(), "水"));
         }
 
         [Test]
         public void Save_Then_Load_Preserves_Mastery_And_Sessions()
         {
             var store = new LocalPlayerProgressStore(_path);
-            var p = new PlayerProgress { SessionsPlayed = 3 };
-            p.SetScore("水", 8);
-            p.SetScore("学", 1);
+            var p = new PlayerProgress();
+            p.activity.sessions.totalSessions = 3;
+            Set(p, "水", 8);
+            Set(p, "学", 1);
             store.Save(p);
 
             var loaded = store.Load();
-            Assert.AreEqual(8, loaded.GetScore("水"));
-            Assert.AreEqual(1, loaded.GetScore("学"));
-            Assert.AreEqual(3, loaded.SessionsPlayed);
+            Assert.AreEqual(8, Score(loaded, "水"));
+            Assert.AreEqual(1, Score(loaded, "学"));
+            Assert.AreEqual(3, loaded.activity.sessions.totalSessions);
         }
 
         [Test]
-        public void Saved_File_Contains_SchemaVersion()
+        public void Saved_File_Is_V2_Nested_With_SchemaVersion()
         {
-            var store = new LocalPlayerProgressStore(_path);
-            store.Save(new PlayerProgress());
+            new LocalPlayerProgressStore(_path).Save(new PlayerProgress());
             string json = File.ReadAllText(_path);
             StringAssert.Contains("schemaVersion", json);
-            Assert.AreEqual(1, JsonUtility.FromJson<PlayerProgress>(json).schemaVersion);
+            StringAssert.Contains("learning", json);
+            StringAssert.Contains("kanjiMastery", json);
+            Assert.AreEqual(2, JsonUtility.FromJson<PlayerProgress>(json).schemaVersion);
         }
 
-        // ---- Migration: legacy save (no schemaVersion) --------------------------
+        // ---- Migration: legacy flat → nested ------------------------------------
         [Test]
-        public void Legacy_Save_Without_SchemaVersion_Migrates_To_1_And_Keeps_Data()
+        public void Legacy_V0_Save_Without_SchemaVersion_Migrates_To_V2()
         {
-            // Written in the pre-version format (no schemaVersion field).
+            // Pre-version flat format (no schemaVersion).
             File.WriteAllText(_path,
-                "{\"SessionsPlayed\":5,\"DailyStreak\":0,\"LastPlayedDate\":\"\",\"Xp\":0," +
+                "{\"SessionsPlayed\":5,\"DailyStreak\":2,\"LastPlayedDate\":\"2026-08-15\",\"Xp\":40," +
                 "\"Mastery\":[{\"kanji\":\"水\",\"score\":8},{\"kanji\":\"学\",\"score\":1}]}");
 
             var loaded = new LocalPlayerProgressStore(_path).Load();
-            Assert.AreEqual(1, loaded.schemaVersion, "legacy → schemaVersion 1");
-            Assert.AreEqual(5, loaded.SessionsPlayed, "legacy sessions kept");
-            Assert.AreEqual(8, loaded.GetScore("水"), "legacy mastery kept");
-            Assert.AreEqual(1, loaded.GetScore("学"));
+            Assert.AreEqual(2, loaded.schemaVersion, "migrated to v2");
+            Assert.AreEqual(8, Score(loaded, "水"), "mastery kept, re-keyed by id");
+            Assert.AreEqual(1, Score(loaded, "学"));
+            Assert.AreEqual(5, loaded.activity.sessions.totalSessions, "sessions kept");
+            Assert.AreEqual(2, loaded.activity.streak.currentStreak, "streak value kept");
+            Assert.AreEqual("2026-08-15", loaded.activity.streak.lastPlayedDate, "last-played kept");
+            Assert.AreEqual(40, loaded.progression.xp.totalXp, "xp kept");
+            Assert.AreEqual(PlayerLevel.Novice, loaded.learning.levelProgress.currentLevel, "no legacy level → Novice");
         }
 
         [Test]
-        public void SchemaVersion_1_Loads_Without_Migration()
+        public void Legacy_V1_Flat_Save_Migrates_To_V2_Nested()
         {
-            var store = new LocalPlayerProgressStore(_path);
-            var p = new PlayerProgress();
-            p.SetScore("水", 8);
-            store.Save(p); // stamped to version 1
-            var loaded = store.Load();
-            Assert.AreEqual(1, loaded.schemaVersion);
-            Assert.AreEqual(8, loaded.GetScore("水"));
+            File.WriteAllText(_path,
+                "{\"schemaVersion\":1,\"SessionsPlayed\":7,\"DailyStreak\":0,\"LastPlayedDate\":\"\",\"Xp\":0," +
+                "\"Mastery\":[{\"kanji\":\"日\",\"score\":24}]}");
+
+            var loaded = new LocalPlayerProgressStore(_path).Load();
+            Assert.AreEqual(2, loaded.schemaVersion);
+            Assert.AreEqual(24, Score(loaded, "日"));
+            Assert.AreEqual(7, loaded.activity.sessions.totalSessions);
+        }
+
+        [Test]
+        public void Migrated_Mastery_Is_Keyed_By_Codepoint_Not_Character()
+        {
+            File.WriteAllText(_path,
+                "{\"schemaVersion\":1,\"Mastery\":[{\"kanji\":\"水\",\"score\":8}]}");
+            var loaded = new LocalPlayerProgressStore(_path).Load();
+            Assert.AreEqual(1, loaded.learning.kanjiMastery.entries.Count);
+            Assert.AreEqual(KanjiId.Of("水"), loaded.learning.kanjiMastery.entries[0].kanjiId);
+            Assert.AreEqual(8, loaded.learning.kanjiMastery.entries[0].score);
         }
 
         // ---- Corrupt / invalid → safe fallback + preserved ----------------------
@@ -101,8 +141,8 @@ namespace KanjiRush.Tests
         {
             File.WriteAllText(_path, "");
             var loaded = new LocalPlayerProgressStore(_path).Load();
-            Assert.AreEqual(0, loaded.GetScore("水"));
-            Assert.IsTrue(File.Exists(_path + ".corrupt"), "empty file preserved for inspection");
+            Assert.AreEqual(0, Score(loaded, "水"));
+            Assert.IsTrue(File.Exists(_path + ".corrupt"), "empty file preserved");
         }
 
         [Test]
@@ -110,8 +150,7 @@ namespace KanjiRush.Tests
         {
             File.WriteAllText(_path, "{ this is not valid json ");
             var loaded = new LocalPlayerProgressStore(_path).Load();
-            Assert.IsNotNull(loaded);
-            Assert.AreEqual(0, loaded.GetScore("水"));
+            Assert.AreEqual(0, Score(loaded, "水"));
             Assert.IsTrue(File.Exists(_path + ".corrupt"), "corrupt file preserved");
         }
 
@@ -119,9 +158,9 @@ namespace KanjiRush.Tests
         public void Future_SchemaVersion_Is_Not_Downgraded_And_Is_Preserved()
         {
             File.WriteAllText(_path,
-                "{\"schemaVersion\":999,\"Mastery\":[{\"kanji\":\"水\",\"score\":8}]}");
+                "{\"schemaVersion\":999,\"learning\":{\"kanjiMastery\":{\"entries\":[{\"kanjiId\":27700,\"score\":8}]}}}");
             var loaded = new LocalPlayerProgressStore(_path).Load();
-            Assert.AreEqual(0, loaded.GetScore("水"), "did not read a save from a newer app");
+            Assert.AreEqual(0, Score(loaded, "水"), "did not read a save from a newer app");
             Assert.AreEqual(ProgressMigration.CurrentSchemaVersion, loaded.schemaVersion);
             Assert.IsTrue(File.Exists(_path + ".corrupt"));
         }
@@ -131,12 +170,12 @@ namespace KanjiRush.Tests
         public void Overwriting_Save_Keeps_A_Backup_Of_The_Previous_Good_File()
         {
             var store = new LocalPlayerProgressStore(_path);
-            var first = new PlayerProgress(); first.SetScore("水", 8); store.Save(first);
-            var second = new PlayerProgress(); second.SetScore("水", 10); store.Save(second);
+            var first = new PlayerProgress(); Set(first, "水", 8); store.Save(first);
+            var second = new PlayerProgress(); Set(second, "水", 10); store.Save(second);
 
             Assert.IsTrue(File.Exists(_path), "final save present");
             Assert.IsTrue(File.Exists(_path + ".bak"), "previous save kept as .bak");
-            Assert.AreEqual(10, store.Load().GetScore("水"), "final save is the latest");
+            Assert.AreEqual(10, Score(store.Load(), "水"), "final save is the latest");
             Assert.IsFalse(File.Exists(_path + ".tmp"), "no leftover temp file");
         }
 
@@ -149,7 +188,7 @@ namespace KanjiRush.Tests
 
             var current = service.Current;       // lazy load
             Assert.AreEqual(1, fake.LoadCount);
-            current.SetScore("水", 8);
+            Set(current, "水", 8);
             service.Save();
             Assert.AreEqual(1, fake.SaveCount);
             Assert.AreSame(current, fake.LastSaved);
@@ -167,7 +206,7 @@ namespace KanjiRush.Tests
                 MasteryService.Persist = _ => MasteryService.Service.Save();
 
                 int newScore = MasteryService.RecordAttempt("水", AnswerMode.Kana, TimerMode.Untimed, true);
-                Assert.AreEqual(8, newScore);            // scoring unchanged
+                Assert.AreEqual(8, newScore);             // scoring unchanged
                 Assert.GreaterOrEqual(fake.LoadCount, 1); // read via store
                 Assert.GreaterOrEqual(fake.SaveCount, 1); // written via store (not the JSON file)
             }

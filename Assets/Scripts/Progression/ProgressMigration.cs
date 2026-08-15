@@ -1,47 +1,99 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace KanjiMaster.Progression
 {
     /// <summary>
-    /// Minimal migration infrastructure for the persisted <see cref="PlayerProgress"/>.
-    /// Today there is a single version (1), so no real migration runs — but the
-    /// version field and the migration loop exist so future shape changes have an
-    /// obvious, safe place to hook in.
+    /// Reads a raw save (any known schema version) and returns a current-version
+    /// <see cref="PlayerProgress"/>, or null if it cannot be read/migrated.
     ///
-    /// Rules:
-    ///   • schemaVersion &lt;= 0  → legacy/unversioned save → treated as v1 (no shape change).
-    ///   • schemaVersion &gt; Current → a save from a newer app → cannot downgrade → fail.
-    ///   • otherwise step forward one version at a time via the switch below.
+    /// Because JsonUtility deserializes into the TARGET type (dropping fields the
+    /// target lacks), a shape change can't be migrated by loading into the new class.
+    /// So we peek the version, and for old (flat) saves we read a legacy DTO first,
+    /// then map it into the nested model — preserving all data.
+    ///
+    /// Versions: 0 = legacy/unversioned (flat), 1 = flat + schemaVersion, 2 = nested.
+    /// Future migrations add a step in the v2→v3 style; the entry point stays here.
     /// </summary>
     public static class ProgressMigration
     {
-        /// <summary>Current on-disk schema version. Bump this when PlayerProgress changes shape.</summary>
-        public const int CurrentSchemaVersion = 1;
+        /// <summary>Current on-disk schema version. Bump when PlayerProgress changes shape.</summary>
+        public const int CurrentSchemaVersion = 2;
 
-        /// <summary>
-        /// Migrate <paramref name="progress"/> in place up to <see cref="CurrentSchemaVersion"/>.
-        /// Returns true on success; false if the save cannot be migrated (unknown/newer version).
-        /// </summary>
-        public static bool TryMigrate(PlayerProgress progress)
+        [Serializable] private class SchemaProbe { public int schemaVersion; }
+
+        public static PlayerProgress FromJson(string json)
         {
-            if (progress == null) return false;
+            if (string.IsNullOrWhiteSpace(json)) return null;
 
-            // Legacy saves predate the version field and deserialize to 0.
-            if (progress.schemaVersion < 1) progress.schemaVersion = 1;
+            int version;
+            try { version = JsonUtility.FromJson<SchemaProbe>(json)?.schemaVersion ?? 0; }
+            catch { return null; }
 
-            // A save newer than this build understands must not be silently downgraded.
-            if (progress.schemaVersion > CurrentSchemaVersion) return false;
-
-            while (progress.schemaVersion < CurrentSchemaVersion)
+            try
             {
-                switch (progress.schemaVersion)
+                if (version <= 1)
                 {
-                    // Future migrations go here, e.g.:
-                    // case 1: MigrateV1ToV2(progress); progress.schemaVersion = 2; break;
-                    default:
-                        return false; // no migration path defined for this version
+                    // Legacy flat format (0 and 1 share the same shape).
+                    return MapV1ToV2(JsonUtility.FromJson<LegacyPlayerProgressV1>(json));
                 }
+                if (version == CurrentSchemaVersion)
+                {
+                    var p = JsonUtility.FromJson<PlayerProgress>(json);
+                    if (p == null) return null;
+                    p.schemaVersion = CurrentSchemaVersion;
+                    p.RebuildIndexes();
+                    return p;
+                }
+                return null; // newer than this build understands — do not downgrade
+            }
+            catch { return null; }
+        }
+
+        /// <summary>Map the old flat model into the new nested model, preserving all
+        /// existing data. Mastery keys move from character → code-point id (lossless).</summary>
+        private static PlayerProgress MapV1ToV2(LegacyPlayerProgressV1 old)
+        {
+            if (old == null) return null;
+
+            var p = new PlayerProgress { schemaVersion = CurrentSchemaVersion };
+
+            if (old.Mastery != null)
+            {
+                foreach (var e in old.Mastery)
+                    if (e != null && !string.IsNullOrEmpty(e.kanji))
+                        p.learning.kanjiMastery.SetScore(KanjiId.Of(e.kanji), e.score);
             }
 
-            return progress.schemaVersion == CurrentSchemaVersion;
+            p.activity.sessions.totalSessions = old.SessionsPlayed;
+            p.activity.streak.currentStreak = old.DailyStreak;
+            p.activity.streak.lastPlayedDate = old.LastPlayedDate;
+            p.progression.xp.totalXp = old.Xp;
+            // No legacy level data existed → learning.levelProgress stays Novice.
+            // No legacy profile data existed → profile stays empty.
+
+            p.RebuildIndexes();
+            return p;
         }
+    }
+
+    // --- Legacy flat schema (v0/v1) — read-only, used only by migration ----------
+    [Serializable]
+    internal class LegacyPlayerProgressV1
+    {
+        public int schemaVersion;
+        public int SessionsPlayed;
+        public int DailyStreak;
+        public string LastPlayedDate;
+        public int Xp;
+        public List<LegacyKanjiEntry> Mastery;
+    }
+
+    [Serializable]
+    internal class LegacyKanjiEntry
+    {
+        public string kanji;
+        public int score;
     }
 }

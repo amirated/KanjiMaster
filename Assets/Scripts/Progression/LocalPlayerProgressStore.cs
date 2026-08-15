@@ -41,16 +41,11 @@ namespace KanjiMaster.Progression
 
             if (string.IsNullOrWhiteSpace(json)) return RecoverDefault("save file is empty");
 
-            PlayerProgress progress;
-            try { progress = JsonUtility.FromJson<PlayerProgress>(json); }
-            catch (Exception e) { return RecoverDefault($"JSON parse failed: {e.Message}"); }
+            // Parse + migrate to the current schema (handles legacy flat saves too).
+            var progress = ProgressMigration.FromJson(json);
+            if (progress == null) return RecoverDefault("save could not be parsed or migrated");
 
-            if (progress == null) return RecoverDefault("JSON parsed to null");
-
-            if (!ProgressMigration.TryMigrate(progress))
-                return RecoverDefault($"unmigratable schemaVersion={progress.schemaVersion}");
-
-            progress.InvalidateIndex(); // rebuild the runtime lookup after deserialization
+            progress.RebuildIndexes(); // rebuild the runtime lookup after deserialization
             return progress;
         }
 

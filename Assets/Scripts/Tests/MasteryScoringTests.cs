@@ -8,8 +8,8 @@ namespace KanjiRush.Tests
 {
     /// <summary>
     /// Unit tests for persistent mastery scoring: the generic transition (every
-    /// profile), the parity/positivity invariants, profile resolution, and
-    /// persistence. No mastery UI / XP / selection is exercised (none exists).
+    /// profile), the parity/positivity invariants, profile resolution, and the
+    /// nested-model mastery storage. No mastery UI / XP / selection is exercised.
     /// </summary>
     public class MasteryScoringTests
     {
@@ -25,7 +25,6 @@ namespace KanjiRush.Tests
         public void Profile_4_3_Transitions()
         {
             AssertCorrect(4, (0, 4), (2, 6), (6, 10), (1, 2), (3, 4), (7, 8));
-            // includes the prompt's 5 -> 1, and the author-uncertain 7 -> 3 (invariant-correct)
             AssertWrong(3, (0, 0), (4, 1), (8, 5), (2, 1), (1, 1), (3, 1), (5, 1), (7, 3));
         }
 
@@ -81,7 +80,6 @@ namespace KanjiRush.Tests
         [Test]
         public void Revision_Uses_Untimed_Profile_Of_Inherited_Mode()
         {
-            // Original Timed+Kana → revision is Untimed+Kana → +8/-5 (not the timed +16/-9).
             var original = new GameSession { Config = new GameConfig { Answer = AnswerMode.Kana, Timer = TimerMode.Timed } };
             var revision = Revision.ConfigFor(original);
             var profile = ScoringProfileResolver.Resolve(revision.Answer, revision.Timer);
@@ -89,35 +87,37 @@ namespace KanjiRush.Tests
             Assert.AreEqual(5, profile.WrongPenalty);
         }
 
-        // ---- PlayerProgress model + independence --------------------------------
+        // ---- KanjiMastery model (keyed by stable code-point id) -----------------
         [Test]
         public void New_Kanji_Start_At_Zero_And_Scores_Are_Independent()
         {
-            var p = new PlayerProgress();
-            Assert.AreEqual(0, p.GetScore("水"));
-            p.SetScore("水", 8);
-            Assert.AreEqual(8, p.GetScore("水"));
-            Assert.AreEqual(0, p.GetScore("山"), "unset kanji still zero");
-            p.SetScore("山", 3);
-            Assert.AreEqual(8, p.GetScore("水"), "updating 山 must not affect 水");
-            Assert.AreEqual(3, p.GetScore("山"));
+            var km = new KanjiMastery();
+            int mizu = KanjiId.Of("水"), yama = KanjiId.Of("山");
+            Assert.AreEqual(0, km.GetScore(mizu));
+            km.SetScore(mizu, 8);
+            Assert.AreEqual(8, km.GetScore(mizu));
+            Assert.AreEqual(0, km.GetScore(yama), "unset kanji still zero");
+            km.SetScore(yama, 3);
+            Assert.AreEqual(8, km.GetScore(mizu), "updating 山 must not affect 水");
+            Assert.AreEqual(3, km.GetScore(yama));
         }
 
         [Test]
         public void Progress_Survives_Json_RoundTrip()
         {
-            var p = new PlayerProgress { SessionsPlayed = 4 };
-            p.SetScore("水", 12);
-            p.SetScore("日", 24);
+            var p = new PlayerProgress { schemaVersion = ProgressMigration.CurrentSchemaVersion };
+            p.activity.sessions.totalSessions = 4;
+            p.learning.kanjiMastery.SetScore(KanjiId.Of("水"), 12);
+            p.learning.kanjiMastery.SetScore(KanjiId.Of("日"), 24);
 
             string json = JsonUtility.ToJson(p);
             var loaded = JsonUtility.FromJson<PlayerProgress>(json);
-            loaded.InvalidateIndex();
+            loaded.RebuildIndexes();
 
-            Assert.AreEqual(12, loaded.GetScore("水"));
-            Assert.AreEqual(24, loaded.GetScore("日"));
-            Assert.AreEqual(4, loaded.SessionsPlayed);
-            Assert.AreEqual(0, loaded.GetScore("学"), "unseen kanji still zero after reload");
+            Assert.AreEqual(12, loaded.learning.kanjiMastery.GetScore(KanjiId.Of("水")));
+            Assert.AreEqual(24, loaded.learning.kanjiMastery.GetScore(KanjiId.Of("日")));
+            Assert.AreEqual(4, loaded.activity.sessions.totalSessions);
+            Assert.AreEqual(0, loaded.learning.kanjiMastery.GetScore(KanjiId.Of("学")), "unseen kanji still zero");
         }
 
         [Test]
@@ -129,14 +129,14 @@ namespace KanjiRush.Tests
             {
                 var store = new LocalPlayerProgressStore(path);
                 var p = new PlayerProgress();
-                p.SetScore("学", 1);
-                p.SetScore("水", 8);
+                p.learning.kanjiMastery.SetScore(KanjiId.Of("学"), 1);
+                p.learning.kanjiMastery.SetScore(KanjiId.Of("水"), 8);
                 store.Save(p);
 
-                var loaded = store.Load();   // simulates app restart
-                Assert.AreEqual(1, loaded.GetScore("学"));
-                Assert.AreEqual(8, loaded.GetScore("水"));
-                Assert.AreEqual(0, loaded.GetScore("山"));
+                var loaded = store.Load();
+                Assert.AreEqual(1, loaded.learning.kanjiMastery.GetScore(KanjiId.Of("学")));
+                Assert.AreEqual(8, loaded.learning.kanjiMastery.GetScore(KanjiId.Of("水")));
+                Assert.AreEqual(0, loaded.learning.kanjiMastery.GetScore(KanjiId.Of("山")));
             }
             finally
             {
@@ -169,10 +169,10 @@ namespace KanjiRush.Tests
         [Test]
         public void Service_Counts_Sessions()
         {
-            Assert.AreEqual(0, MasteryService.Progress.SessionsPlayed);
+            Assert.AreEqual(0, MasteryService.Progress.activity.sessions.totalSessions);
             MasteryService.RegisterSessionPlayed();
             MasteryService.RegisterSessionPlayed();
-            Assert.AreEqual(2, MasteryService.Progress.SessionsPlayed);
+            Assert.AreEqual(2, MasteryService.Progress.activity.sessions.totalSessions);
         }
 
         // ---- helpers ------------------------------------------------------------

@@ -1,71 +1,44 @@
 using System;
-using System.Collections.Generic;
 
 namespace KanjiMaster.Progression
 {
-    /// <summary>One kanji's persistent mastery score.</summary>
+    /// <summary>
+    /// Player profile. Intentionally minimal/empty: the game needs no identity data
+    /// (name, avatar, auth, preferences) yet, so this is just a stable, serializable
+    /// place to add such fields later without reshaping PlayerProgress.
+    /// </summary>
     [Serializable]
-    public class KanjiMasteryEntry
+    public class ProfileData
     {
-        public string kanji;
-        public int score;
     }
 
     /// <summary>
-    /// The persistent player progression model — the foundation a future global XP
-    /// system will extend. It holds per-kanji mastery plus placeholders for the
-    /// eventual XP inputs (sessions played, daily streak, XP). Only mastery and
-    /// SessionsPlayed are populated in this task; DailyStreak/Xp are reserved and
-    /// intentionally left uncomputed (no XP formula, no streak logic yet).
+    /// The root persistent player-progress model — a pure, serializable DATA object
+    /// (no UI, scenes, I/O, MonoBehaviours, or scoring/selection logic). Its top-level
+    /// shape is deliberately stable so features slot into the right section:
     ///
-    /// Serialized as JSON (a list, since JsonUtility can't serialize dictionaries);
-    /// a runtime dictionary index is rebuilt lazily for O(1) access.
+    ///   PlayerProgress
+    ///   ├── Profile
+    ///   ├── Learning    (KanjiMastery, LevelProgress)
+    ///   ├── Activity    (Sessions, Streak)
+    ///   └── Progression (XP)
+    ///
+    /// Persistence (file/JSON/versioning/migration) is owned by the store/service
+    /// layer, not this class.
     /// </summary>
     [Serializable]
     public class PlayerProgress
     {
-        // Persistence schema version of THIS serialized object. Left with no
-        // initializer on purpose: a legacy (unversioned) save deserializes to 0,
-        // which the migrator treats as "legacy → v1". New/default progress is
-        // stamped to the current version by the store. See ProgressMigration.
+        /// <summary>Persistence schema version of this serialized object.
+        /// See <see cref="ProgressMigration"/>. Stamped by the store on save.</summary>
         public int schemaVersion;
 
-        public int SessionsPlayed;
+        public ProfileData profile = new ProfileData();
+        public LearningProgress learning = new LearningProgress();
+        public ActivityProgress activity = new ActivityProgress();
+        public ProgressionProgress progression = new ProgressionProgress();
 
-        // --- reserved for the future XP system (not calculated in this task) ---
-        public int DailyStreak;
-        public string LastPlayedDate;  // yyyy-MM-dd, for future streak logic
-        public int Xp;
-
-        public List<KanjiMasteryEntry> Mastery = new List<KanjiMasteryEntry>();
-
-        [NonSerialized] private Dictionary<string, int> _index;
-
-        private void EnsureIndex()
-        {
-            if (_index != null) return;
-            _index = new Dictionary<string, int>();
-            foreach (var e in Mastery)
-                if (e != null && e.kanji != null) _index[e.kanji] = e.score;
-        }
-
-        /// <summary>Current mastery for a kanji; 0 if never seen.</summary>
-        public int GetScore(string kanji)
-        {
-            EnsureIndex();
-            return _index.TryGetValue(kanji, out var s) ? s : 0;
-        }
-
-        public void SetScore(string kanji, int score)
-        {
-            EnsureIndex();
-            _index[kanji] = score;
-            var entry = Mastery.Find(e => e.kanji == kanji);
-            if (entry != null) entry.score = score;
-            else Mastery.Add(new KanjiMasteryEntry { kanji = kanji, score = score });
-        }
-
-        /// <summary>Force the lazy index to rebuild (e.g. after JSON deserialization).</summary>
-        public void InvalidateIndex() => _index = null;
+        /// <summary>Rebuild runtime indexes after JSON deserialization.</summary>
+        public void RebuildIndexes() => learning?.kanjiMastery?.InvalidateIndex();
     }
 }

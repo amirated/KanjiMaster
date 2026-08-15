@@ -40,11 +40,12 @@ namespace KanjiMaster.Progression
         /// </summary>
         public static int RecordAttempt(string kanji, ScoringProfile profile, bool correct)
         {
-            var progress = Progress;
-            int current = progress.GetScore(kanji);
+            var mastery = Progress.learning.kanjiMastery;
+            int id = KanjiId.Of(kanji);
+            int current = mastery.GetScore(id);
             int next = MasteryScoring.Apply(current, profile.CorrectPoints, profile.WrongPenalty, correct);
-            progress.SetScore(kanji, next);
-            Persist(progress);
+            mastery.SetScore(id, next);
+            Persist(Progress);
             return next;
         }
 
@@ -55,11 +56,10 @@ namespace KanjiMaster.Progression
         /// <summary>Count a completed run (used later by the XP system).</summary>
         public static void RegisterSessionPlayed()
         {
-            var progress = Progress;
-            progress.SessionsPlayed++;
-            Persist(progress);
+            Progress.activity.sessions.totalSessions++;
+            Persist(Progress);
         }
 
-        public static int GetScore(string kanji) => Progress.GetScore(kanji);
+        public static int GetScore(string kanji) => Progress.learning.kanjiMastery.GetScore(KanjiId.Of(kanji));
     }
 }
