@@ -24,6 +24,12 @@ namespace KanjiMaster.Progression
     [Serializable]
     public class PlayerProgress
     {
+        // Persistence schema version of THIS serialized object. Left with no
+        // initializer on purpose: a legacy (unversioned) save deserializes to 0,
+        // which the migrator treats as "legacy → v1". New/default progress is
+        // stamped to the current version by the store. See ProgressMigration.
+        public int schemaVersion;
+
         public int SessionsPlayed;
 
         // --- reserved for the future XP system (not calculated in this task) ---

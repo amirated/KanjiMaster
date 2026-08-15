@@ -3,27 +3,35 @@ using KanjiMaster.Core;
 namespace KanjiMaster.Progression
 {
     /// <summary>
-    /// Facade the gameplay layer uses to update persistent mastery. Loads
-    /// <see cref="PlayerProgress"/> once (cached, so it spans scenes) and persists
-    /// after each change.
+    /// Facade the gameplay layer uses to update persistent mastery. Mastery SCORING
+    /// is its responsibility; PERSISTENCE is delegated to <see cref="PlayerProgressService"/>
+    /// (which sits over <see cref="IPlayerProgressStore"/>), so this class is no longer
+    /// coupled to a concrete storage implementation.
     ///
-    /// This updates the PERSISTENT per-kanji mastery only — it is completely
-    /// separate from the visible per-run game score, and it does NOT do question
-    /// selection, XP, or mastery UI.
+    /// This updates the persistent per-kanji mastery only — it is completely separate
+    /// from the visible per-run game score, and it does NOT do question selection,
+    /// XP, or mastery UI.
     /// </summary>
     public static class MasteryService
     {
-        private static PlayerProgress _progress;
-
-        /// <summary>Cached progress (lazily loaded). Settable for tests.</summary>
-        public static PlayerProgress Progress
+        /// <summary>The progress service used for persistence. Defaults to the shared
+        /// local-JSON-backed instance; settable for tests/composition.</summary>
+        public static PlayerProgressService Service
         {
-            get => _progress ??= ProgressStore.Load();
-            set => _progress = value;
+            get => PlayerProgressService.Default;
+            set => PlayerProgressService.Default = value;
         }
 
-        /// <summary>Persistence hook — overridable in tests to avoid disk I/O.</summary>
-        public static System.Action<PlayerProgress> Persist = p => ProgressStore.Save(p);
+        /// <summary>Cached progress (lazily loaded via the service). Settable for tests.</summary>
+        public static PlayerProgress Progress
+        {
+            get => Service.Current;
+            set => Service.Current = value;
+        }
+
+        /// <summary>Persistence hook — overridable in tests to avoid disk I/O.
+        /// Defaults to saving through the service (local JSON store).</summary>
+        public static System.Action<PlayerProgress> Persist = _ => Service.Save();
 
         /// <summary>
         /// Record one answer attempt for a kanji and persist the new mastery score.

@@ -121,25 +121,27 @@ namespace KanjiRush.Tests
         }
 
         [Test]
-        public void ProgressStore_Save_Then_Load_Round_Trips_From_Disk()
+        public void LocalStore_Save_Then_Load_Round_Trips_From_Disk()
         {
             string path = Path.Combine(Application.persistentDataPath,
                 "test_progress_" + System.Guid.NewGuid().ToString("N") + ".json");
             try
             {
+                var store = new LocalPlayerProgressStore(path);
                 var p = new PlayerProgress();
                 p.SetScore("学", 1);
                 p.SetScore("水", 8);
-                ProgressStore.Save(p, path);
+                store.Save(p);
 
-                var loaded = ProgressStore.Load(path);   // simulates app restart
+                var loaded = store.Load();   // simulates app restart
                 Assert.AreEqual(1, loaded.GetScore("学"));
                 Assert.AreEqual(8, loaded.GetScore("水"));
                 Assert.AreEqual(0, loaded.GetScore("山"));
             }
             finally
             {
-                if (File.Exists(path)) File.Delete(path);
+                foreach (var ext in new[] { "", ".tmp", ".bak", ".corrupt" })
+                    if (File.Exists(path + ext)) File.Delete(path + ext);
             }
         }
 
