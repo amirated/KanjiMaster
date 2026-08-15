@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "tool": "Comfy Desktop",
+  "toolVersion": "TBD",
+  "style": "Flat minimal caricature, single subject, bold shapes, high contrast, soft flat colours, no text, no background clutter; readable at 96px.",
+  "canvas": { "width": 1024, "height": 1024 },
+  "outputFormat": "png",
+  "notes": "Illustrative example only — replace with real POC entries. kanjiId is the Unicode code point (matches the mastery key).",
+  "entries": [
+    {
+      "kanjiId": 27700,
+      "character": "水",
+      "concept": "water",
+      "workflow": "kanji_illustration_v1",
+      "model": "TBD-commercial-model",
+      "modelVersion": "TBD",
+      "modelLicense": "TBD (must permit commercial use)",
+      "modelCommercialUse": true,
+      "customNodes": [],
+      "prompt": "a single drop of clear blue water, flat minimal caricature, bold shapes, high contrast, plain light background, no text",
+      "seed": 12345,
+      "generationDate": "2026-08-15",
+      "outputFormat": "png",
+      "outputDimensions": { "width": 1024, "height": 1024 },
+      "outputFile": "Assets/Art/Illustrations/27700_水.png"
+    },
+    {
+      "kanjiId": 23665,
+      "character": "山",
+      "concept": "mountain",
+      "workflow": "kanji_illustration_v1",
+      "model": "TBD-commercial-model",
+      "modelVersion": "TBD",
+      "modelLicense": "TBD (must permit commercial use)",
+      "modelCommercialUse": true,
+      "customNodes": [],
+      "prompt": "a simple three-peak mountain, flat minimal caricature, bold shapes, high contrast, plain light background, no text",
+      "seed": 12346,
+      "generationDate": "2026-08-15",
+      "outputFormat": "png",
+      "outputDimensions": { "width": 1024, "height": 1024 },
+      "outputFile": "Assets/Art/Illustrations/23665_山.png"
+    }
+  ]
+}
