@@ -9,8 +9,11 @@ namespace KanjiMaster.UI
     /// <summary>
     /// Results presentation. Reads the completed <see cref="GameSession"/> from
     /// <see cref="SessionContext"/> — mistakes come from session data, never from UI
-    /// text. Works for both normal and revision sessions. Shows Revise only when the
-    /// (non-revision) session has mistakes. No gameplay logic here.
+    /// text — and drives the screen from <see cref="ResultsPresenter"/>.
+    ///
+    /// Normal run  → numerical results (+ Revise only when there are mistakes).
+    /// Revision run → ONLY "Well Done!" (no numbers, no Revise) + Play Again / Main Menu.
+    /// No gameplay logic here.
     /// </summary>
     public class ResultsController : MonoBehaviour
     {
@@ -24,51 +27,92 @@ namespace KanjiMaster.UI
         [SerializeField] private TMP_Text bestComboText;
         [SerializeField] private TMP_Text missedText;   // optional: lists missed kanji
 
+        [Header("Revision state (optional — see docs/REVISION.md)")]
+        [SerializeField] private GameObject normalResultsGroup; // container for the numeric labels
+        [SerializeField] private GameObject wellDoneGroup;      // container shown on a revision run
+        [SerializeField] private TMP_Text wellDoneText;         // dedicated "Well Done!" label
+
         [Header("Actions")]
-        [SerializeField] private Button reviseButton;   // shown only when there are mistakes
+        [SerializeField] private Button reviseButton;   // shown only for a normal run with mistakes
         [SerializeField] private Button playAgainButton;
         [SerializeField] private Button mainMenuButton;
 
         private void Start()
         {
             var session = SessionContext.LastSession ?? new GameSession();
-            Bind(session);
+            var view = ResultsPresenter.For(session);
 
-            bool canRevise = session.HasMistakes && !session.IsRevision;
+            if (view.ShowNumericResults) ShowNormal(session);
+            else ShowWellDone();
+
             if (reviseButton)
             {
-                reviseButton.gameObject.SetActive(canRevise);
-                if (canRevise) reviseButton.onClick.AddListener(() => OnRevise(session));
+                reviseButton.gameObject.SetActive(view.ShowReviseButton);
+                if (view.ShowReviseButton) reviseButton.onClick.AddListener(() => OnRevise(session));
             }
-
             if (playAgainButton) playAgainButton.onClick.AddListener(OnPlayAgain);
             if (mainMenuButton) mainMenuButton.onClick.AddListener(SceneLoader.GoToMainMenu);
         }
 
+        /// <summary>Normal run: numerical results.</summary>
+        private void ShowNormal(GameSession s)
+        {
+            if (normalResultsGroup) normalResultsGroup.SetActive(true);
+            if (wellDoneGroup) wellDoneGroup.SetActive(false);
+            Bind(s);
+        }
+
+        /// <summary>Revision run: ONLY "Well Done!" — never the numbers.</summary>
+        private void ShowWellDone()
+        {
+            if (normalResultsGroup) normalResultsGroup.SetActive(false);
+            if (wellDoneGroup) wellDoneGroup.SetActive(true);
+
+            Set(titleText, ResultsPresenter.WellDoneMessage);
+            Set(wellDoneText, ResultsPresenter.WellDoneMessage);
+
+            // Defensive: blank the numeric labels so no score/percentage can show even
+            // if the scene has not been split into the optional groups above.
+            Set(scoreText, "");
+            Set(correctText, "");
+            Set(incorrectText, "");
+            Set(totalText, "");
+            Set(accuracyText, "");
+            Set(bestComboText, "");
+            Set(missedText, "");
+        }
+
         private void Bind(GameSession s)
         {
-            if (titleText) titleText.text = s.IsRevision ? "Revision Results" : "Results";
-            if (scoreText) scoreText.text = $"Score: {s.Score}";
-            if (correctText) correctText.text = $"Correct: {s.CorrectCount}";
-            if (incorrectText) incorrectText.text = $"Incorrect: {s.IncorrectCount}";
-            if (totalText) totalText.text = $"Questions: {s.TotalQuestions}";
-            if (accuracyText) accuracyText.text = $"Accuracy: {s.Accuracy * 100f:0}%";
-            if (bestComboText) bestComboText.text = $"Best combo: x{s.MaxCombo}";
-            if (missedText)
-                missedText.text = s.HasMistakes ? "Missed: " + string.Join(" ", s.IncorrectKanji()) : string.Empty;
+            Set(titleText, ResultsPresenter.NormalTitle);
+            Set(scoreText, $"Score: {s.Score}");
+            Set(correctText, $"Correct: {s.CorrectCount}");
+            Set(incorrectText, $"Incorrect: {s.IncorrectCount}");
+            Set(totalText, $"Questions: {s.TotalQuestions}");
+            Set(accuracyText, $"Accuracy: {s.Accuracy * 100f:0}%");
+            Set(bestComboText, $"Best combo: x{s.MaxCombo}");
+            Set(missedText, s.HasMistakes ? "Missed: " + string.Join(" ", s.IncorrectKanji()) : string.Empty);
         }
 
-        // Revision preserves the original session (QueueRevision reads, never mutates it).
+        // Revision preserves the original session (QueueRevision reads, never mutates it),
+        // and only navigates when there is actually something to revise.
         private void OnRevise(GameSession original)
         {
-            SessionContext.QueueRevision(original);
-            SceneLoader.GoToGame();
+            if (SessionContext.QueueRevision(original))
+                SceneLoader.GoToGame();
         }
 
+        // Play Again returns to the NORMAL flow (QueueReplayNormal clears any revision
+        // state), so a revision can never recursively launch another revision.
         private void OnPlayAgain()
         {
             SessionContext.QueueReplayNormal();
             SceneLoader.GoToGame();
+        }
+
+        private static void Set(TMP_Text field, string value)
+        {
+            if (field) field.text = value;
         }
     }
 }

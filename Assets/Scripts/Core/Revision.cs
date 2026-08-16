@@ -16,6 +16,21 @@ namespace KanjiMaster.Core
             return config;
         }
 
-        public static List<string> KanjiFor(GameSession original) => original.IncorrectKanji();
+        /// <summary>
+        /// The exact kanji to revise: the ones answered incorrectly in the preceding
+        /// session, in the order the mistakes occurred, each at most once. Normal runs
+        /// already use 15 UNIQUE kanji, so a kanji can be wrong at most once and no
+        /// duplicates can arise upstream — the de-dup here is purely defensive against a
+        /// future upstream change, and never pads or reorders beyond removing repeats.
+        /// </summary>
+        public static List<string> KanjiFor(GameSession original)
+        {
+            var seen = new HashSet<string>();
+            var result = new List<string>();
+            if (original == null) return result;
+            foreach (var k in original.IncorrectKanji())
+                if (!string.IsNullOrEmpty(k) && seen.Add(k)) result.Add(k);
+            return result;
+        }
     }
 }

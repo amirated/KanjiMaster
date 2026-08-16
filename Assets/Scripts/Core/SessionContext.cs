@@ -39,11 +39,20 @@ namespace KanjiMaster.Core
             NextIsRevision = false;
         }
 
-        public static void QueueRevision(GameSession original)
+        /// <summary>Queue a revision of the preceding session's mistakes. Returns false
+        /// (queuing nothing) when there is nothing to revise, so an empty request can
+        /// never start a fake/invalid revision run. Does NOT touch LastNormalConfig or
+        /// LastSession, so the preceding normal session stays intact.</summary>
+        public static bool QueueRevision(GameSession original)
         {
+            if (original == null) return false;
+            var kanji = Revision.KanjiFor(original);
+            if (kanji.Count == 0) return false; // no mistakes → don't start a revision
+
             NextConfig = Revision.ConfigFor(original);
-            NextKanji = Revision.KanjiFor(original);
+            NextKanji = kanji;
             NextIsRevision = true;
+            return true;
         }
     }
 }
