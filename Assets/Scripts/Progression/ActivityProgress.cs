@@ -12,15 +12,19 @@ namespace KanjiMaster.Progression
     }
 
     /// <summary>
-    /// Streak state — DATA ONLY. The streak algorithm (what counts as a day, when it
-    /// increments/breaks, timezones, grace periods) is deferred to a later task.
-    /// These are just the fields the current save already carried.
+    /// Daily-streak state — DATA ONLY. The streak ALGORITHM (calendar-day comparison,
+    /// increment/break rules) lives in <see cref="StreakCalculator"/>; the commit point
+    /// is <see cref="ActivityService"/>. <c>lastPlayedDate</c> is the last calendar date
+    /// (yyyy-MM-dd, invariant) on which a normal session was completed — i.e. the
+    /// "last active date". Field names are kept stable for backward compatibility with
+    /// existing saves; <c>longestStreak</c> is additive (missing → 0, seeded on load).
     /// </summary>
     [Serializable]
     public class StreakData
     {
         public int currentStreak;
-        public string lastPlayedDate; // yyyy-MM-dd; interpretation is deferred
+        public int longestStreak;
+        public string lastPlayedDate; // yyyy-MM-dd (invariant) — last active/completed date
     }
 
     /// <summary>Player activity: sessions + streak.</summary>

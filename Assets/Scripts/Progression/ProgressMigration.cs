@@ -14,14 +14,16 @@ namespace KanjiMaster.Progression
     /// then map it into the nested model — preserving all data.
     ///
     /// Versions: 0 = legacy/unversioned (flat), 1 = flat + schemaVersion,
-    ///           2 = nested model, 3 = nested + per-level LevelProgress.
-    /// v2 → v3 is purely additive (LevelProgress gained a `levels` list), so a v2 save
-    /// loads into the current class directly and only needs its level states seeded.
+    ///           2 = nested model, 3 = nested + per-level LevelProgress,
+    ///           4 = + Activity streak (longestStreak; active streak tracking).
+    /// v2/v3 → v4 is purely additive (LevelProgress gained `levels`; StreakData gained
+    /// `longestStreak`), so an older nested save loads into the current class directly
+    /// and only needs its level states seeded and its streak healed.
     /// </summary>
     public static class ProgressMigration
     {
         /// <summary>Current on-disk schema version. Bump when PlayerProgress changes shape.</summary>
-        public const int CurrentSchemaVersion = 3;
+        public const int CurrentSchemaVersion = 4;
 
         [Serializable] private class SchemaProbe { public int schemaVersion; }
 
@@ -55,6 +57,7 @@ namespace KanjiMaster.Progression
                 if (p == null) return null;
                 p.schemaVersion = CurrentSchemaVersion;       // bring the version forward
                 LevelProgressionService.Ensure(p);            // seed level states (new/legacy)
+                ActivityService.EnsureConsistent(p);          // seed longestStreak (new/legacy)
                 p.RebuildIndexes();
                 return p;
             }

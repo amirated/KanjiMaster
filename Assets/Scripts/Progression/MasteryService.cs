@@ -53,12 +53,8 @@ namespace KanjiMaster.Progression
         public static int RecordAttempt(string kanji, AnswerMode answer, TimerMode timer, bool correct)
             => RecordAttempt(kanji, ScoringProfileResolver.Resolve(answer, timer), correct);
 
-        /// <summary>Count a completed run (used later by the XP system).</summary>
-        public static void RegisterSessionPlayed()
-        {
-            Progress.activity.sessions.totalSessions++;
-            Persist(Progress);
-        }
+        // Completed-session counting and streaks moved to ActivityService (the single
+        // authoritative activity commit). MasteryService now owns per-kanji mastery only.
 
         public static int GetScore(string kanji) => Progress.learning.kanjiMastery.GetScore(KanjiId.Of(kanji));
     }

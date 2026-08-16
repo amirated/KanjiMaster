@@ -228,8 +228,10 @@ namespace KanjiMaster.Gameplay
             _session.MaxCombo = _maxCombo;
             SessionContext.LastSession = _session;
 
-            // Count the completed run (normal or revision) for the future XP system.
-            MasteryService.RegisterSessionPlayed();
+            // Commit a completed NORMAL session (sessions + daily streak). ActivityService
+            // ignores revision and de-dupes duplicate completions — this is the single
+            // authoritative commit point. Per-answer mastery was already recorded.
+            ActivityService.RecordNormalSessionCompleted(_session);
 
             // Latch any level completion/unlock earned by this run (reads mastery only;
             // does not touch scoring, XP, sessions or streaks).

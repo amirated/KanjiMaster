@@ -166,14 +166,7 @@ namespace KanjiRush.Tests
             Assert.AreEqual(2, MasteryService.RecordAttempt("山", AnswerMode.English, TimerMode.Untimed, true)); // 0→+2 (revision)
         }
 
-        [Test]
-        public void Service_Counts_Sessions()
-        {
-            Assert.AreEqual(0, MasteryService.Progress.activity.sessions.totalSessions);
-            MasteryService.RegisterSessionPlayed();
-            MasteryService.RegisterSessionPlayed();
-            Assert.AreEqual(2, MasteryService.Progress.activity.sessions.totalSessions);
-        }
+        // Completed-session counting moved to ActivityService — see ActivityTests.
 
         // ---- helpers ------------------------------------------------------------
         private static void AssertCorrect(int correctPoints, params (int from, int to)[] cases)
