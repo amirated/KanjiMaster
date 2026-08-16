@@ -30,6 +30,9 @@ namespace KanjiMaster.UI
         [SerializeField] private Button playButton;
         [SerializeField] private Button settingsButton;
 
+        [Header("Navigation")]
+        [SerializeField] private Button learnButton; // opens the Learn section (Play stays the default)
+
         // Working copy; seeded from the last normal selection so the menu remembers it.
         private GameConfig _config;
 
@@ -51,6 +54,7 @@ namespace KanjiMaster.UI
 
             if (playButton) playButton.onClick.AddListener(OnPlay);
             if (settingsButton) settingsButton.onClick.AddListener(OnSettings);
+            if (learnButton) learnButton.onClick.AddListener(SceneLoader.GoToLearn);
         }
 
         private void OnPlay()

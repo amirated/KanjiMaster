@@ -14,5 +14,6 @@ namespace KanjiMaster.Services
         public static void GoToMainMenu() => Load(SceneNames.MainMenu);
         public static void GoToGame() => Load(SceneNames.Game);
         public static void GoToResults() => Load(SceneNames.Results);
+        public static void GoToLearn() => Load(SceneNames.Learn);
     }
 }

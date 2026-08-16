@@ -8,5 +8,6 @@ namespace KanjiMaster.Services
         public const string MainMenu = "MainMenu";
         public const string Game = "Game";
         public const string Results = "Results";
+        public const string Learn = "Learn";
     }
 }
