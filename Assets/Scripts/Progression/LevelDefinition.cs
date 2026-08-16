@@ -1,0 +1,35 @@
+using KanjiMaster.Core;
+
+namespace KanjiMaster.Progression
+{
+    /// <summary>
+    /// Data-driven description of one player-facing level. Adding a level means adding
+    /// a <see cref="LevelDefinition"/> to <see cref="LevelCatalog"/> — no code branches
+    /// on specific levels. Pure data (no logic); the unlock/completion RULES live in
+    /// <see cref="LevelProgressionService"/>.
+    /// </summary>
+    public sealed class LevelDefinition
+    {
+        /// <summary>Internal level identity.</summary>
+        public PlayerLevel Id { get; }
+
+        /// <summary>Player-facing name, e.g. "Rising Star" (no JLPT terminology).</summary>
+        public string DisplayName { get; }
+
+        /// <summary>Which bundled dataset this level's questions are drawn from.</summary>
+        public KanjiLevel Dataset { get; }
+
+        /// <summary>The level that must be COMPLETED before this one unlocks.
+        /// Null means "unlocked by default" (no prerequisite).</summary>
+        public PlayerLevel? UnlockPrereq { get; }
+
+        public LevelDefinition(PlayerLevel id, string displayName, KanjiLevel dataset,
+            PlayerLevel? unlockPrereq)
+        {
+            Id = id;
+            DisplayName = displayName;
+            Dataset = dataset;
+            UnlockPrereq = unlockPrereq;
+        }
+    }
+}

@@ -231,6 +231,10 @@ namespace KanjiMaster.Gameplay
             // Count the completed run (normal or revision) for the future XP system.
             MasteryService.RegisterSessionPlayed();
 
+            // Latch any level completion/unlock earned by this run (reads mastery only;
+            // does not touch scoring, XP, sessions or streaks).
+            LevelProgressionService.EvaluateAndPersist();
+
             SceneLoader.GoToResults();
         }
     }

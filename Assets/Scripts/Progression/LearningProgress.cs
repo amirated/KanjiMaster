@@ -54,15 +54,47 @@ namespace KanjiMaster.Progression
     }
 
     /// <summary>
-    /// The player's progression through the user-facing levels. Minimal for now:
-    /// just the current level. The advancement formula is intentionally deferred, so
-    /// this only needs a stable place to store the current level. Legacy saves had
-    /// no level data, so migrated players default to Novice.
+    /// Persisted state for one level. <c>unlocked</c> and <c>completed</c> are LATCHED
+    /// (only ever set true) so a later mastery dip can never re-lock a level. The
+    /// progress percentage is derived live from mastery (see LevelProgressionService),
+    /// so it is intentionally NOT stored here and can never go stale.
+    /// </summary>
+    [Serializable]
+    public class LevelState
+    {
+        public PlayerLevel level;
+        public bool unlocked;
+        public bool completed;
+    }
+
+    /// <summary>
+    /// The player's progression through the player-facing levels: the last selected
+    /// level plus a per-level unlocked/completed state. Data only — the unlock/
+    /// completion RULES live in <see cref="LevelProgressionService"/>. Legacy saves
+    /// have an empty level list; the service seeds sensible defaults on load (the
+    /// entry level, Rising Star, unlocked).
     /// </summary>
     [Serializable]
     public class LevelProgress
     {
-        public PlayerLevel currentLevel = PlayerLevel.Novice;
+        /// <summary>The level the player last selected (remembered across sessions).</summary>
+        public PlayerLevel currentLevel = PlayerLevel.RisingStar;
+
+        /// <summary>Per-level unlocked/completed flags (seeded by the service).</summary>
+        public List<LevelState> levels = new List<LevelState>();
+
+        public LevelState Find(PlayerLevel level)
+        {
+            foreach (var s in levels) if (s != null && s.level == level) return s;
+            return null;
+        }
+
+        public LevelState GetOrAdd(PlayerLevel level)
+        {
+            var s = Find(level);
+            if (s == null) { s = new LevelState { level = level }; levels.Add(s); }
+            return s;
+        }
     }
 
     /// <summary>Learning-related progress: mastery + level progression.</summary>

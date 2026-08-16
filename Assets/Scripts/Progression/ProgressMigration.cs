@@ -13,13 +13,15 @@ namespace KanjiMaster.Progression
     /// So we peek the version, and for old (flat) saves we read a legacy DTO first,
     /// then map it into the nested model — preserving all data.
     ///
-    /// Versions: 0 = legacy/unversioned (flat), 1 = flat + schemaVersion, 2 = nested.
-    /// Future migrations add a step in the v2→v3 style; the entry point stays here.
+    /// Versions: 0 = legacy/unversioned (flat), 1 = flat + schemaVersion,
+    ///           2 = nested model, 3 = nested + per-level LevelProgress.
+    /// v2 → v3 is purely additive (LevelProgress gained a `levels` list), so a v2 save
+    /// loads into the current class directly and only needs its level states seeded.
     /// </summary>
     public static class ProgressMigration
     {
         /// <summary>Current on-disk schema version. Bump when PlayerProgress changes shape.</summary>
-        public const int CurrentSchemaVersion = 2;
+        public const int CurrentSchemaVersion = 3;
 
         [Serializable] private class SchemaProbe { public int schemaVersion; }
 
@@ -33,20 +35,28 @@ namespace KanjiMaster.Progression
 
             try
             {
+                PlayerProgress p;
                 if (version <= 1)
                 {
                     // Legacy flat format (0 and 1 share the same shape).
-                    return MapV1ToV2(JsonUtility.FromJson<LegacyPlayerProgressV1>(json));
+                    p = MapV1ToV2(JsonUtility.FromJson<LegacyPlayerProgressV1>(json));
                 }
-                if (version == CurrentSchemaVersion)
+                else if (version <= CurrentSchemaVersion)
                 {
-                    var p = JsonUtility.FromJson<PlayerProgress>(json);
-                    if (p == null) return null;
-                    p.schemaVersion = CurrentSchemaVersion;
-                    p.RebuildIndexes();
-                    return p;
+                    // v2 and v3 share the nested C# shape; missing fields (e.g. the v2
+                    // save has no `levels`) deserialize to sensible empties.
+                    p = JsonUtility.FromJson<PlayerProgress>(json);
                 }
-                return null; // newer than this build understands — do not downgrade
+                else
+                {
+                    return null; // newer than this build understands — do not downgrade
+                }
+
+                if (p == null) return null;
+                p.schemaVersion = CurrentSchemaVersion;       // bring the version forward
+                LevelProgressionService.Ensure(p);            // seed level states (new/legacy)
+                p.RebuildIndexes();
+                return p;
             }
             catch { return null; }
         }
@@ -70,7 +80,8 @@ namespace KanjiMaster.Progression
             p.activity.streak.currentStreak = old.DailyStreak;
             p.activity.streak.lastPlayedDate = old.LastPlayedDate;
             p.progression.xp.totalXp = old.Xp;
-            // No legacy level data existed → learning.levelProgress stays Novice.
+            // No legacy level data existed → level states are seeded by the caller
+            // (FromJson → LevelProgressionService.Ensure): Rising Star unlocked.
             // No legacy profile data existed → profile stays empty.
 
             p.RebuildIndexes();

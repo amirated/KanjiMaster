@@ -46,7 +46,7 @@ namespace KanjiRush.Tests
             Assert.IsNotNull(p.learning.kanjiMastery);
             Assert.AreEqual(0, p.learning.kanjiMastery.Count);
             Assert.IsNotNull(p.learning.levelProgress);
-            Assert.AreEqual(PlayerLevel.Novice, p.learning.levelProgress.currentLevel);
+            Assert.AreEqual(PlayerLevel.RisingStar, p.learning.levelProgress.currentLevel);
             Assert.IsNotNull(p.activity);
             Assert.IsNotNull(p.activity.sessions);
             Assert.AreEqual(0, p.activity.sessions.totalSessions);
@@ -88,7 +88,8 @@ namespace KanjiRush.Tests
             StringAssert.Contains("schemaVersion", json);
             StringAssert.Contains("learning", json);
             StringAssert.Contains("kanjiMastery", json);
-            Assert.AreEqual(2, JsonUtility.FromJson<PlayerProgress>(json).schemaVersion);
+            Assert.AreEqual(ProgressMigration.CurrentSchemaVersion,
+                JsonUtility.FromJson<PlayerProgress>(json).schemaVersion);
         }
 
         // ---- Migration: legacy flat → nested ------------------------------------
@@ -101,14 +102,14 @@ namespace KanjiRush.Tests
                 "\"Mastery\":[{\"kanji\":\"水\",\"score\":8},{\"kanji\":\"学\",\"score\":1}]}");
 
             var loaded = new LocalPlayerProgressStore(_path).Load();
-            Assert.AreEqual(2, loaded.schemaVersion, "migrated to v2");
+            Assert.AreEqual(ProgressMigration.CurrentSchemaVersion, loaded.schemaVersion, "migrated to current");
             Assert.AreEqual(8, Score(loaded, "水"), "mastery kept, re-keyed by id");
             Assert.AreEqual(1, Score(loaded, "学"));
             Assert.AreEqual(5, loaded.activity.sessions.totalSessions, "sessions kept");
             Assert.AreEqual(2, loaded.activity.streak.currentStreak, "streak value kept");
             Assert.AreEqual("2026-08-15", loaded.activity.streak.lastPlayedDate, "last-played kept");
             Assert.AreEqual(40, loaded.progression.xp.totalXp, "xp kept");
-            Assert.AreEqual(PlayerLevel.Novice, loaded.learning.levelProgress.currentLevel, "no legacy level → Novice");
+            Assert.AreEqual(PlayerLevel.RisingStar, loaded.learning.levelProgress.currentLevel, "no legacy level → Rising Star");
         }
 
         [Test]
@@ -119,7 +120,7 @@ namespace KanjiRush.Tests
                 "\"Mastery\":[{\"kanji\":\"日\",\"score\":24}]}");
 
             var loaded = new LocalPlayerProgressStore(_path).Load();
-            Assert.AreEqual(2, loaded.schemaVersion);
+            Assert.AreEqual(ProgressMigration.CurrentSchemaVersion, loaded.schemaVersion);
             Assert.AreEqual(24, Score(loaded, "日"));
             Assert.AreEqual(7, loaded.activity.sessions.totalSessions);
         }

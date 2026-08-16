@@ -21,7 +21,7 @@ LearnController (UI)                    ← builds the screens, owns list⇄deta
 
 - **No new data model / no duplicate JSON.** `LearnCatalog` loads the existing
   `KanjiDatabase` for each available dataset and tags each kanji with its
-  **player-facing** level (`Novice`/`Apprentice`; JLPT names stay internal). It's the
+  **player-facing** level (`Rising Star`/`Young Master`; JLPT names stay internal). It's the
   place to add filter/search/sort/mastery/lock later without touching the views.
 - **Stable identity.** Illustrations are keyed by the kanji's Unicode code point
   (`KanjiId.Of`) — the same id used by mastery.

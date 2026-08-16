@@ -77,8 +77,12 @@ namespace KanjiMaster.Progression
                 File.Move(tmp, _path);                    // 2b. first save (nothing to replace)
         }
 
-        private static PlayerProgress CreateDefault() =>
-            new PlayerProgress { schemaVersion = ProgressMigration.CurrentSchemaVersion };
+        private static PlayerProgress CreateDefault()
+        {
+            var p = new PlayerProgress { schemaVersion = ProgressMigration.CurrentSchemaVersion };
+            LevelProgressionService.Ensure(p); // seed level states (Rising Star unlocked)
+            return p;
+        }
 
         /// <summary>Log the problem, preserve the unreadable file for later inspection,
         /// and fall back to fresh default progress. Does NOT overwrite the bad file.</summary>
