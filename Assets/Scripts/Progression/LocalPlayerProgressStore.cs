@@ -39,21 +39,31 @@ namespace KanjiMaster.Progression
             try { json = File.ReadAllText(_path); }
             catch (Exception e) { return RecoverDefault($"read failed: {e.Message}"); }
 
-            if (string.IsNullOrWhiteSpace(json)) return RecoverDefault("save file is empty");
+            // Interpret the versioned envelope (or a legacy pre-envelope save).
+            var result = SaveDataMigration.Load(json);
+            switch (result.Status)
+            {
+                case SaveLoadStatus.Ok:
+                    return result.Progress;
 
-            // Parse + migrate to the current schema (handles legacy flat saves too).
-            var progress = ProgressMigration.FromJson(json);
-            if (progress == null) return RecoverDefault("save could not be parsed or migrated");
+                case SaveLoadStatus.UnsupportedFutureVersion:
+                    // Written by a newer app. Do NOT downgrade/overwrite it; preserve and
+                    // fall back to a fresh default in memory.
+                    return RecoverDefault("unsupported future save version (preserved, not overwritten)");
 
-            progress.RebuildIndexes(); // rebuild the runtime lookup after deserialization
-            return progress;
+                case SaveLoadStatus.Empty:
+                    return RecoverDefault("save file is empty");
+
+                default: // Corrupt
+                    return RecoverDefault("save could not be parsed or migrated");
+            }
         }
 
         public void Save(PlayerProgress progress)
         {
             if (progress == null) return;
-            progress.schemaVersion = ProgressMigration.CurrentSchemaVersion; // stamp current version
-            string json = JsonUtility.ToJson(progress, true);
+            // Serialize as the versioned envelope (version + PlayerProgress) as one object.
+            string json = SaveDataMigration.Serialize(progress);
             try { AtomicWrite(json); }
             catch (Exception e) { Debug.LogError($"[Progress] save failed: {e.Message}"); }
         }

@@ -57,14 +57,27 @@ namespace KanjiMaster.Progression
                 }
 
                 if (p == null) return null;
-                p.schemaVersion = CurrentSchemaVersion;       // bring the version forward
-                LevelProgressionService.Ensure(p);            // seed level states (new/legacy)
-                ActivityService.EnsureConsistent(p);          // seed longestStreak (new/legacy)
-                XpMigration.Ensure(p);                        // stamp XP ruleset version (no total change)
-                p.RebuildIndexes();
+                Normalize(p);
                 return p;
             }
             catch { return null; }
+        }
+
+        /// <summary>
+        /// Bring a loaded PlayerProgress to the current INNER schema: stamp the version,
+        /// seed any additive fields introduced since the save was written (level states,
+        /// longest-streak heal, XP ruleset version), and rebuild runtime indexes. Data
+        /// only — no XP/mastery/level/streak awarding. Shared by legacy loads and the
+        /// save-envelope loader so both paths seed new fields identically.
+        /// </summary>
+        public static void Normalize(PlayerProgress p)
+        {
+            if (p == null) return;
+            p.schemaVersion = CurrentSchemaVersion;   // bring the version forward
+            LevelProgressionService.Ensure(p);        // seed level states (new/legacy)
+            ActivityService.EnsureConsistent(p);      // seed longestStreak (new/legacy)
+            XpMigration.Ensure(p);                    // stamp XP ruleset version (no total change)
+            p.RebuildIndexes();
         }
 
         /// <summary>Map the old flat model into the new nested model, preserving all

@@ -81,15 +81,21 @@ namespace KanjiRush.Tests
         }
 
         [Test]
-        public void Saved_File_Is_V2_Nested_With_SchemaVersion()
+        public void Saved_File_Is_A_Versioned_Envelope_Wrapping_PlayerProgress()
         {
             new LocalPlayerProgressStore(_path).Save(new PlayerProgress());
             string json = File.ReadAllText(_path);
-            StringAssert.Contains("schemaVersion", json);
+
+            StringAssert.Contains("version", json);         // envelope
+            StringAssert.Contains("playerProgress", json);  // wrapped domain model
+            StringAssert.Contains("schemaVersion", json);   // inner shape stamp preserved
             StringAssert.Contains("learning", json);
             StringAssert.Contains("kanjiMastery", json);
-            Assert.AreEqual(ProgressMigration.CurrentSchemaVersion,
-                JsonUtility.FromJson<PlayerProgress>(json).schemaVersion);
+
+            var env = JsonUtility.FromJson<SaveData>(json);
+            Assert.AreEqual(SaveData.CurrentVersion, env.version, "envelope save version");
+            Assert.IsNotNull(env.playerProgress);
+            Assert.AreEqual(ProgressMigration.CurrentSchemaVersion, env.playerProgress.schemaVersion);
         }
 
         // ---- Migration: legacy flat → nested ------------------------------------
