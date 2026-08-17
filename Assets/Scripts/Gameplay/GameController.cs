@@ -191,7 +191,13 @@ namespace KanjiMaster.Gameplay
                 ResponseTime = Time.time - _shownAt,
             });
 
-            // Persistent per-kanji mastery (separate from the visible run score).
+            // Global XP for a correct answer, using the PRE-answer mastery score (read
+            // BEFORE RecordAttempt changes it), so learning a kanji at its current
+            // difficulty is rewarded. Wrong answers award 0 XP; mastery still updates.
+            int preAnswerMastery = MasteryService.GetScore(q.KanjiCharacter);
+            XpService.AwardAnswerXp(_config.Answer, _config.Timer, preAnswerMastery, correct);
+
+            // Persistent per-kanji mastery (separate from the visible run score and XP).
             // Uses this run's actual modes, so a revision run (Untimed + inherited
             // AnswerMode) automatically resolves the correct revision profile.
             MasteryService.RecordAttempt(q.KanjiCharacter, _config.Answer, _config.Timer, correct);
@@ -231,7 +237,14 @@ namespace KanjiMaster.Gameplay
             // Commit a completed NORMAL session (sessions + daily streak). ActivityService
             // ignores revision and de-dupes duplicate completions — this is the single
             // authoritative commit point. Per-answer mastery was already recorded.
-            ActivityService.RecordNormalSessionCompleted(_session);
+            // Capture "first activity today" BEFORE recording (which stamps today's date).
+            bool firstActivityToday = !ActivityService.HasActivityToday();
+            bool sessionCounted = ActivityService.RecordNormalSessionCompleted(_session);
+
+            // Global XP: +50 once per completed normal session, and the daily streak
+            // bonus at most once per calendar day. Revision/duplicate → sessionCounted
+            // is false, so neither is awarded.
+            XpService.AwardForCompletedSession(sessionCounted, firstActivityToday, ActivityService.CurrentStreak);
 
             // Latch any level completion/unlock earned by this run (reads mastery only;
             // does not touch scoring, XP, sessions or streaks).

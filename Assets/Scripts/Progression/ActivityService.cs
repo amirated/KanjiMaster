@@ -86,6 +86,15 @@ namespace KanjiMaster.Progression
         /// <summary>Clear the in-memory duplicate-commit guard (new app run / tests).</summary>
         public static void ResetSessionGuard() => _lastCommitted = null;
 
+        /// <summary>True if a normal session has already been completed on today's local
+        /// calendar date. Read-only (does not record anything). Used by the XP system to
+        /// award the daily streak bonus only on the first qualifying activity of a day.</summary>
+        public static bool HasActivityToday()
+        {
+            var last = ActivityDates.Parse(Progress.activity.streak.lastPlayedDate);
+            return last.HasValue && last.Value.Date == Clock.Now.Date;
+        }
+
         // ---- Read accessors for UI ---------------------------------------------
         public static int TotalSessions => Progress.activity.sessions.totalSessions;
         public static int CurrentStreak => Progress.activity.streak.currentStreak;
