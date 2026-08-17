@@ -75,6 +75,25 @@ namespace KanjiMaster.Progression
             return st != null && st.completed;
         }
 
+        /// <summary>How many playable kanji a level currently has (0 if the level is not
+        /// defined or its dataset is missing/empty). Safe — never throws.</summary>
+        public static int ContentCount(PlayerLevel level)
+        {
+            var def = LevelCatalog.Get(level);
+            if (def == null) return 0;
+            try { return KanjiIdsProvider?.Invoke(def.Dataset)?.Count ?? 0; }
+            catch { return 0; } // missing/empty dataset → treated as no content
+        }
+
+        /// <summary>True if the level has gameplay content. A defined-but-empty or
+        /// not-yet-authored level (e.g. Adept) reports false and must not be playable.</summary>
+        public static bool HasContent(PlayerLevel level) => ContentCount(level) > 0;
+
+        /// <summary>The gate for actually starting a level: it must be unlocked AND have
+        /// content. Prevents entering a locked level or one with no kanji.</summary>
+        public static bool IsPlayable(PlayerProgress p, PlayerLevel level) =>
+            IsUnlocked(p, level) && HasContent(level);
+
         /// <summary>(kanji at/over threshold, total kanji) for a level — live from mastery.</summary>
         public static (int done, int total) Counts(PlayerProgress p, PlayerLevel level)
         {

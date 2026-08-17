@@ -23,13 +23,22 @@ namespace KanjiMaster.Progression
         /// Null means "unlocked by default" (no prerequisite).</summary>
         public PlayerLevel? UnlockPrereq { get; }
 
+        /// <summary>Ordering index in the progression (0 = entry level).</summary>
+        public int Order { get; }
+
+        /// <summary>Internal JLPT correspondence (metadata only — NOT a player-facing
+        /// label). e.g. "N5". Kept for documentation / study reference.</summary>
+        public string JlptEquivalent { get; }
+
         public LevelDefinition(PlayerLevel id, string displayName, KanjiLevel dataset,
-            PlayerLevel? unlockPrereq)
+            PlayerLevel? unlockPrereq, int order, string jlptEquivalent)
         {
             Id = id;
             DisplayName = displayName;
             Dataset = dataset;
             UnlockPrereq = unlockPrereq;
+            Order = order;
+            JlptEquivalent = jlptEquivalent;
         }
     }
 }

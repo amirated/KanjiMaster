@@ -126,9 +126,10 @@ namespace KanjiMaster.UI
 
         private void OnPlay()
         {
-            // Defensive: never launch a locked level (locked toggles aren't interactable).
+            // Defensive: never launch a level that is locked OR has no content. Fall back
+            // to the default entry level (Rising Star), which is always unlocked + populated.
             var progress = PlayerProgressService.Default.Current;
-            if (!LevelProgressionService.IsUnlocked(progress, _selectedLevel))
+            if (!LevelProgressionService.IsPlayable(progress, _selectedLevel))
                 _selectedLevel = LevelCatalog.Default.Id;
             ApplyLevelToConfig(_selectedLevel);
 

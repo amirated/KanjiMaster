@@ -109,12 +109,17 @@ namespace KanjiMaster.Gameplay
             var pool = QuestionPool.Load(_config.Level);
             var generator = new QuestionGenerator(pool.Database, rng);
 
+            // Level eligibility first (pool is this level's dataset), then mastery
+            // weighting — weighting can never cross the level boundary. Revision keeps
+            // its exact mistake set (unchanged).
             List<Data.Kanji> kanji = SessionContext.NextKanji != null
                 ? pool.SelectByChars(SessionContext.NextKanji)   // revision: exactly the mistakes
-                : pool.SelectUnique(questionsPerRun, rng);        // normal: 15 unique
+                : MasteryWeightedSelector.SelectUnique(          // normal: ≤15 unique, weighted
+                    pool.Database.All, questionsPerRun,
+                    k => MasteryService.GetScore(k.Character), rng);
 
             if (kanji.Count == 0)
-                throw new System.InvalidOperationException("no kanji selected for this run");
+                throw new System.InvalidOperationException("no kanji available for this level");
 
             _questions = kanji.Select(k => generator.Build(k, _config.Answer)).ToList();
         }

@@ -18,8 +18,11 @@ namespace KanjiMaster.Progression
     {
         public static readonly IReadOnlyList<LevelDefinition> All = new List<LevelDefinition>
         {
-            new LevelDefinition(PlayerLevel.RisingStar,  "Rising Star",  KanjiLevel.N5, null),
-            new LevelDefinition(PlayerLevel.YoungMaster, "Young Master", KanjiLevel.N4, PlayerLevel.RisingStar),
+            //                 id                        display         dataset        unlock prereq             order jlpt
+            new LevelDefinition(PlayerLevel.RisingStar,  "Rising Star",  KanjiLevel.N5, null,                     0,    "N5"),
+            new LevelDefinition(PlayerLevel.YoungMaster, "Young Master", KanjiLevel.N4, PlayerLevel.RisingStar,   1,    "N4"),
+            // Future (Adept/Expert/Master/Legend = N3/N2/N1/Beyond) are added here with
+            // their dataset + prerequisite once content exists — no other code changes.
         };
 
         /// <summary>The default/entry level (first defined — always unlocked).</summary>
