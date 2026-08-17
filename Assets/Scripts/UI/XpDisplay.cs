@@ -29,8 +29,10 @@ namespace KanjiMaster.UI
             if (xpText) xpText.text = Format(XpService.TotalXp);
         }
 
-        /// <summary>Display formatting only: "{n} XP". Never computes XP. Static + pure
-        /// so the formatting/binding can be unit-tested without a scene.</summary>
-        public static string Format(int totalXp) => $"{totalXp} XP";
+        /// <summary>Display formatting only: compact "{n} XP" (e.g. "1.3k XP"). Never
+        /// computes or changes XP — it only formats the stored value via
+        /// <see cref="NumberFormat.Compact"/>. Static + pure so it is unit-testable
+        /// without a scene.</summary>
+        public static string Format(int totalXp) => $"{NumberFormat.Compact(totalXp)} XP";
     }
 }

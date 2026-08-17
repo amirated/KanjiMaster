@@ -77,6 +77,9 @@ namespace KanjiMaster.Progression
         /// never be below currentStreak. Non-destructive; safe to call repeatedly.</summary>
         public static void EnsureConsistent(PlayerProgress p)
         {
+            var sessions = p?.activity?.sessions;
+            if (sessions != null && sessions.totalSessions < 0) sessions.totalSessions = 0;
+
             var s = p?.activity?.streak;
             if (s == null) return;
             if (s.currentStreak < 0) s.currentStreak = 0;

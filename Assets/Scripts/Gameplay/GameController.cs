@@ -54,6 +54,7 @@ namespace KanjiMaster.Gameplay
         private float _shownAt;
         private bool _running;
         private bool _accepting;
+        private bool _finished;
 
         private void Start()
         {
@@ -227,6 +228,8 @@ namespace KanjiMaster.Gameplay
 
         private void FinishRun()
         {
+            if (_finished) return; // commit + navigate exactly once, even if reached twice
+            _finished = true;
             _running = false;
             _accepting = false;
 

@@ -19,6 +19,10 @@ namespace KanjiMaster.Progression
             // Legacy/absent version → treat as current (no total change).
             if (xp.xpSystemVersion < 1) xp.xpSystemVersion = XpConfig.CurrentVersion;
 
+            // Invariant: TotalXP is never negative (only ever added). Repair a corrupt /
+            // hand-edited value rather than propagating it. Does not touch a valid total.
+            if (xp.totalXp < 0) xp.totalXp = 0;
+
             // Future: when XpConfig.CurrentVersion > 1, upgrade older rulesets here, e.g.
             //   if (xp.xpSystemVersion == 1) { /* apply v1→v2 changes */ xp.xpSystemVersion = 2; }
             // Never rewrite existing totalXp except by an explicit, documented rule.

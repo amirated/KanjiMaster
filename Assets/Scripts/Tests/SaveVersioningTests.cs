@@ -216,6 +216,37 @@ namespace KanjiRush.Tests
             Assert.IsTrue(File.Exists(_path + ".corrupt"), "preserved for recovery");
         }
 
+        // ---- Validation of invalid values on load ------------------------------
+        [Test]
+        public void Negative_Xp_On_Load_Is_Clamped_To_Zero()
+        {
+            // A corrupt/hand-edited but parseable save with negative XP must be repaired,
+            // never propagated (TotalXP invariant: never negative).
+            var result = SaveDataMigration.Load(
+                "{\"schemaVersion\":5,\"progression\":{\"xp\":{\"totalXp\":-100,\"xpSystemVersion\":1}}}");
+            Assert.AreEqual(SaveLoadStatus.Ok, result.Status);
+            Assert.AreEqual(0, result.Progress.progression.xp.totalXp);
+        }
+
+        [Test]
+        public void Negative_Session_Count_On_Load_Is_Clamped_To_Zero()
+        {
+            var result = SaveDataMigration.Load(
+                "{\"schemaVersion\":5,\"activity\":{\"sessions\":{\"totalSessions\":-3}}}");
+            Assert.AreEqual(SaveLoadStatus.Ok, result.Status);
+            Assert.AreEqual(0, result.Progress.activity.sessions.totalSessions);
+        }
+
+        [Test]
+        public void Valid_Values_Are_Not_Altered_By_Validation()
+        {
+            var result = SaveDataMigration.Load(
+                "{\"schemaVersion\":5,\"progression\":{\"xp\":{\"totalXp\":1340}}," +
+                "\"activity\":{\"sessions\":{\"totalSessions\":12}}}");
+            Assert.AreEqual(1340, result.Progress.progression.xp.totalXp, "valid XP untouched");
+            Assert.AreEqual(12, result.Progress.activity.sessions.totalSessions, "valid sessions untouched");
+        }
+
         // ---- Default state (22–23) ---------------------------------------------
         [Test]
         public void No_Save_Creates_Default_PlayerProgress()
