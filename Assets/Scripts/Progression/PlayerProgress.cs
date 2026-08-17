@@ -3,13 +3,18 @@ using System;
 namespace KanjiMaster.Progression
 {
     /// <summary>
-    /// Player profile. Intentionally minimal/empty: the game needs no identity data
-    /// (name, avatar, auth, preferences) yet, so this is just a stable, serializable
-    /// place to add such fields later without reshaping PlayerProgress.
+    /// Player profile. Still minimal (no identity/auth yet), but now carries the
+    /// first-time onboarding flag. Kept as a stable, serializable place to add profile
+    /// fields (name, avatar, guest/account link, preferences) later without reshaping
+    /// PlayerProgress.
     /// </summary>
     [Serializable]
     public class ProfileData
     {
+        /// <summary>True once the player has finished (or been grandfathered past) the
+        /// first-time onboarding. New players default to false; the value is owned by
+        /// OnboardingService and persisted with PlayerProgress. See docs/ONBOARDING.md.</summary>
+        public bool hasCompletedOnboarding;
     }
 
     /// <summary>

@@ -5,6 +5,7 @@ namespace KanjiMaster.Services
     public static class SceneNames
     {
         public const string Boot = "Boot";
+        public const string Onboarding = "Onboarding";
         public const string MainMenu = "MainMenu";
         public const string Game = "Game";
         public const string Results = "Results";

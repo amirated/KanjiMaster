@@ -16,7 +16,8 @@ namespace KanjiMaster.Progression
     /// Versions: 0 = legacy/unversioned (flat), 1 = flat + schemaVersion,
     ///           2 = nested model, 3 = nested + per-level LevelProgress,
     ///           4 = + Activity streak (longestStreak; active streak tracking),
-    ///           5 = + XP system version (Progression.XP.xpSystemVersion).
+    ///           5 = + XP system version (Progression.XP.xpSystemVersion),
+    ///           6 = + Profile.hasCompletedOnboarding (first-time onboarding).
     /// Each of these upgrades is purely additive, so an older nested save loads into the
     /// current class directly and only needs its new fields seeded (level states, streak
     /// heal, XP version). Note: the XP RULESET has its own version (XpConfig.CurrentVersion)
@@ -25,7 +26,7 @@ namespace KanjiMaster.Progression
     public static class ProgressMigration
     {
         /// <summary>Current on-disk schema version. Bump when PlayerProgress changes shape.</summary>
-        public const int CurrentSchemaVersion = 5;
+        public const int CurrentSchemaVersion = 6;
 
         [Serializable] private class SchemaProbe { public int schemaVersion; }
 
@@ -77,6 +78,7 @@ namespace KanjiMaster.Progression
             LevelProgressionService.Ensure(p);        // seed level states (new/legacy)
             ActivityService.EnsureConsistent(p);      // seed longestStreak (new/legacy)
             XpMigration.Ensure(p);                    // stamp XP ruleset version (no total change)
+            OnboardingService.GrandfatherIfExistingPlayer(p); // existing players skip onboarding
             p.RebuildIndexes();
         }
 
