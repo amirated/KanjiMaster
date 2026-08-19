@@ -15,10 +15,12 @@ namespace KanjiMaster.UI
         public const float PopDuration   = 0.28f;
         public const float SlideDuration = 0.30f;
 
-        // Button press feedback
-        public const float PressDownDuration = 0.07f;
-        public const float PressUpDuration   = 0.10f;
-        public const float PressScale        = 0.92f;  // pressed size, relative to 1
+        // Button press feedback. PressScale is a MULTIPLIER applied to a button's own
+        // resting scale (not an absolute size), so a subtle 0.96 = 4% shrink whatever the
+        // resting scale is. Durations are quick for an immediate, responsive feel.
+        public const float PressDownDuration = 0.09f;
+        public const float PressUpDuration   = 0.12f;
+        public const float PressScale        = 0.96f;  // 4% smaller than resting
 
         // Pop starts here and overshoots up to 1 (via an ease-out-back curve)
         public const float PopFromScale = 0.6f;

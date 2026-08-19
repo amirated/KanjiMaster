@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4385512746624242798}
   - component: {fileID: 1096336866352795806}
   - component: {fileID: 2186533380880455687}
+  - component: {fileID: -6982896008401730789}
   m_Layer: 5
   m_Name: PrimaryButton
   m_TagString: Untagged
@@ -121,6 +122,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-6982896008401730789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692395155053511621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88766d034d0441188187097abc840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: KanjiRush.Runtime::KanjiMaster.UI.ButtonPressAnimator
 --- !u!1 &5234111718862728714
 GameObject:
   m_ObjectHideFlags: 0
