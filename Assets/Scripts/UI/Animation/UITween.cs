@@ -23,6 +23,24 @@ namespace KanjiMaster.UI
     /// </summary>
     public static class UITween
     {
+        // While the app is quitting / exiting Play mode, every entry point is a no-op.
+        // Otherwise a call here (e.g. a button's OnDisable → Cancel during scene teardown)
+        // would re-initialise LeanTween and spawn its "~LeanTween" manager GameObject inside
+        // the scene being closed — which Unity reports as "objects were not cleaned up when
+        // closing the scene". Application.quitting fires BEFORE OnDisable/OnDestroy, so the
+        // flag is armed in time.
+        private static bool _shuttingDown;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void InstallShutdownGuard()
+        {
+            _shuttingDown = false;                  // reset for each Play session
+            Application.quitting -= OnAppQuitting;   // idempotent across domain reloads
+            Application.quitting += OnAppQuitting;
+        }
+
+        private static void OnAppQuitting() => _shuttingDown = true;
+
         // ---- Fade (uses a CanvasGroup, added if missing) ------------------------
 
         public static void FadeIn(GameObject target, float? duration = null, Action onComplete = null)
@@ -36,7 +54,7 @@ namespace KanjiMaster.UI
 
         private static void Fade(GameObject target, float? from, float to, float duration, Action onComplete)
         {
-            if (!target) return;
+            if (_shuttingDown || !target) return;
             var cg = GetCanvasGroup(target);
             Cancel(target);
             if (from.HasValue) cg.alpha = from.Value;
@@ -55,7 +73,7 @@ namespace KanjiMaster.UI
 
         public static void ScaleTo(GameObject target, Vector3 scale, float? duration = null, Action onComplete = null)
         {
-            if (!target) return;
+            if (_shuttingDown || !target) return;
             Cancel(target);
 #if LEANTWEEN_PRESENT
             LeanTween.scale(target, scale, duration ?? UITweenConfig.ScaleDuration)
@@ -71,7 +89,7 @@ namespace KanjiMaster.UI
         /// <summary>Scale-in "pop": starts small and overshoots to 1.</summary>
         public static void Pop(GameObject target, float? duration = null, Action onComplete = null)
         {
-            if (!target) return;
+            if (_shuttingDown || !target) return;
             Cancel(target);
 #if LEANTWEEN_PRESENT
             target.transform.localScale = Vector3.one * UITweenConfig.PopFromScale;
@@ -91,6 +109,7 @@ namespace KanjiMaster.UI
         /// resting position.</summary>
         public static void SlideIn(GameObject target, Vector2 fromOffset, float? duration = null, Action onComplete = null)
         {
+            if (_shuttingDown) return;
             var rt = AsRect(target);
             if (rt == null) return;
             Cancel(target);
@@ -110,6 +129,7 @@ namespace KanjiMaster.UI
         /// <summary>Slide out from the current position by <paramref name="toOffset"/>.</summary>
         public static void SlideOut(GameObject target, Vector2 toOffset, float? duration = null, Action onComplete = null)
         {
+            if (_shuttingDown) return;
             var rt = AsRect(target);
             if (rt == null) return;
             Cancel(target);
@@ -129,7 +149,7 @@ namespace KanjiMaster.UI
 
         public static void Press(GameObject target, Action onComplete = null)
         {
-            if (!target) return;
+            if (_shuttingDown || !target) return;
             Cancel(target);
 #if LEANTWEEN_PRESENT
             LeanTween.scale(target, Vector3.one * UITweenConfig.PressScale, UITweenConfig.PressDownDuration)
@@ -151,7 +171,7 @@ namespace KanjiMaster.UI
         /// <summary>Cancel any tween currently running on this target. Safe on null.</summary>
         public static void Cancel(GameObject target)
         {
-            if (!target) return;
+            if (_shuttingDown || !target) return;
 #if LEANTWEEN_PRESENT
             LeanTween.cancel(target);
 #endif
@@ -160,6 +180,7 @@ namespace KanjiMaster.UI
         /// <summary>Cancel ALL active tweens — e.g. call before a scene change.</summary>
         public static void CancelAll()
         {
+            if (_shuttingDown) return;
 #if LEANTWEEN_PRESENT
             LeanTween.cancelAll();
 #endif

@@ -24,7 +24,9 @@ namespace KanjiMaster.UI
         [Header("Text slots")]
         [SerializeField] private TMP_Text levelChip;      // player-facing level (optional)
         [SerializeField] private TMP_Text characterText;  // large kanji glyph
-        [SerializeField] private TMP_Text meaningText;
+        [SerializeField] private TMP_Text meaningText;    // English meaning(s)
+        [SerializeField] private TMP_Text romajiText;     // romaji reading
+        [SerializeField] private TMP_Text kanaText;       // kana reading
         [SerializeField] private TMP_Text onyomiText;
         [SerializeField] private TMP_Text kunyomiText;
         [SerializeField] private TMP_Text strokesText;
@@ -45,6 +47,8 @@ namespace KanjiMaster.UI
 
             Set(characterText, kanji != null ? kanji.Character : "—");
             Set(meaningText, Join(kanji?.Meanings, ", "));
+            Set(romajiText, Value(kanji?.Romaji));
+            Set(kanaText, Value(kanji?.PrimaryReading));
             Set(onyomiText, Join(kanji?.Onyomi, "、"));
             Set(kunyomiText, Join(kanji?.Kunyomi, "、"));
             Set(strokesText, (kanji != null && kanji.Strokes > 0) ? kanji.Strokes.ToString() : "—");
@@ -66,6 +70,8 @@ namespace KanjiMaster.UI
         {
             if (field) field.text = value;
         }
+
+        private static string Value(string s) => string.IsNullOrEmpty(s) ? "—" : s;
 
         private static string Join(IReadOnlyList<string> values, string sep)
         {
