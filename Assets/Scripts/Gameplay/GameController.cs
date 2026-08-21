@@ -45,6 +45,7 @@ namespace KanjiMaster.Gameplay
         private GameConfig _config;
         private GameSession _session;
         private List<Question> _questions;
+        private Data.KanjiDatabase _database; // this run's dataset (for revision feedback lookups)
 
         private int _index;
         private int _combo;
@@ -107,6 +108,7 @@ namespace KanjiMaster.Gameplay
         {
             var rng = new System.Random();
             var pool = QuestionPool.Load(_config.Level);
+            _database = pool.Database; // kept so revision feedback can look up meaning/romaji/kana
             var generator = new QuestionGenerator(pool.Database, rng);
 
             // Level eligibility first (pool is this level's dataset), then mastery
@@ -173,19 +175,33 @@ namespace KanjiMaster.Gameplay
             bool correct = !timedOut && selectedIndex == q.CorrectIndex;
             string selected = timedOut ? string.Empty : q.Options[selectedIndex];
 
+            string message;
+            Color color;
             if (correct)
             {
                 _combo++;
                 if (_combo > _maxCombo) _maxCombo = _combo;
                 _score += PointsForCorrect();
-                view.SetFeedback("Correct!", GoodColor);
+                message = "Correct!";
+                color = GoodColor;
             }
             else
             {
                 _combo = 0;
                 string prefix = timedOut ? "Time!" : "Wrong";
-                view.SetFeedback($"{prefix}  →  {q.CorrectAnswer}", BadColor);
+                message = $"{prefix}  →  {q.CorrectAnswer}";
+                color = BadColor;
             }
+
+            // Revision is a study loop, so its feedback teaches: append the kanji's
+            // meaning, romaji and kana. Normal games keep the terse single-line feedback.
+            if (_session.IsRevision)
+            {
+                string detail = RevisionDetail(q.KanjiCharacter);
+                if (!string.IsNullOrEmpty(detail)) message += "\n" + detail;
+            }
+
+            view.SetFeedback(message, color);
 
             _session.Results.Add(new QuestionResult
             {
@@ -211,8 +227,8 @@ namespace KanjiMaster.Gameplay
             view.SetScore(_score);
             view.SetCombo(_combo);
 
-            // Next question waits until the (mode-dependent) feedback period ends.
-            StartCoroutine(AdvanceAfterFeedback(feedback.For(correct)));
+            // Next question waits until the feedback period ends (longer during revision).
+            StartCoroutine(AdvanceAfterFeedback(feedback.For(correct, _session.IsRevision)));
         }
 
         private int PointsForCorrect()
@@ -229,6 +245,15 @@ namespace KanjiMaster.Gameplay
             yield return new WaitForSeconds(seconds);
             _index++;
             NextQuestion();
+        }
+
+        /// <summary>Meaning + romaji + kana for a kanji in this run's dataset — shown in
+        /// REVISION feedback only. Returns "" if the kanji or its data is unavailable.</summary>
+        private string RevisionDetail(string character)
+        {
+            if (_database != null && _database.TryGet(character, out var k) && k != null)
+                return $"{k.PrimaryMeaning}\n{k.Romaji}  ·  {k.PrimaryReading}";
+            return string.Empty;
         }
 
         private void FinishRun()
