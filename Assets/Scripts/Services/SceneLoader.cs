@@ -30,6 +30,7 @@ namespace KanjiMaster.Services
             _loading = false;
         }
 
+        public static void GoToIdentity() => Load(SceneNames.Identity);
         public static void GoToOnboarding() => Load(SceneNames.Onboarding);
         public static void GoToMainMenu() => Load(SceneNames.MainMenu);
         public static void GoToGame() => Load(SceneNames.Game);
