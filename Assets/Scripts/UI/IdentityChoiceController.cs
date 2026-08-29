@@ -1,3 +1,4 @@
+using KanjiMaster.Auth;
 using KanjiMaster.Progression;
 using KanjiMaster.Services;
 using TMPro;
@@ -27,6 +28,7 @@ namespace KanjiMaster.UI
         [SerializeField] private TMP_Text accountSupportingText;
         [SerializeField] private TMP_Text guestLabel;
         [SerializeField] private TMP_Text guestSupportingText;
+        [SerializeField] private TMP_Text messageText; // optional: error/status line
 
         // Player-facing copy kept in one place; visual styling/placement is done in-scene.
         private const string AccountLabelText = "Continue with Account";
@@ -36,7 +38,8 @@ namespace KanjiMaster.UI
             "Your progress is stored on this device and may be lost if you uninstall the game " +
             "or move to another device.";
 
-        private bool _navigating; // guards double taps (SceneLoader also guards transitions)
+        private bool _navigating;      // guards double taps (SceneLoader also guards transitions)
+        private bool _authInProgress;  // guards re-entrant account sign-in
 
         private void Start()
         {
@@ -44,6 +47,7 @@ namespace KanjiMaster.UI
             Set(accountSupportingText, AccountSupport);
             Set(guestLabel, GuestLabelText);
             Set(guestSupportingText, GuestSupport);
+            Set(messageText, string.Empty);
 
             if (accountButton) accountButton.onClick.AddListener(OnContinueWithAccount);
             if (guestButton) guestButton.onClick.AddListener(OnContinueAsGuest);
@@ -60,18 +64,41 @@ namespace KanjiMaster.UI
             ContinueAfterIdentity();
         }
 
-        private void OnContinueWithAccount()
+        private async void OnContinueWithAccount()
         {
-            // ── Future authentication entry point ──────────────────────────────────────
-            // Phase A has no provider. Intentionally do NOTHING that implies success:
-            //   • do NOT call SetAuthenticated
-            //   • do NOT navigate to Main Menu
-            //   • do NOT fall back to Guest
-            // A later task launches the provider here and, on SUCCESS, does:
-            //   IdentityService.Default.SetAuthenticated(userId, provider);
-            //   ContinueAfterIdentity();
-            Debug.Log("[Identity] 'Continue with Account' pressed — authentication provider " +
-                      "is not integrated yet (Phase A). No action taken.");
+            if (_navigating || _authInProgress) return;
+            _authInProgress = true;
+            if (accountButton) accountButton.interactable = false;
+            Set(messageText, string.Empty);
+
+            AuthOutcome outcome;
+            try { outcome = await AuthenticationService.Default.SignInWithPlatformAsync(); }
+            catch { outcome = AuthOutcome.Failed("Sign-in failed. Please try again."); }
+
+            switch (outcome.Status)
+            {
+                case AuthStatus.Success:
+                    // Identity is now Authenticated (Firebase UID recorded); route as normal.
+                    _navigating = true;
+                    ContinueAfterIdentity();
+                    return; // scene changing — do not re-enable UI
+
+                case AuthStatus.Cancelled:
+                    break; // stay on the Identity screen, no error
+
+                case AuthStatus.ProviderUnavailable:
+                    Set(messageText, "Account sign-in isn't available on this platform yet.");
+                    break;
+
+                default: // Failed
+                    Set(messageText, string.IsNullOrEmpty(outcome.Message)
+                        ? "Sign-in failed. Please try again."
+                        : outcome.Message);
+                    break;
+            }
+
+            _authInProgress = false;
+            if (accountButton) accountButton.interactable = true;
         }
 
         /// <summary>Post-identity routing, shared by Guest now and the future auth-success

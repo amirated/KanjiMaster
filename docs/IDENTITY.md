@@ -29,6 +29,65 @@ Implemented: `PlayerIdentity` + `AuthState`, `IdentitySaveData` envelope,
 4. **Build Settings → Scenes In Build:** add `Identity` (after Boot). File name must be
    exactly `Identity` (matches `SceneNames.Identity`).
 
+## Phase B2 — Firebase Authentication foundation (code-side; SDK install pending)
+
+The application authentication layer (`KanjiMaster.Auth`) is implemented and wired to
+`IdentityChoiceController.OnContinueWithAccount`. It **compiles and runs without the
+Firebase SDK** (Firebase calls are behind the `FIREBASE_AUTH` scripting define); until the
+SDK is installed, a real provider exists, and the define is set, "Continue with Account"
+reports **ProviderUnavailable** (never a fake success). Guest is unchanged and fully local.
+
+Rules (for reference):
+- **Firebase UID is the canonical player id** — stored in `PlayerIdentity.userId` on success
+  (`provider` = one of `AuthProviders`). Provider-specific ids are not the app id.
+- **Guest is completely local** — no Firebase init, no Firebase user, **no Firebase
+  Anonymous Authentication** (intentionally never used).
+- **Firebase init is lazy** — `FirebaseInitializer.EnsureReadyAsync` runs only when a provider
+  exists and sign-in is requested; **never in Boot, never for guests**.
+- **Platform providers are platform-specific** — Android Play Games (B3) and iOS Game Center
+  (B4) are added behind `#if UNITY_ANDROID/UNITY_IOS` in platform-constrained assemblies.
+- **Android ↔ iOS linking is out of scope** now. **Android ↔ Web** and **iOS ↔ Web** linking
+  (via Google/Apple) are future requirements (B6).
+- **Firebase ID tokens** are short-lived credentials for future backend APIs — **not
+  persisted**, never stored in `PlayerIdentity`, never treated as the UID.
+- **RevenueCat** will later use the Firebase UID as its App User ID (B7).
+- **DynamoDB** will later be reached through a backend that verifies the Firebase ID token and
+  extracts the UID (B8/B9). The client never accesses DynamoDB directly.
+
+Architecture: `IdentityChoiceController → AuthenticationService → IAuthenticationProvider →
+IFirebaseAuthenticator (FIREBASE_AUTH-gated) → Firebase → IdentityService.SetAuthenticated`.
+The auth layer lives inside `KanjiRush.Runtime` in the `KanjiMaster.Auth` namespace (a
+separate asmdef would create a circular dependency with `IdentityService`); Firebase
+references are isolated to that namespace and gated by the define.
+
+### Firebase setup — MANUAL steps still required (I cannot do these)
+
+1. **Firebase Console:** create one Firebase project for KanjiMaster. Register an **Android
+   app** and an **iOS app** using the project's **package name / bundle id** (see values
+   needed below). Enable the intended sign-in providers later (Play Games in B3, Game
+   Center/Apple in B4).
+2. **Config files (client config, not secrets — safe in the build):** download
+   `google-services.json` (Android) → `Assets/`, and `GoogleService-Info.plist` (iOS) →
+   `Assets/`. Do **not** commit any OAuth client secrets, service-account JSON, or Apple `.p8`
+   keys — those stay in the consoles / backend.
+3. **Install the Firebase Unity SDK** — only **Firebase App** + **Firebase Auth** (via
+   `.unitypackage` from the Firebase Unity SDK, or the Firebase UPM packages). Let EDM4U
+   resolve native deps. Do not add Firestore/RTDB/Analytics/etc.
+4. **Reference + enable:** ensure the Firebase assemblies are referenceable from the auth code
+   (if they land as auto-referenced DLLs in `Assets/`, `KanjiRush.Runtime` picks them up
+   automatically; if they ship as UPM asmdefs, add them to `KanjiRush.Runtime.asmdef`
+   references). Then add **`FIREBASE_AUTH`** to Player → Scripting Define Symbols (Android +
+   iOS). After that the gated Firebase code activates.
+5. Confirm the Firebase Unity SDK version supports **Unity 6** and pin it.
+
+### Values I need from you (do not invent)
+
+- The final **Android package name** and **iOS bundle identifier** (currently only Standalone
+  is set to `com.DefaultCompany.2D-URP`; Android/iOS default to `com.DefaultCompany.KanjiMaster`
+  — set real ids before registering with Firebase, and set them consistently in Unity Player
+  Settings).
+- The **Firebase project** and its downloaded `google-services.json` / `GoogleService-Info.plist`.
+
 ---
 
 Original plan (retained for reference):
