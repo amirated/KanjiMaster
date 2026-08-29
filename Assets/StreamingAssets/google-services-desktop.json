@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1080832550172",
+    "project_id": "kanjimaster-loen",
+    "storage_bucket": "kanjimaster-loen.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080832550172:android:b233510d53881055f1c6d9",
+        "android_client_info": {
+          "package_name": "in.loen.kanjimaster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEcBO_uVweSNMia_uZ0BEFN7jiSSDMURA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -51,8 +51,11 @@ namespace KanjiMaster.Auth
 
             try
             {
-                var user = await Firebase.Auth.FirebaseAuth.DefaultInstance
-                    .SignInWithCredentialAsync(firebaseCredential);
+                // Firebase Unity 13.x: use the AuthResult-returning API (the FirebaseUser-
+                // returning overload is deprecated). AuthResult.User is the signed-in user.
+                var result = await Firebase.Auth.FirebaseAuth.DefaultInstance
+                    .SignInAndRetrieveDataWithCredentialAsync(firebaseCredential);
+                var user = result?.User;
                 return user != null && !string.IsNullOrEmpty(user.UserId)
                     ? FirebaseSignInResult.Ok(user.UserId)   // Firebase UID = canonical player id
                     : FirebaseSignInResult.Fail("Sign-in did not complete.");

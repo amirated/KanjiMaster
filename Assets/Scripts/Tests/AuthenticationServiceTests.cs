@@ -141,23 +141,32 @@ namespace KanjiRush.Tests
         }
 
         [Test]
-        public void Real_Factory_Has_No_Provider_In_B2()
+        public void Real_Factory_Has_No_Provider_Yet()
         {
-            Assert.IsNull(AuthenticationProviderFactory.Create(), "B2 ships no platform provider");
-            Assert.IsFalse(FirebaseInitializer.IsFirebaseCompiledIn, "Firebase define not set until the SDK is installed");
+            // The SDK/foundation is in, but no platform sign-in provider exists yet (B3/B4),
+            // so the real path reports ProviderUnavailable rather than a fake success.
+            Assert.IsNull(AuthenticationProviderFactory.Create(), "no platform provider until B3/B4");
+        }
+
+        [Test]
+        public void Firebase_Sdk_Is_Compiled_In()
+        {
+            // With Firebase installed and the FIREBASE_AUTH define set, the real backend is active.
+            Assert.IsTrue(FirebaseInitializer.IsFirebaseCompiledIn);
         }
 
         // ---- guest isolation ----------------------------------------------------
         [Test]
         public void Guest_Flow_Never_Authenticates_And_Does_Not_Use_Firebase()
         {
-            // The guest path is IdentityService.ContinueAsGuest — it must not authenticate.
+            // The guest path is IdentityService.ContinueAsGuest — it must not authenticate,
+            // and must never touch Firebase even though the SDK is now installed.
             _identity.ContinueAsGuest();
 
             Assert.AreEqual(AuthState.Guest, _identity.Current.state);
             Assert.IsFalse(_identity.IsAuthenticated);
             Assert.IsNull(_identity.Current.userId, "guest has no Firebase user id");
-            Assert.IsFalse(FirebaseInitializer.IsFirebaseCompiledIn, "guest builds don't require Firebase");
+            Assert.IsNull(_identity.Current.provider, "guest has no auth provider");
         }
     }
 }
