@@ -12,7 +12,20 @@
           "package_name": "in.loen.kanjimaster"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1080832550172-ucmacfq1i6uo8flif22nq34ql4inem96.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.loen.kanjimaster",
+            "certificate_hash": "30062c291227c9468b5ad0ce8c2c7519b60ca738"
+          }
+        },
+        {
+          "client_id": "1080832550172-le8qmea73rva6jmm9u9j2mqb5hfeio77.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBEcBO_uVweSNMia_uZ0BEFN7jiSSDMURA"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080832550172-le8qmea73rva6jmm9u9j2mqb5hfeio77.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1080832550172-8ejj3ikrn04th7fgff093k7pq4o2n1bv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "in.loen.kanjimaster"
+              }
+            }
+          ]
         }
       }
     }
