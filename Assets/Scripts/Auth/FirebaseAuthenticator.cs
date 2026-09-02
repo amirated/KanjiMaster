@@ -73,13 +73,18 @@ namespace KanjiMaster.Auth
 
 #if FIREBASE_AUTH
         /// <summary>Map an app-level <see cref="PlatformCredential"/> to a Firebase credential.
-        /// Each provider fills its own case when implemented (B3 Play Games, B4 Game Center,
-        /// web Google/Apple) — verify the exact Firebase API at that time. Returns null for
-        /// providers not yet wired.</summary>
+        /// Android Play Games is wired; iOS Game Center and web Google/Apple are added in later
+        /// phases. Returns null for providers not yet wired.</summary>
         private static Firebase.Auth.Credential BuildFirebaseCredential(PlatformCredential c)
         {
-            // Implemented per provider in later phases.
-            return null;
+            switch (c.Provider)
+            {
+                case AuthProviders.GooglePlayGames:
+                    // Exchange the Play Games server auth code for a Firebase credential.
+                    return Firebase.Auth.PlayGamesAuthProvider.GetCredential(c.ServerAuthCode);
+                default:
+                    return null;
+            }
         }
 #endif
     }

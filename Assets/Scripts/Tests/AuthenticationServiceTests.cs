@@ -141,11 +141,15 @@ namespace KanjiRush.Tests
         }
 
         [Test]
-        public void Real_Factory_Has_No_Provider_Yet()
+        public void Factory_Selects_Provider_Per_Platform()
         {
-            // The SDK/foundation is in, but no platform sign-in provider exists yet (B3/B4),
-            // so the real path reports ProviderUnavailable rather than a fake success.
-            Assert.IsNull(AuthenticationProviderFactory.Create(), "no platform provider until B3/B4");
+            var provider = AuthenticationProviderFactory.Create();
+#if UNITY_ANDROID
+            Assert.IsNotNull(provider, "Android has the Play Games provider");
+            Assert.AreEqual(AuthProviders.GooglePlayGames, provider.ProviderId);
+#else
+            Assert.IsNull(provider, "no platform provider on non-Android (Editor/iOS/WebGL)");
+#endif
         }
 
         [Test]
