@@ -11,5 +11,6 @@ namespace KanjiMaster.Services
         public const string Game = "Game";
         public const string Results = "Results";
         public const string Learn = "Learn";
+        public const string Settings = "Settings"; // not built yet — see BottomNavBar.settingsEnabled
     }
 }
