@@ -1,0 +1,4729 @@
+{
+  "meta": {
+    "schema_version": 2,
+    "jlpt_level": "N4",
+    "count": 162,
+    "generated": "2026-08-14",
+    "sources": [
+      "Existing curated entries (game source of truth).",
+      "New/enriched entries mapped from KanjiAPI jlpt-*-enriched (derived from KANJIDIC2/JMdict, EDRDG, CC BY-SA)."
+    ],
+    "license_note": "Kanji facts for new entries are mapped from KanjiAPI (KANJIDIC2/JMdict, EDRDG CC BY-SA). Attribution + share-alike apply to derived data — see docs/LICENSES.md.",
+    "schema_additions": {
+      "level": "JLPT level of this record (N5|N4).",
+      "freq": "Newspaper frequency rank (lower=more common) or null; from KanjiAPI.",
+      "review": "Optional list of fields needing manual curation (new kanji)."
+    },
+    "prompt_types": [
+      "meaning",
+      "onyomi",
+      "kunyomi",
+      "reading_to_kanji"
+    ]
+  },
+  "kanji": [
+    {
+      "id": 0,
+      "char": "不",
+      "meanings": [
+        "negative",
+        "non-",
+        "bad",
+        "ugly",
+        "clumsy"
+      ],
+      "onyomi": [
+        "フ",
+        "ブ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "ふ",
+      "romaji": "fu",
+      "strokes": 4,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 101,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 1,
+      "char": "世",
+      "meanings": [
+        "generation",
+        "world",
+        "society",
+        "public"
+      ],
+      "onyomi": [
+        "セイ",
+        "セ",
+        "ソウ"
+      ],
+      "kunyomi": [
+        "よ"
+      ],
+      "primary_reading": "よ",
+      "romaji": "yo",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 135,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 2,
+      "char": "主",
+      "meanings": [
+        "lord",
+        "chief",
+        "master",
+        "main thing",
+        "principal"
+      ],
+      "onyomi": [
+        "シュ",
+        "ス",
+        "シュウ"
+      ],
+      "kunyomi": [
+        "ぬし",
+        "おも",
+        "あるじ"
+      ],
+      "primary_reading": "ぬし",
+      "romaji": "nushi",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 95,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 3,
+      "char": "事",
+      "meanings": [
+        "matter",
+        "thing",
+        "fact",
+        "business",
+        "reason",
+        "possibly"
+      ],
+      "onyomi": [
+        "ジ",
+        "ズ"
+      ],
+      "kunyomi": [
+        "こと",
+        "つか"
+      ],
+      "primary_reading": "こと",
+      "romaji": "koto",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 18,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 4,
+      "char": "京",
+      "meanings": [
+        "capital"
+      ],
+      "onyomi": [
+        "キョウ",
+        "ケイ",
+        "キン"
+      ],
+      "kunyomi": [
+        "みやこ"
+      ],
+      "primary_reading": "みやこ",
+      "romaji": "miyako",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 74,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 5,
+      "char": "仕",
+      "meanings": [
+        "attend",
+        "doing",
+        "official",
+        "serve"
+      ],
+      "onyomi": [
+        "シ",
+        "ジ"
+      ],
+      "kunyomi": [
+        "つか"
+      ],
+      "primary_reading": "つかえる",
+      "romaji": "tsukaeru",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 439,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 6,
+      "char": "代",
+      "meanings": [
+        "substitute",
+        "change",
+        "convert",
+        "replace",
+        "period",
+        "age",
+        "generation",
+        "charge",
+        "rate",
+        "fee"
+      ],
+      "onyomi": [
+        "ダイ",
+        "タイ"
+      ],
+      "kunyomi": [
+        "か",
+        "かわ",
+        "がわ",
+        "が",
+        "よ",
+        "しろ"
+      ],
+      "primary_reading": "よ",
+      "romaji": "yo",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 66,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 7,
+      "char": "以",
+      "meanings": [
+        "by means of",
+        "because",
+        "in view of",
+        "compared with"
+      ],
+      "onyomi": [
+        "イ"
+      ],
+      "kunyomi": [
+        "もっ"
+      ],
+      "primary_reading": "もって",
+      "romaji": "motte",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 126,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 8,
+      "char": "会",
+      "meanings": [
+        "meeting",
+        "meet",
+        "party",
+        "association",
+        "interview",
+        "join"
+      ],
+      "onyomi": [
+        "カイ",
+        "エ"
+      ],
+      "kunyomi": [
+        "あ",
+        "あつ"
+      ],
+      "primary_reading": "あう",
+      "romaji": "au",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 4,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 9,
+      "char": "住",
+      "meanings": [
+        "dwell",
+        "reside",
+        "live",
+        "inhabit"
+      ],
+      "onyomi": [
+        "ジュウ",
+        "ヂュウ",
+        "チュウ"
+      ],
+      "kunyomi": [
+        "す",
+        "ず"
+      ],
+      "primary_reading": "すむ",
+      "romaji": "sumu",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 270,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 10,
+      "char": "体",
+      "meanings": [
+        "body",
+        "substance",
+        "object",
+        "reality"
+      ],
+      "onyomi": [
+        "タイ",
+        "テイ"
+      ],
+      "kunyomi": [
+        "からだ",
+        "かたち"
+      ],
+      "primary_reading": "からだ",
+      "romaji": "karada",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 88,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 11,
+      "char": "作",
+      "meanings": [
+        "make",
+        "production",
+        "prepare",
+        "build"
+      ],
+      "onyomi": [
+        "サク",
+        "サ"
+      ],
+      "kunyomi": [
+        "つく",
+        "づく"
+      ],
+      "primary_reading": "つくる",
+      "romaji": "tsukuru",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 103,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 12,
+      "char": "使",
+      "meanings": [
+        "use",
+        "send on a mission",
+        "order",
+        "messenger",
+        "envoy",
+        "ambassador",
+        "cause"
+      ],
+      "onyomi": [
+        "シ"
+      ],
+      "kunyomi": [
+        "つか",
+        "づか"
+      ],
+      "primary_reading": "つかう",
+      "romaji": "tsukau",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 219,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 13,
+      "char": "借",
+      "meanings": [
+        "borrow",
+        "rent"
+      ],
+      "onyomi": [
+        "シャク"
+      ],
+      "kunyomi": [
+        "か"
+      ],
+      "primary_reading": "かりる",
+      "romaji": "kariru",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 932,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 14,
+      "char": "元",
+      "meanings": [
+        "beginning",
+        "former time",
+        "origin"
+      ],
+      "onyomi": [
+        "ゲン",
+        "ガン"
+      ],
+      "kunyomi": [
+        "もと"
+      ],
+      "primary_reading": "もと",
+      "romaji": "moto",
+      "strokes": 4,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 192,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 15,
+      "char": "兄",
+      "meanings": [
+        "elder brother",
+        "big brother"
+      ],
+      "onyomi": [
+        "ケイ",
+        "キョウ"
+      ],
+      "kunyomi": [
+        "あに"
+      ],
+      "primary_reading": "あに",
+      "romaji": "ani",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1219,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 16,
+      "char": "公",
+      "meanings": [
+        "public",
+        "prince",
+        "official",
+        "governmental"
+      ],
+      "onyomi": [
+        "コウ",
+        "ク"
+      ],
+      "kunyomi": [
+        "おおやけ"
+      ],
+      "primary_reading": "おおやけ",
+      "romaji": "ooyake",
+      "strokes": 4,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 118,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 17,
+      "char": "写",
+      "meanings": [
+        "copy",
+        "be photographed",
+        "describe"
+      ],
+      "onyomi": [
+        "シャ",
+        "ジャ"
+      ],
+      "kunyomi": [
+        "うつ"
+      ],
+      "primary_reading": "うつす",
+      "romaji": "utsusu",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 453,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 18,
+      "char": "冬",
+      "meanings": [
+        "winter"
+      ],
+      "onyomi": [
+        "トウ"
+      ],
+      "kunyomi": [
+        "ふゆ"
+      ],
+      "primary_reading": "ふゆ",
+      "romaji": "fuyu",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1090,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 19,
+      "char": "切",
+      "meanings": [
+        "cut",
+        "cutoff",
+        "be sharp"
+      ],
+      "onyomi": [
+        "セツ",
+        "サイ"
+      ],
+      "kunyomi": [
+        "き",
+        "ぎ"
+      ],
+      "primary_reading": "きる",
+      "romaji": "kiru",
+      "strokes": 4,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 324,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 20,
+      "char": "別",
+      "meanings": [
+        "separate",
+        "branch off",
+        "diverge",
+        "fork",
+        "another",
+        "extra",
+        "specially"
+      ],
+      "onyomi": [
+        "ベツ"
+      ],
+      "kunyomi": [
+        "わか",
+        "わ"
+      ],
+      "primary_reading": "わかれる",
+      "romaji": "wakareru",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 214,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 21,
+      "char": "力",
+      "meanings": [
+        "power",
+        "strength",
+        "strong",
+        "strain",
+        "bear up",
+        "exert"
+      ],
+      "onyomi": [
+        "リョク",
+        "リキ",
+        "リイ"
+      ],
+      "kunyomi": [
+        "ちから"
+      ],
+      "primary_reading": "ちから",
+      "romaji": "chikara",
+      "strokes": 2,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 62,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 22,
+      "char": "勉",
+      "meanings": [
+        "exertion",
+        "endeavour",
+        "encourage",
+        "strive",
+        "make effort",
+        "diligent"
+      ],
+      "onyomi": [
+        "ベン"
+      ],
+      "kunyomi": [
+        "つと"
+      ],
+      "primary_reading": "つとめる",
+      "romaji": "tsutomeru",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1066,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 23,
+      "char": "動",
+      "meanings": [
+        "move",
+        "motion",
+        "change",
+        "confusion",
+        "shift",
+        "shake"
+      ],
+      "onyomi": [
+        "ドウ"
+      ],
+      "kunyomi": [
+        "うご"
+      ],
+      "primary_reading": "うごく",
+      "romaji": "ugoku",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 73,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 24,
+      "char": "医",
+      "meanings": [
+        "doctor",
+        "medicine"
+      ],
+      "onyomi": [
+        "イ"
+      ],
+      "kunyomi": [
+        "い",
+        "くすし"
+      ],
+      "primary_reading": "くすし",
+      "romaji": "kusushi",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 437,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 25,
+      "char": "去",
+      "meanings": [
+        "gone",
+        "past",
+        "quit",
+        "leave",
+        "elapse",
+        "eliminate",
+        "divorce"
+      ],
+      "onyomi": [
+        "キョ",
+        "コ"
+      ],
+      "kunyomi": [
+        "さ"
+      ],
+      "primary_reading": "さる",
+      "romaji": "saru",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 440,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 26,
+      "char": "古",
+      "meanings": [
+        "old"
+      ],
+      "onyomi": [
+        "コ"
+      ],
+      "kunyomi": [
+        "ふる"
+      ],
+      "primary_reading": "ふるい",
+      "romaji": "furui",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 509,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 27,
+      "char": "台",
+      "meanings": [
+        "pedestal",
+        "a stand"
+      ],
+      "onyomi": [
+        "ダイ",
+        "タイ"
+      ],
+      "kunyomi": [
+        "うてな",
+        "われ",
+        "つかさ"
+      ],
+      "primary_reading": "うてな",
+      "romaji": "utena",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 262,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 28,
+      "char": "同",
+      "meanings": [
+        "same",
+        "agree",
+        "equal"
+      ],
+      "onyomi": [
+        "ドウ"
+      ],
+      "kunyomi": [
+        "おな"
+      ],
+      "primary_reading": "おなじ",
+      "romaji": "onaji",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 15,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 29,
+      "char": "味",
+      "meanings": [
+        "flavor",
+        "taste"
+      ],
+      "onyomi": [
+        "ミ"
+      ],
+      "kunyomi": [
+        "あじ"
+      ],
+      "primary_reading": "あじ",
+      "romaji": "aji",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 442,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 30,
+      "char": "品",
+      "meanings": [
+        "goods",
+        "refinement",
+        "dignity",
+        "article"
+      ],
+      "onyomi": [
+        "ヒン",
+        "ホン"
+      ],
+      "kunyomi": [
+        "しな"
+      ],
+      "primary_reading": "しな",
+      "romaji": "shina",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 225,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 31,
+      "char": "員",
+      "meanings": [
+        "employee",
+        "member",
+        "number",
+        "the one in charge"
+      ],
+      "onyomi": [
+        "イン"
+      ],
+      "kunyomi": [],
+      "primary_reading": "いん",
+      "romaji": "in",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 54,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 32,
+      "char": "問",
+      "meanings": [
+        "question",
+        "ask",
+        "problem"
+      ],
+      "onyomi": [
+        "モン"
+      ],
+      "kunyomi": [
+        "と",
+        "とん"
+      ],
+      "primary_reading": "とん",
+      "romaji": "ton",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 64,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 33,
+      "char": "図",
+      "meanings": [
+        "map",
+        "drawing",
+        "plan",
+        "extraordinary",
+        "audacious"
+      ],
+      "onyomi": [
+        "ズ",
+        "ト"
+      ],
+      "kunyomi": [
+        "え",
+        "はか"
+      ],
+      "primary_reading": "え",
+      "romaji": "e",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 539,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 34,
+      "char": "地",
+      "meanings": [
+        "ground",
+        "earth"
+      ],
+      "onyomi": [
+        "チ",
+        "ジ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "ち",
+      "romaji": "chi",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 40,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 35,
+      "char": "堂",
+      "meanings": [
+        "public chamber",
+        "hall"
+      ],
+      "onyomi": [
+        "ドウ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "どう",
+      "romaji": "dou",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1010,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 36,
+      "char": "場",
+      "meanings": [
+        "location",
+        "place"
+      ],
+      "onyomi": [
+        "ジョウ",
+        "チョウ"
+      ],
+      "kunyomi": [
+        "ば"
+      ],
+      "primary_reading": "ば",
+      "romaji": "ba",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 52,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 37,
+      "char": "売",
+      "meanings": [
+        "sell"
+      ],
+      "onyomi": [
+        "バイ"
+      ],
+      "kunyomi": [
+        "う"
+      ],
+      "primary_reading": "うる",
+      "romaji": "uru",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 202,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 38,
+      "char": "夏",
+      "meanings": [
+        "summer"
+      ],
+      "onyomi": [
+        "カ",
+        "ガ",
+        "ゲ"
+      ],
+      "kunyomi": [
+        "なつ"
+      ],
+      "primary_reading": "なつ",
+      "romaji": "natsu",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 659,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 39,
+      "char": "夕",
+      "meanings": [
+        "evening"
+      ],
+      "onyomi": [
+        "セキ"
+      ],
+      "kunyomi": [
+        "ゆう"
+      ],
+      "primary_reading": "ゆう",
+      "romaji": "yuu",
+      "strokes": 3,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 924,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 40,
+      "char": "多",
+      "meanings": [
+        "many",
+        "frequent",
+        "much"
+      ],
+      "onyomi": [
+        "タ"
+      ],
+      "kunyomi": [
+        "おお",
+        "まさ"
+      ],
+      "primary_reading": "おおい",
+      "romaji": "ooi",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 139,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 41,
+      "char": "夜",
+      "meanings": [
+        "night",
+        "evening"
+      ],
+      "onyomi": [
+        "ヤ"
+      ],
+      "kunyomi": [
+        "よ",
+        "よる"
+      ],
+      "primary_reading": "よ",
+      "romaji": "yo",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 487,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 42,
+      "char": "妹",
+      "meanings": [
+        "younger sister"
+      ],
+      "onyomi": [
+        "マイ"
+      ],
+      "kunyomi": [
+        "いもうと"
+      ],
+      "primary_reading": "いもうと",
+      "romaji": "imouto",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1446,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 43,
+      "char": "姉",
+      "meanings": [
+        "elder sister"
+      ],
+      "onyomi": [
+        "シ"
+      ],
+      "kunyomi": [
+        "あね",
+        "はは"
+      ],
+      "primary_reading": "あね",
+      "romaji": "ane",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1473,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 44,
+      "char": "始",
+      "meanings": [
+        "commence",
+        "begin"
+      ],
+      "onyomi": [
+        "シ"
+      ],
+      "kunyomi": [
+        "はじ"
+      ],
+      "primary_reading": "はじめる",
+      "romaji": "hajimeru",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 244,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 45,
+      "char": "字",
+      "meanings": [
+        "character",
+        "letter",
+        "word",
+        "section of village"
+      ],
+      "onyomi": [
+        "ジ"
+      ],
+      "kunyomi": [
+        "あざ",
+        "あざな",
+        "な"
+      ],
+      "primary_reading": "あざ",
+      "romaji": "aza",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 485,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 46,
+      "char": "安",
+      "meanings": [
+        "relax",
+        "cheap",
+        "low",
+        "quiet",
+        "rested",
+        "contented",
+        "peaceful"
+      ],
+      "onyomi": [
+        "アン"
+      ],
+      "kunyomi": [
+        "やす"
+      ],
+      "primary_reading": "やす",
+      "romaji": "yasu",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 144,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 47,
+      "char": "室",
+      "meanings": [
+        "room",
+        "apartment",
+        "chamber",
+        "greenhouse",
+        "cellar"
+      ],
+      "onyomi": [
+        "シツ"
+      ],
+      "kunyomi": [
+        "むろ"
+      ],
+      "primary_reading": "むろ",
+      "romaji": "muro",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 550,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 48,
+      "char": "家",
+      "meanings": [
+        "house",
+        "home",
+        "family",
+        "professional",
+        "expert",
+        "performer"
+      ],
+      "onyomi": [
+        "カ",
+        "ケ"
+      ],
+      "kunyomi": [
+        "いえ",
+        "や",
+        "うち"
+      ],
+      "primary_reading": "いえ",
+      "romaji": "ie",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 133,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 49,
+      "char": "少",
+      "meanings": [
+        "few",
+        "little"
+      ],
+      "onyomi": [
+        "ショウ"
+      ],
+      "kunyomi": [
+        "すく",
+        "すこ"
+      ],
+      "primary_reading": "すくない",
+      "romaji": "sukunai",
+      "strokes": 4,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 287,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 50,
+      "char": "屋",
+      "meanings": [
+        "roof",
+        "house",
+        "shop",
+        "dealer",
+        "seller"
+      ],
+      "onyomi": [
+        "オク"
+      ],
+      "kunyomi": [
+        "や"
+      ],
+      "primary_reading": "や",
+      "romaji": "ya",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 616,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 51,
+      "char": "工",
+      "meanings": [
+        "craft",
+        "construction"
+      ],
+      "onyomi": [
+        "コウ",
+        "ク",
+        "グ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "こう",
+      "romaji": "kou",
+      "strokes": 3,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 299,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 52,
+      "char": "帰",
+      "meanings": [
+        "homecoming",
+        "arrive at",
+        "lead to",
+        "result in"
+      ],
+      "onyomi": [
+        "キ"
+      ],
+      "kunyomi": [
+        "かえ",
+        "おく",
+        "とつ"
+      ],
+      "primary_reading": "かえる",
+      "romaji": "kaeru",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 504,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 53,
+      "char": "広",
+      "meanings": [
+        "wide",
+        "broad",
+        "spacious"
+      ],
+      "onyomi": [
+        "コウ"
+      ],
+      "kunyomi": [
+        "ひろ"
+      ],
+      "primary_reading": "ひろい",
+      "romaji": "hiroi",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 263,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 54,
+      "char": "店",
+      "meanings": [
+        "store",
+        "shop"
+      ],
+      "onyomi": [
+        "テン"
+      ],
+      "kunyomi": [
+        "みせ",
+        "たな"
+      ],
+      "primary_reading": "みせ",
+      "romaji": "mise",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 378,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 55,
+      "char": "度",
+      "meanings": [
+        "degrees",
+        "occurrence",
+        "time",
+        "consider",
+        "attitude"
+      ],
+      "onyomi": [
+        "ド",
+        "ト",
+        "タク"
+      ],
+      "kunyomi": [
+        "たび",
+        "た"
+      ],
+      "primary_reading": "たび",
+      "romaji": "tabi",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 110,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 56,
+      "char": "建",
+      "meanings": [
+        "build"
+      ],
+      "onyomi": [
+        "ケン",
+        "コン"
+      ],
+      "kunyomi": [
+        "た",
+        "だ"
+      ],
+      "primary_reading": "たてる",
+      "romaji": "tateru",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 300,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 57,
+      "char": "弟",
+      "meanings": [
+        "younger brother",
+        "faithful service to elders"
+      ],
+      "onyomi": [
+        "テイ",
+        "ダイ",
+        "デ"
+      ],
+      "kunyomi": [
+        "おとうと"
+      ],
+      "primary_reading": "おとうと",
+      "romaji": "otouto",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1161,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 58,
+      "char": "強",
+      "meanings": [
+        "strong"
+      ],
+      "onyomi": [
+        "キョウ",
+        "ゴウ"
+      ],
+      "kunyomi": [
+        "つよ",
+        "し",
+        "こわ"
+      ],
+      "primary_reading": "つよい",
+      "romaji": "tsuyoi",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 112,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 59,
+      "char": "待",
+      "meanings": [
+        "wait",
+        "depend on"
+      ],
+      "onyomi": [
+        "タイ"
+      ],
+      "kunyomi": [
+        "ま"
+      ],
+      "primary_reading": "まつ",
+      "romaji": "matsu",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 391,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 60,
+      "char": "心",
+      "meanings": [
+        "heart",
+        "mind",
+        "spirit"
+      ],
+      "onyomi": [
+        "シン"
+      ],
+      "kunyomi": [
+        "こころ",
+        "ごころ"
+      ],
+      "primary_reading": "こころ",
+      "romaji": "kokoro",
+      "strokes": 4,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 157,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 61,
+      "char": "思",
+      "meanings": [
+        "think"
+      ],
+      "onyomi": [
+        "シ"
+      ],
+      "kunyomi": [
+        "おも",
+        "おもえら",
+        "おぼ"
+      ],
+      "primary_reading": "おもう",
+      "romaji": "omou",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 132,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 62,
+      "char": "急",
+      "meanings": [
+        "hurry",
+        "emergency",
+        "sudden",
+        "steep"
+      ],
+      "onyomi": [
+        "キュウ"
+      ],
+      "kunyomi": [
+        "いそ",
+        "せ"
+      ],
+      "primary_reading": "いそぐ",
+      "romaji": "isogu",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 309,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 63,
+      "char": "悪",
+      "meanings": [
+        "bad",
+        "vice",
+        "rascal",
+        "false",
+        "evil",
+        "wrong"
+      ],
+      "onyomi": [
+        "アク",
+        "オ"
+      ],
+      "kunyomi": [
+        "わる",
+        "あ",
+        "にく",
+        "ああ",
+        "いずくに",
+        "いずくんぞ"
+      ],
+      "primary_reading": "ああ",
+      "romaji": "aa",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 530,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 64,
+      "char": "意",
+      "meanings": [
+        "idea",
+        "mind",
+        "heart",
+        "taste",
+        "thought",
+        "desire",
+        "care",
+        "liking"
+      ],
+      "onyomi": [
+        "イ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "い",
+      "romaji": "i",
+      "strokes": 13,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 99,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 65,
+      "char": "持",
+      "meanings": [
+        "hold",
+        "have"
+      ],
+      "onyomi": [
+        "ジ"
+      ],
+      "kunyomi": [
+        "も"
+      ],
+      "primary_reading": "もつ",
+      "romaji": "motsu",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 119,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 66,
+      "char": "教",
+      "meanings": [
+        "teach",
+        "faith",
+        "doctrine"
+      ],
+      "onyomi": [
+        "キョウ"
+      ],
+      "kunyomi": [
+        "おし",
+        "おそ"
+      ],
+      "primary_reading": "おしえる",
+      "romaji": "oshieru",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 166,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 67,
+      "char": "文",
+      "meanings": [
+        "sentence",
+        "literature",
+        "style",
+        "art",
+        "decoration",
+        "figures",
+        "plan"
+      ],
+      "onyomi": [
+        "ブン",
+        "モン"
+      ],
+      "kunyomi": [
+        "ふみ",
+        "あや"
+      ],
+      "primary_reading": "ふみ",
+      "romaji": "fumi",
+      "strokes": 4,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 190,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 68,
+      "char": "料",
+      "meanings": [
+        "fee",
+        "materials"
+      ],
+      "onyomi": [
+        "リョウ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "りょう",
+      "romaji": "ryou",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 295,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 69,
+      "char": "新",
+      "meanings": [
+        "new"
+      ],
+      "onyomi": [
+        "シン"
+      ],
+      "kunyomi": [
+        "あたら",
+        "あら",
+        "にい"
+      ],
+      "primary_reading": "あたらしい",
+      "romaji": "atarashii",
+      "strokes": 13,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 51,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 70,
+      "char": "方",
+      "meanings": [
+        "direction",
+        "person",
+        "alternative"
+      ],
+      "onyomi": [
+        "ホウ"
+      ],
+      "kunyomi": [
+        "かた",
+        "がた"
+      ],
+      "primary_reading": "かた",
+      "romaji": "kata",
+      "strokes": 4,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 46,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 71,
+      "char": "旅",
+      "meanings": [
+        "trip",
+        "travel"
+      ],
+      "onyomi": [
+        "リョ"
+      ],
+      "kunyomi": [
+        "たび"
+      ],
+      "primary_reading": "たび",
+      "romaji": "tabi",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 783,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 72,
+      "char": "族",
+      "meanings": [
+        "tribe",
+        "family"
+      ],
+      "onyomi": [
+        "ゾク"
+      ],
+      "kunyomi": [],
+      "primary_reading": "ぞく",
+      "romaji": "zoku",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 393,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 73,
+      "char": "早",
+      "meanings": [
+        "early",
+        "fast"
+      ],
+      "onyomi": [
+        "ソウ",
+        "サッ"
+      ],
+      "kunyomi": [
+        "はや",
+        "さ"
+      ],
+      "primary_reading": "はや",
+      "romaji": "haya",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 402,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 74,
+      "char": "明",
+      "meanings": [
+        "bright",
+        "light"
+      ],
+      "onyomi": [
+        "メイ",
+        "ミョウ",
+        "ミン"
+      ],
+      "kunyomi": [
+        "あ",
+        "あか",
+        "あき"
+      ],
+      "primary_reading": "あかり",
+      "romaji": "akari",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 67,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 75,
+      "char": "映",
+      "meanings": [
+        "reflect",
+        "reflection",
+        "projection"
+      ],
+      "onyomi": [
+        "エイ"
+      ],
+      "kunyomi": [
+        "うつ",
+        "は",
+        "ば"
+      ],
+      "primary_reading": "うつる",
+      "romaji": "utsuru",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 404,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 76,
+      "char": "春",
+      "meanings": [
+        "springtime",
+        "spring (season)"
+      ],
+      "onyomi": [
+        "シュン"
+      ],
+      "kunyomi": [
+        "はる"
+      ],
+      "primary_reading": "はる",
+      "romaji": "haru",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 579,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 77,
+      "char": "昼",
+      "meanings": [
+        "daytime",
+        "noon"
+      ],
+      "onyomi": [
+        "チュウ"
+      ],
+      "kunyomi": [
+        "ひる"
+      ],
+      "primary_reading": "ひる",
+      "romaji": "hiru",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1115,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 78,
+      "char": "曜",
+      "meanings": [
+        "weekday"
+      ],
+      "onyomi": [
+        "ヨウ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "よう",
+      "romaji": "you",
+      "strokes": 18,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 940,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 79,
+      "char": "有",
+      "meanings": [
+        "possess",
+        "have",
+        "exist",
+        "happen",
+        "occur",
+        "approx"
+      ],
+      "onyomi": [
+        "ユウ",
+        "ウ"
+      ],
+      "kunyomi": [
+        "あ"
+      ],
+      "primary_reading": "ある",
+      "romaji": "aru",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 282,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 80,
+      "char": "服",
+      "meanings": [
+        "clothing",
+        "admit",
+        "obey",
+        "discharge"
+      ],
+      "onyomi": [
+        "フク"
+      ],
+      "kunyomi": [],
+      "primary_reading": "ふく",
+      "romaji": "fuku",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 873,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 81,
+      "char": "朝",
+      "meanings": [
+        "morning",
+        "dynasty",
+        "regime",
+        "epoch",
+        "period",
+        "(North) Korea"
+      ],
+      "onyomi": [
+        "チョウ"
+      ],
+      "kunyomi": [
+        "あさ"
+      ],
+      "primary_reading": "あさ",
+      "romaji": "asa",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 248,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 82,
+      "char": "業",
+      "meanings": [
+        "business",
+        "vocation",
+        "arts",
+        "performance"
+      ],
+      "onyomi": [
+        "ギョウ",
+        "ゴウ"
+      ],
+      "kunyomi": [
+        "わざ"
+      ],
+      "primary_reading": "わざ",
+      "romaji": "waza",
+      "strokes": 13,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 43,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 83,
+      "char": "楽",
+      "meanings": [
+        "music",
+        "comfort",
+        "ease"
+      ],
+      "onyomi": [
+        "ガク",
+        "ラク",
+        "ゴウ"
+      ],
+      "kunyomi": [
+        "たの",
+        "この"
+      ],
+      "primary_reading": "たのしい",
+      "romaji": "tanoshii",
+      "strokes": 13,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 373,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 84,
+      "char": "歌",
+      "meanings": [
+        "song",
+        "sing"
+      ],
+      "onyomi": [
+        "カ"
+      ],
+      "kunyomi": [
+        "うた"
+      ],
+      "primary_reading": "うた",
+      "romaji": "uta",
+      "strokes": 14,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 519,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 85,
+      "char": "止",
+      "meanings": [
+        "stop",
+        "halt"
+      ],
+      "onyomi": [
+        "シ"
+      ],
+      "kunyomi": [
+        "と",
+        "ど",
+        "とど",
+        "や",
+        "よ",
+        "さ"
+      ],
+      "primary_reading": "とまる",
+      "romaji": "tomaru",
+      "strokes": 4,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 310,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 86,
+      "char": "正",
+      "meanings": [
+        "correct",
+        "justice",
+        "righteous"
+      ],
+      "onyomi": [
+        "セイ",
+        "ショウ"
+      ],
+      "kunyomi": [
+        "ただ",
+        "まさ"
+      ],
+      "primary_reading": "まさ",
+      "romaji": "masa",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 143,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 87,
+      "char": "歩",
+      "meanings": [
+        "walk"
+      ],
+      "onyomi": [
+        "ホ",
+        "ブ",
+        "フ"
+      ],
+      "kunyomi": [
+        "ある",
+        "あゆ"
+      ],
+      "primary_reading": "あるく",
+      "romaji": "aruku",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 554,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 88,
+      "char": "死",
+      "meanings": [
+        "death",
+        "die"
+      ],
+      "onyomi": [
+        "シ"
+      ],
+      "kunyomi": [
+        "し"
+      ],
+      "primary_reading": "しぬ",
+      "romaji": "shinu",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 229,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 89,
+      "char": "注",
+      "meanings": [
+        "pour",
+        "irrigate",
+        "shed (tears)",
+        "flow into",
+        "concentrate on",
+        "notes",
+        "comment",
+        "annotate"
+      ],
+      "onyomi": [
+        "チュウ"
+      ],
+      "kunyomi": [
+        "そそ",
+        "さ",
+        "つ"
+      ],
+      "primary_reading": "そそぐ",
+      "romaji": "sosogu",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 497,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 90,
+      "char": "洋",
+      "meanings": [
+        "ocean",
+        "sea",
+        "foreign",
+        "Western style"
+      ],
+      "onyomi": [
+        "ヨウ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "よう",
+      "romaji": "you",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 763,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 91,
+      "char": "海",
+      "meanings": [
+        "sea",
+        "ocean"
+      ],
+      "onyomi": [
+        "カイ"
+      ],
+      "kunyomi": [
+        "うみ"
+      ],
+      "primary_reading": "うみ",
+      "romaji": "umi",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 200,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 92,
+      "char": "漢",
+      "meanings": [
+        "Sino-",
+        "China"
+      ],
+      "onyomi": [
+        "カン"
+      ],
+      "kunyomi": [],
+      "primary_reading": "かん",
+      "romaji": "kan",
+      "strokes": 13,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1487,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 93,
+      "char": "牛",
+      "meanings": [
+        "cow"
+      ],
+      "onyomi": [
+        "ギュウ"
+      ],
+      "kunyomi": [
+        "うし"
+      ],
+      "primary_reading": "うし",
+      "romaji": "ushi",
+      "strokes": 4,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1202,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 94,
+      "char": "物",
+      "meanings": [
+        "thing",
+        "object",
+        "matter"
+      ],
+      "onyomi": [
+        "ブツ",
+        "モツ"
+      ],
+      "kunyomi": [
+        "もの"
+      ],
+      "primary_reading": "もの",
+      "romaji": "mono",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 215,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 95,
+      "char": "特",
+      "meanings": [
+        "special"
+      ],
+      "onyomi": [
+        "トク"
+      ],
+      "kunyomi": [],
+      "primary_reading": "とく",
+      "romaji": "toku",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 234,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 96,
+      "char": "犬",
+      "meanings": [
+        "dog"
+      ],
+      "onyomi": [
+        "ケン"
+      ],
+      "kunyomi": [
+        "いぬ"
+      ],
+      "primary_reading": "いぬ",
+      "romaji": "inu",
+      "strokes": 4,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1326,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 97,
+      "char": "理",
+      "meanings": [
+        "logic",
+        "arrangement",
+        "reason",
+        "justice",
+        "truth"
+      ],
+      "onyomi": [
+        "リ"
+      ],
+      "kunyomi": [
+        "ことわり"
+      ],
+      "primary_reading": "ことわり",
+      "romaji": "kotowari",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 86,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 98,
+      "char": "用",
+      "meanings": [
+        "utilize",
+        "business",
+        "service",
+        "use",
+        "employ"
+      ],
+      "onyomi": [
+        "ヨウ"
+      ],
+      "kunyomi": [
+        "もち"
+      ],
+      "primary_reading": "もちいる",
+      "romaji": "mochiiru",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 107,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 99,
+      "char": "町",
+      "meanings": [
+        "town",
+        "village",
+        "block",
+        "street"
+      ],
+      "onyomi": [
+        "チョウ"
+      ],
+      "kunyomi": [
+        "まち"
+      ],
+      "primary_reading": "まち",
+      "romaji": "machi",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 292,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 100,
+      "char": "画",
+      "meanings": [
+        "brush-stroke",
+        "picture"
+      ],
+      "onyomi": [
+        "ガ",
+        "カク",
+        "エ",
+        "カイ"
+      ],
+      "kunyomi": [
+        "えが",
+        "かく",
+        "かぎ",
+        "はかりごと",
+        "はか"
+      ],
+      "primary_reading": "はかりごと",
+      "romaji": "hakarigoto",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 199,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 101,
+      "char": "界",
+      "meanings": [
+        "world",
+        "boundary"
+      ],
+      "onyomi": [
+        "カイ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "かい",
+      "romaji": "kai",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 158,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 102,
+      "char": "病",
+      "meanings": [
+        "ill",
+        "sick"
+      ],
+      "onyomi": [
+        "ビョウ",
+        "ヘイ"
+      ],
+      "kunyomi": [
+        "や",
+        "やまい"
+      ],
+      "primary_reading": "やまい",
+      "romaji": "yamai",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 384,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 103,
+      "char": "発",
+      "meanings": [
+        "departure",
+        "discharge",
+        "publish",
+        "emit",
+        "start from",
+        "disclose"
+      ],
+      "onyomi": [
+        "ハツ",
+        "ホツ"
+      ],
+      "kunyomi": [
+        "た",
+        "あば",
+        "おこ",
+        "つか",
+        "はな"
+      ],
+      "primary_reading": "たつ",
+      "romaji": "tatsu",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 32,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 104,
+      "char": "真",
+      "meanings": [
+        "true",
+        "reality",
+        "Buddhist sect"
+      ],
+      "onyomi": [
+        "シン"
+      ],
+      "kunyomi": [
+        "ま",
+        "まこと"
+      ],
+      "primary_reading": "ま",
+      "romaji": "ma",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 279,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 105,
+      "char": "着",
+      "meanings": [
+        "don",
+        "arrive",
+        "wear"
+      ],
+      "onyomi": [
+        "チャク",
+        "ジャク"
+      ],
+      "kunyomi": [
+        "き",
+        "つ"
+      ],
+      "primary_reading": "きる",
+      "romaji": "kiru",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 376,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 106,
+      "char": "知",
+      "meanings": [
+        "know",
+        "wisdom"
+      ],
+      "onyomi": [
+        "チ"
+      ],
+      "kunyomi": [
+        "し"
+      ],
+      "primary_reading": "しる",
+      "romaji": "shiru",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 205,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 107,
+      "char": "研",
+      "meanings": [
+        "polish",
+        "study of",
+        "sharpen"
+      ],
+      "onyomi": [
+        "ケン"
+      ],
+      "kunyomi": [
+        "と"
+      ],
+      "primary_reading": "とぐ",
+      "romaji": "togu",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 336,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 108,
+      "char": "社",
+      "meanings": [
+        "company",
+        "firm",
+        "office",
+        "association",
+        "shrine"
+      ],
+      "onyomi": [
+        "シャ"
+      ],
+      "kunyomi": [
+        "やしろ"
+      ],
+      "primary_reading": "やしろ",
+      "romaji": "yashiro",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 21,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 109,
+      "char": "私",
+      "meanings": [
+        "private",
+        "I",
+        "me"
+      ],
+      "onyomi": [
+        "シ"
+      ],
+      "kunyomi": [
+        "わたくし",
+        "わたし"
+      ],
+      "primary_reading": "わたくし",
+      "romaji": "watakushi",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 242,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 110,
+      "char": "秋",
+      "meanings": [
+        "autumn"
+      ],
+      "onyomi": [
+        "シュウ"
+      ],
+      "kunyomi": [
+        "あき",
+        "とき"
+      ],
+      "primary_reading": "あき",
+      "romaji": "aki",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 635,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 111,
+      "char": "究",
+      "meanings": [
+        "research",
+        "study"
+      ],
+      "onyomi": [
+        "キュウ",
+        "ク"
+      ],
+      "kunyomi": [
+        "きわ"
+      ],
+      "primary_reading": "きわめる",
+      "romaji": "kiwameru",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 368,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 112,
+      "char": "空",
+      "meanings": [
+        "empty",
+        "sky",
+        "void",
+        "vacant",
+        "vacuum"
+      ],
+      "onyomi": [
+        "クウ"
+      ],
+      "kunyomi": [
+        "そら",
+        "あ",
+        "から",
+        "す",
+        "むな"
+      ],
+      "primary_reading": "そら",
+      "romaji": "sora",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 304,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 113,
+      "char": "立",
+      "meanings": [
+        "stand up",
+        "rise",
+        "set up",
+        "erect"
+      ],
+      "onyomi": [
+        "リツ",
+        "リュウ",
+        "リットル"
+      ],
+      "kunyomi": [
+        "た",
+        "たて",
+        "だ"
+      ],
+      "primary_reading": "たつ",
+      "romaji": "tatsu",
+      "strokes": 5,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 58,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 114,
+      "char": "答",
+      "meanings": [
+        "solution",
+        "answer"
+      ],
+      "onyomi": [
+        "トウ"
+      ],
+      "kunyomi": [
+        "こた"
+      ],
+      "primary_reading": "こたえる",
+      "romaji": "kotaeru",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 486,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 115,
+      "char": "紙",
+      "meanings": [
+        "paper"
+      ],
+      "onyomi": [
+        "シ"
+      ],
+      "kunyomi": [
+        "かみ"
+      ],
+      "primary_reading": "かみ",
+      "romaji": "kami",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 559,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 116,
+      "char": "終",
+      "meanings": [
+        "end",
+        "finish"
+      ],
+      "onyomi": [
+        "シュウ"
+      ],
+      "kunyomi": [
+        "お",
+        "おわ",
+        "つい"
+      ],
+      "primary_reading": "つい",
+      "romaji": "tsui",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 256,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 117,
+      "char": "習",
+      "meanings": [
+        "learn"
+      ],
+      "onyomi": [
+        "シュウ",
+        "ジュ"
+      ],
+      "kunyomi": [
+        "なら"
+      ],
+      "primary_reading": "ならう",
+      "romaji": "narau",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 706,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 118,
+      "char": "考",
+      "meanings": [
+        "consider",
+        "think over"
+      ],
+      "onyomi": [
+        "コウ"
+      ],
+      "kunyomi": [
+        "かんが"
+      ],
+      "primary_reading": "かんがえる",
+      "romaji": "kangaeru",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 196,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 119,
+      "char": "者",
+      "meanings": [
+        "someone",
+        "person"
+      ],
+      "onyomi": [
+        "シャ"
+      ],
+      "kunyomi": [
+        "もの"
+      ],
+      "primary_reading": "もの",
+      "romaji": "mono",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 38,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 120,
+      "char": "肉",
+      "meanings": [
+        "meat"
+      ],
+      "onyomi": [
+        "ニク"
+      ],
+      "kunyomi": [
+        "しし"
+      ],
+      "primary_reading": "しし",
+      "romaji": "shishi",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 986,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 121,
+      "char": "自",
+      "meanings": [
+        "oneself"
+      ],
+      "onyomi": [
+        "ジ",
+        "シ"
+      ],
+      "kunyomi": [
+        "みずか",
+        "おの"
+      ],
+      "primary_reading": "みずから",
+      "romaji": "mizukara",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 19,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 122,
+      "char": "色",
+      "meanings": [
+        "color"
+      ],
+      "onyomi": [
+        "ショク",
+        "シキ"
+      ],
+      "kunyomi": [
+        "いろ"
+      ],
+      "primary_reading": "いろ",
+      "romaji": "iro",
+      "strokes": 6,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 621,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 123,
+      "char": "花",
+      "meanings": [
+        "flower"
+      ],
+      "onyomi": [
+        "カ",
+        "ケ"
+      ],
+      "kunyomi": [
+        "はな"
+      ],
+      "primary_reading": "はな",
+      "romaji": "hana",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 578,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 124,
+      "char": "英",
+      "meanings": [
+        "England",
+        "English",
+        "hero",
+        "outstanding",
+        "calyx"
+      ],
+      "onyomi": [
+        "エイ"
+      ],
+      "kunyomi": [
+        "はなぶさ"
+      ],
+      "primary_reading": "はなぶさ",
+      "romaji": "hanabusa",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 430,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 125,
+      "char": "茶",
+      "meanings": [
+        "tea"
+      ],
+      "onyomi": [
+        "チャ",
+        "サ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "ちゃ",
+      "romaji": "cha",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1116,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 126,
+      "char": "親",
+      "meanings": [
+        "parent",
+        "intimacy",
+        "relative",
+        "familiarity",
+        "dealer (cards)"
+      ],
+      "onyomi": [
+        "シン"
+      ],
+      "kunyomi": [
+        "おや",
+        "した"
+      ],
+      "primary_reading": "おや",
+      "romaji": "oya",
+      "strokes": 16,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 406,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 127,
+      "char": "言",
+      "meanings": [
+        "say",
+        "word"
+      ],
+      "onyomi": [
+        "ゲン",
+        "ゴン"
+      ],
+      "kunyomi": [
+        "い",
+        "こと"
+      ],
+      "primary_reading": "こと",
+      "romaji": "koto",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 83,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 128,
+      "char": "計",
+      "meanings": [
+        "plot",
+        "plan",
+        "scheme",
+        "measure"
+      ],
+      "onyomi": [
+        "ケイ"
+      ],
+      "kunyomi": [
+        "はか"
+      ],
+      "primary_reading": "はかる",
+      "romaji": "hakaru",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 228,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 129,
+      "char": "試",
+      "meanings": [
+        "test",
+        "try",
+        "attempt",
+        "experiment",
+        "ordeal"
+      ],
+      "onyomi": [
+        "シ"
+      ],
+      "kunyomi": [
+        "こころ",
+        "ため"
+      ],
+      "primary_reading": "こころみる",
+      "romaji": "kokoromiru",
+      "strokes": 13,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 392,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 130,
+      "char": "買",
+      "meanings": [
+        "buy"
+      ],
+      "onyomi": [
+        "バイ"
+      ],
+      "kunyomi": [
+        "か"
+      ],
+      "primary_reading": "かう",
+      "romaji": "kau",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 520,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 131,
+      "char": "貸",
+      "meanings": [
+        "lend"
+      ],
+      "onyomi": [
+        "タイ"
+      ],
+      "kunyomi": [
+        "か",
+        "かし"
+      ],
+      "primary_reading": "かす",
+      "romaji": "kasu",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 995,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 132,
+      "char": "質",
+      "meanings": [
+        "substance",
+        "quality",
+        "matter",
+        "temperament"
+      ],
+      "onyomi": [
+        "シツ",
+        "シチ",
+        "チ"
+      ],
+      "kunyomi": [
+        "たち",
+        "ただ",
+        "もと",
+        "わりふ"
+      ],
+      "primary_reading": "たち",
+      "romaji": "tachi",
+      "strokes": 15,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 389,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 133,
+      "char": "赤",
+      "meanings": [
+        "red"
+      ],
+      "onyomi": [
+        "セキ",
+        "シャク"
+      ],
+      "kunyomi": [
+        "あか"
+      ],
+      "primary_reading": "あか",
+      "romaji": "aka",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 584,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 134,
+      "char": "走",
+      "meanings": [
+        "run"
+      ],
+      "onyomi": [
+        "ソウ"
+      ],
+      "kunyomi": [
+        "はし"
+      ],
+      "primary_reading": "はしる",
+      "romaji": "hashiru",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 626,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 135,
+      "char": "起",
+      "meanings": [
+        "rouse",
+        "wake up",
+        "get up"
+      ],
+      "onyomi": [
+        "キ"
+      ],
+      "kunyomi": [
+        "お",
+        "おこ",
+        "た"
+      ],
+      "primary_reading": "おきる",
+      "romaji": "okiru",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 374,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 136,
+      "char": "足",
+      "meanings": [
+        "leg",
+        "foot",
+        "be sufficient"
+      ],
+      "onyomi": [
+        "ソク"
+      ],
+      "kunyomi": [
+        "あし",
+        "た"
+      ],
+      "primary_reading": "あし",
+      "romaji": "ashi",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 343,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 137,
+      "char": "転",
+      "meanings": [
+        "revolve",
+        "turn around",
+        "change"
+      ],
+      "onyomi": [
+        "テン"
+      ],
+      "kunyomi": [
+        "ころ",
+        "まろ",
+        "うたた",
+        "うつ",
+        "くる"
+      ],
+      "primary_reading": "うたた",
+      "romaji": "utata",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 327,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 138,
+      "char": "近",
+      "meanings": [
+        "near",
+        "early",
+        "akin",
+        "tantamount"
+      ],
+      "onyomi": [
+        "キン",
+        "コン"
+      ],
+      "kunyomi": [
+        "ちか"
+      ],
+      "primary_reading": "ちかい",
+      "romaji": "chikai",
+      "strokes": 7,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 194,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 139,
+      "char": "送",
+      "meanings": [
+        "escort",
+        "send"
+      ],
+      "onyomi": [
+        "ソウ"
+      ],
+      "kunyomi": [
+        "おく"
+      ],
+      "primary_reading": "おくる",
+      "romaji": "okuru",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 311,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 140,
+      "char": "通",
+      "meanings": [
+        "traffic",
+        "pass through",
+        "avenue",
+        "commute"
+      ],
+      "onyomi": [
+        "ツウ",
+        "ツ"
+      ],
+      "kunyomi": [
+        "とお",
+        "どお",
+        "かよ"
+      ],
+      "primary_reading": "とおる",
+      "romaji": "tooru",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 80,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 141,
+      "char": "週",
+      "meanings": [
+        "week"
+      ],
+      "onyomi": [
+        "シュウ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "しゅう",
+      "romaji": "shuu",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 540,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 142,
+      "char": "運",
+      "meanings": [
+        "carry",
+        "luck",
+        "destiny",
+        "fate",
+        "lot",
+        "transport",
+        "progress",
+        "advance"
+      ],
+      "onyomi": [
+        "ウン"
+      ],
+      "kunyomi": [
+        "はこ"
+      ],
+      "primary_reading": "はこぶ",
+      "romaji": "hakobu",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 255,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 143,
+      "char": "道",
+      "meanings": [
+        "road-way",
+        "street",
+        "district",
+        "journey",
+        "course",
+        "moral",
+        "teachings"
+      ],
+      "onyomi": [
+        "ドウ",
+        "トウ"
+      ],
+      "kunyomi": [
+        "みち",
+        "いう"
+      ],
+      "primary_reading": "みち",
+      "romaji": "michi",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 207,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 144,
+      "char": "重",
+      "meanings": [
+        "heavy",
+        "important",
+        "esteem",
+        "respect",
+        "heap up",
+        "pile up",
+        "nest of boxes",
+        "-fold"
+      ],
+      "onyomi": [
+        "ジュウ",
+        "チョウ"
+      ],
+      "kunyomi": [
+        "え",
+        "おも",
+        "かさ"
+      ],
+      "primary_reading": "え",
+      "romaji": "e",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 193,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 145,
+      "char": "野",
+      "meanings": [
+        "plains",
+        "field",
+        "rustic",
+        "civilian life"
+      ],
+      "onyomi": [
+        "ヤ",
+        "ショ"
+      ],
+      "kunyomi": [
+        "の"
+      ],
+      "primary_reading": "の",
+      "romaji": "no",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 120,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 146,
+      "char": "銀",
+      "meanings": [
+        "silver"
+      ],
+      "onyomi": [
+        "ギン"
+      ],
+      "kunyomi": [
+        "しろがね"
+      ],
+      "primary_reading": "しろがね",
+      "romaji": "shirogane",
+      "strokes": 14,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 395,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 147,
+      "char": "開",
+      "meanings": [
+        "open",
+        "unfold",
+        "unseal"
+      ],
+      "onyomi": [
+        "カイ"
+      ],
+      "kunyomi": [
+        "ひら",
+        "びら",
+        "あ"
+      ],
+      "primary_reading": "ひらく",
+      "romaji": "hiraku",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 59,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 148,
+      "char": "院",
+      "meanings": [
+        "Inst.",
+        "institution",
+        "temple",
+        "mansion",
+        "school"
+      ],
+      "onyomi": [
+        "イン"
+      ],
+      "kunyomi": [],
+      "primary_reading": "いん",
+      "romaji": "in",
+      "strokes": 10,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 150,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 149,
+      "char": "集",
+      "meanings": [
+        "gather",
+        "meet",
+        "congregate",
+        "swarm",
+        "flock"
+      ],
+      "onyomi": [
+        "シュウ"
+      ],
+      "kunyomi": [
+        "あつ",
+        "つど"
+      ],
+      "primary_reading": "あつまる",
+      "romaji": "atsumaru",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 210,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 150,
+      "char": "青",
+      "meanings": [
+        "blue",
+        "green"
+      ],
+      "onyomi": [
+        "セイ",
+        "ショウ"
+      ],
+      "kunyomi": [
+        "あお"
+      ],
+      "primary_reading": "あお",
+      "romaji": "ao",
+      "strokes": 8,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 589,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 151,
+      "char": "音",
+      "meanings": [
+        "sound",
+        "noise"
+      ],
+      "onyomi": [
+        "オン",
+        "イン",
+        "ノン"
+      ],
+      "kunyomi": [
+        "おと",
+        "ね"
+      ],
+      "primary_reading": "おと",
+      "romaji": "oto",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 491,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 152,
+      "char": "題",
+      "meanings": [
+        "topic",
+        "subject"
+      ],
+      "onyomi": [
+        "ダイ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "だい",
+      "romaji": "dai",
+      "strokes": 18,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 96,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 153,
+      "char": "風",
+      "meanings": [
+        "wind",
+        "air",
+        "style",
+        "manner"
+      ],
+      "onyomi": [
+        "フウ",
+        "フ"
+      ],
+      "kunyomi": [
+        "かぜ",
+        "かざ"
+      ],
+      "primary_reading": "かぜ",
+      "romaji": "kaze",
+      "strokes": 9,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 558,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 154,
+      "char": "飯",
+      "meanings": [
+        "meal",
+        "boiled rice"
+      ],
+      "onyomi": [
+        "ハン"
+      ],
+      "kunyomi": [
+        "めし"
+      ],
+      "primary_reading": "めし",
+      "romaji": "meshi",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1046,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 155,
+      "char": "飲",
+      "meanings": [
+        "drink",
+        "smoke",
+        "take"
+      ],
+      "onyomi": [
+        "イン",
+        "オン"
+      ],
+      "kunyomi": [
+        "の"
+      ],
+      "primary_reading": "のむ",
+      "romaji": "nomu",
+      "strokes": 12,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 969,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 156,
+      "char": "館",
+      "meanings": [
+        "building",
+        "mansion",
+        "large building",
+        "palace"
+      ],
+      "onyomi": [
+        "カン"
+      ],
+      "kunyomi": [
+        "やかた",
+        "たて"
+      ],
+      "primary_reading": "やかた",
+      "romaji": "yakata",
+      "strokes": 16,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 613,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 157,
+      "char": "駅",
+      "meanings": [
+        "station"
+      ],
+      "onyomi": [
+        "エキ"
+      ],
+      "kunyomi": [],
+      "primary_reading": "えき",
+      "romaji": "eki",
+      "strokes": 14,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 724,
+      "review": [
+        "tier",
+        "confusions"
+      ]
+    },
+    {
+      "id": 158,
+      "char": "験",
+      "meanings": [
+        "verification",
+        "effect",
+        "testing"
+      ],
+      "onyomi": [
+        "ケン",
+        "ゲン"
+      ],
+      "kunyomi": [
+        "あかし",
+        "しるし",
+        "ため",
+        "ためし"
+      ],
+      "primary_reading": "あかし",
+      "romaji": "akashi",
+      "strokes": 18,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 410,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 159,
+      "char": "魚",
+      "meanings": [
+        "fish"
+      ],
+      "onyomi": [
+        "ギョ"
+      ],
+      "kunyomi": [
+        "うお",
+        "さかな",
+        "ざかな"
+      ],
+      "primary_reading": "うお",
+      "romaji": "uo",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1208,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 160,
+      "char": "鳥",
+      "meanings": [
+        "bird",
+        "chicken"
+      ],
+      "onyomi": [
+        "チョウ"
+      ],
+      "kunyomi": [
+        "とり"
+      ],
+      "primary_reading": "とり",
+      "romaji": "tori",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 1043,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    },
+    {
+      "id": 161,
+      "char": "黒",
+      "meanings": [
+        "black"
+      ],
+      "onyomi": [
+        "コク"
+      ],
+      "kunyomi": [
+        "くろ"
+      ],
+      "primary_reading": "くろ",
+      "romaji": "kuro",
+      "strokes": 11,
+      "tier": 0,
+      "confusions": [],
+      "confusions_in_set": [],
+      "level": "N4",
+      "freq": 573,
+      "review": [
+        "tier",
+        "confusions",
+        "primary_reading"
+      ]
+    }
+  ]
+}

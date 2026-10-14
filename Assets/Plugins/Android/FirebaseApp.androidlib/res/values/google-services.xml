@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_android_client_id,@string/default_web_client_id">
+  <string name="gcm_defaultSenderId" translatable="false">1080832550172</string>
+  <string name="google_storage_bucket" translatable="false">kanjimaster-loen.firebasestorage.app</string>
+  <string name="project_id" translatable="false">kanjimaster-loen</string>
+  <string name="google_api_key" translatable="false">AIzaSyBEcBO_uVweSNMia_uZ0BEFN7jiSSDMURA</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBEcBO_uVweSNMia_uZ0BEFN7jiSSDMURA</string>
+  <string name="google_app_id" translatable="false">1:1080832550172:android:b233510d53881055f1c6d9</string>
+  <string name="default_android_client_id" translatable="false">1080832550172-ucmacfq1i6uo8flif22nq34ql4inem96.apps.googleusercontent.com</string>
+  <string name="default_web_client_id" translatable="false">1080832550172-le8qmea73rva6jmm9u9j2mqb5hfeio77.apps.googleusercontent.com</string>
+</resources>

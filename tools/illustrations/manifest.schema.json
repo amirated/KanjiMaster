@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Kanji Illustration Generation Manifest",
+  "description": "Records how every production Kanji illustration was generated. Development artifact; not shipped in the build.",
+  "type": "object",
+  "required": ["schemaVersion", "tool", "toolVersion", "style", "canvas", "entries"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "tool": { "type": "string", "description": "Generation tool, e.g. 'Comfy Desktop'." },
+    "toolVersion": { "type": "string", "description": "Exact tool version (or 'TBD' during setup)." },
+    "style": { "type": "string", "description": "The consistent visual-style descriptor all entries should follow." },
+    "canvas": { "$ref": "#/definitions/dimensions", "description": "Standard canvas size for the library." },
+    "outputFormat": { "type": "string", "description": "Standard output format, e.g. 'png'." },
+    "notes": { "type": "string" },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/entry" }
+    }
+  },
+  "definitions": {
+    "dimensions": {
+      "type": "object",
+      "required": ["width", "height"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "customNode": {
+      "type": "object",
+      "required": ["name", "version", "license", "commercialUse"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "license": { "type": "string" },
+        "commercialUse": { "type": "boolean" }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "required": [
+        "kanjiId", "character", "concept", "workflow",
+        "model", "modelVersion", "modelLicense", "modelCommercialUse",
+        "customNodes", "prompt", "seed",
+        "generationDate", "outputFormat", "outputDimensions", "outputFile"
+      ],
+      "properties": {
+        "kanjiId": { "type": "integer", "description": "Unicode code point of the kanji (stable global ID)." },
+        "character": { "type": "string", "description": "The kanji glyph; must match kanjiId." },
+        "concept": { "type": "string", "description": "English concept/meaning depicted." },
+        "workflow": { "type": "string", "description": "Comfy workflow name/file." },
+        "model": { "type": "string" },
+        "modelVersion": { "type": "string" },
+        "modelLicense": { "type": "string", "description": "License name/ID; must permit commercial use." },
+        "modelCommercialUse": { "type": "boolean", "description": "Explicit confirmation the model permits commercial use." },
+        "customNodes": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/customNode" }
+        },
+        "prompt": { "type": "string" },
+        "seed": { "type": "integer" },
+        "generationDate": { "type": "string", "description": "ISO date YYYY-MM-DD." },
+        "outputFormat": { "type": "string" },
+        "outputDimensions": { "$ref": "#/definitions/dimensions" },
+        "outputFile": { "type": "string", "description": "Repo-relative path of the produced asset." }
+      }
+    }
+  }
+}
