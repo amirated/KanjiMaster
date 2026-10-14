@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <rect width="48" height="48" rx="12" fill="#FCF9F4"/>
+  <circle cx="24" cy="24" r="20" stroke="#1B365D" stroke-width="2.5" fill="#FFFFFF"/>
+  <!-- Refined minimalist cog/gear -->
+  <path d="M24 14V17M24 31V34M14 24H17M31 24H34M16.93 16.93L19.05 19.05M28.95 28.95L31.07 31.07M16.93 31.07L19.05 28.95M28.95 19.05L31.07 16.93" stroke="#1B365D" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="24" cy="24" r="6" stroke="#1B365D" stroke-width="2.5" fill="#FCF9F4"/>
+  <circle cx="24" cy="24" r="2" fill="#E5432D"/>
+</svg>
