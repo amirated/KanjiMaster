@@ -108,6 +108,7 @@ namespace KanjiMaster.UI
         {
             var progress = PlayerProgressService.Default.Current;
             string destination = OnboardingRouter.StartDestination(OnboardingService.IsComplete(progress));
+            Debug.Log($"[Auth] Identity resolved — loading scene '{destination}'.");
             SceneLoader.Load(destination);
         }
 

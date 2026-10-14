@@ -62,3 +62,7 @@ Assets/KanjiRush/Config/Secrets*.cs
 
 # Firebase macOS native bundle - large platform-specific binary
 Assets/Firebase/Plugins/x86_64/FirebaseCppApp-13_16_0.bundle
+
+# Temporary Android/CMake native-build output
+/.utmp/
+/utmp/

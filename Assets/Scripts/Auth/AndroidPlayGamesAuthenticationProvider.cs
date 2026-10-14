@@ -38,7 +38,10 @@ namespace KanjiMaster.Auth
                 return Task.FromResult(ProviderCredentialResult.Unavailable());
             }
 
-            if (platform.IsAuthenticated())
+            bool alreadyAuthenticated = platform.IsAuthenticated();
+            Debug.Log($"[Auth] Play Games AcquireCredential — IsAuthenticated={alreadyAuthenticated}");
+
+            if (alreadyAuthenticated)
             {
                 // Already signed into Play Games (e.g. automatic sign-in at startup).
                 RequestServerCode(platform, tcs);
@@ -48,12 +51,19 @@ namespace KanjiMaster.Auth
                 // The user explicitly pressed "Continue with Account" → interactive sign-in.
                 platform.ManuallyAuthenticate(status =>
                 {
+                    Debug.Log($"[Auth] Play Games ManuallyAuthenticate result = {status}");
                     switch (status)
                     {
                         case SignInStatus.Success:
                             RequestServerCode(platform, tcs);
                             break;
                         case SignInStatus.Canceled:
+                            // NOTE: the plugin also reports a FAILED native sign-in (e.g. the
+                            // signing-key SHA-1 / OAuth client is not registered, or this tester
+                            // is not authorized) as Canceled when the Games task resolves to
+                            // "not authenticated". So a repeating profile picker that never
+                            // advances surfaces here, not as a user-initiated cancel.
+                            Debug.LogWarning("[Auth] Play Games sign-in did not authenticate (Canceled/not-authenticated).");
                             TrySet(tcs, ProviderCredentialResult.Cancelled());
                             break;
                         default: // InternalError / anything else
@@ -77,6 +87,7 @@ namespace KanjiMaster.Auth
         {
             try
             {
+                Debug.Log("[Auth] Play Games — requesting server-side access code…");
                 // forceRefreshToken:false — the single exchange happens server-side via Firebase.
                 platform.RequestServerSideAccess(false, code =>
                 {
@@ -86,6 +97,7 @@ namespace KanjiMaster.Auth
                         TrySet(tcs, ProviderCredentialResult.Failed("Could not get a Play Games access code."));
                         return;
                     }
+                    Debug.Log($"[Auth] Play Games server auth code acquired (length={code.Length}).");
                     TrySet(tcs, ProviderCredentialResult.Acquired(
                         new PlatformCredential(AuthProviders.GooglePlayGames, serverAuthCode: code)));
                 });

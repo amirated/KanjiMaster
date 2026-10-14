@@ -52,6 +52,7 @@ namespace KanjiMaster.Auth
             // Firebase UID is the canonical player id. The Firebase ID token (a separate,
             // short-lived credential for future backend calls) is deliberately NOT persisted.
             _identity.SetAuthenticated(signIn.FirebaseUid, cred.Credential.Provider);
+            UnityEngine.Debug.Log($"[Auth] Identity resolved → authenticated (provider={cred.Credential.Provider}).");
             return AuthOutcome.Success(signIn.FirebaseUid, cred.Credential.Provider);
         }
 
