@@ -33,7 +33,7 @@ namespace KanjiMaster.Core
 
         [Header("Timing")]
         [Tooltip("Minimum seconds the splash stays on screen so it never flashes past.")]
-        [SerializeField, Min(0f)] private float minimumSplashSeconds = 1.25f;
+        [SerializeField, Min(0f)] private float minimumSplashSeconds = 5f;
         [Tooltip("Fade-in duration for the splash. 0 = appear instantly.")]
         [SerializeField, Min(0f)] private float fadeInSeconds = 0.25f;
 

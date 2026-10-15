@@ -452,7 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: KanjiRush.Runtime::KanjiMaster.Core.BootLoader
   splashGroup: {fileID: 1057556636}
   statusLabel: {fileID: 180556306}
-  minimumSplashSeconds: 1.25
+  minimumSplashSeconds: 5
   fadeInSeconds: 0.25
   loadingText: "Loading\u2026"
   startingText: "Starting\u2026"
