@@ -40,6 +40,8 @@ namespace KanjiMaster.UI
         }
 
         [Header("Which section this screen belongs to")]
+        [Tooltip("At runtime this is derived from the active scene (see SectionForScene), so it " +
+                 "stays correct automatically. The value here is only an editor preview.")]
         [SerializeField] private NavSection currentSection = NavSection.Game;
 
         [Header("Items")]
@@ -59,10 +61,23 @@ namespace KanjiMaster.UI
 
         private void Start()
         {
+            // Derive the selected section from the scene we're in, so each scene's bar highlights
+            // the right icon without any per-instance setup and can never drift out of sync.
+            currentSection = SectionForScene(SceneManager.GetActiveScene().name);
+
             Wire(game, NavSection.Game);
             Wire(learn, NavSection.Learn);
             Wire(settings, NavSection.Settings);
             ApplySelection();
+        }
+
+        /// <summary>Maps a scene name to the nav section it belongs to.</summary>
+        private static NavSection SectionForScene(string sceneName)
+        {
+            if (sceneName == SceneNames.Learn) return NavSection.Learn;
+            if (sceneName == SceneNames.Settings) return NavSection.Settings;
+            // MainMenu, Game, Results (incl. revision) all belong to the Game section.
+            return NavSection.Game;
         }
 
         private void Wire(NavItem item, NavSection section)

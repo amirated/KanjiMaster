@@ -154,7 +154,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &64844000
 MonoBehaviour:
@@ -293,8 +293,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 133600143}
-  - component: {fileID: 133600144}
   - component: {fileID: 133600145}
+  - component: {fileID: 133600146}
   m_Layer: 5
   m_Name: LanguageGroup
   m_TagString: Untagged
@@ -322,34 +322,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 810.8478, y: 160}
+  m_SizeDelta: {x: 810.8478, y: 360}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &133600144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133600142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
-  m_Padding:
-    m_Left: 100
-    m_Right: 0
-    m_Top: 50
-    m_Bottom: 50
-  m_ChildAlignment: 4
-  m_Spacing: 32
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!114 &133600145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +337,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ToggleGroup
   m_AllowSwitchOff: 0
+--- !u!114 &133600146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133600142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 100
+    m_Right: 50
+    m_Top: 50
+    m_Bottom: 50
+  m_ChildAlignment: 0
+  m_Spacing: 50
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &173376058
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
+  m_ChildControlHeight: 0
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
@@ -461,11 +461,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1544563855}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 810.8478, y: 60}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &199980325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,11 +858,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 215.61592
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1176,8 +1176,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 665673946}
-  - component: {fileID: 665673947}
   - component: {fileID: 665673948}
+  - component: {fileID: 665673949}
   m_Layer: 5
   m_Name: TimerGroup
   m_TagString: Untagged
@@ -1201,37 +1201,11 @@ RectTransform:
   - {fileID: 683846784}
   m_Father: {fileID: 1425472591}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 810.8478, y: 120}
-  m_Pivot: {x: 0, y: 0}
---- !u!114 &665673947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665673945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
-  m_Padding:
-    m_Left: 100
-    m_Right: 0
-    m_Top: 50
-    m_Bottom: 100
-  m_ChildAlignment: 4
-  m_Spacing: 32
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
+  m_SizeDelta: {x: 810.8478, y: 240}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &665673948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1245,6 +1219,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ToggleGroup
   m_AllowSwitchOff: 0
+--- !u!114 &665673949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665673945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 100
+    m_Right: 50
+    m_Top: 50
+    m_Bottom: 50
+  m_ChildAlignment: 0
+  m_Spacing: 50
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1001 &683846783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1254,12 +1254,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 665673946}
     m_Modifications:
     - target: {fileID: 521653816747889816, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -70
-      objectReference: {fileID: 0}
-    - target: {fileID: 521653816747889816, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1374362052349971231, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_Group
@@ -1295,7 +1291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 660.8478
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1420,11 +1416,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 215.61592
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1898,7 +1894,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 90
+  m_fontSize: 88.2
   m_fontSizeBase: 372
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1982,11 +1978,11 @@ RectTransform:
   - {fileID: 244190546}
   m_Father: {fileID: 1425472591}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 810.8478, y: 60}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!1 &998673402
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,7 +2020,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &998673404
 MonoBehaviour:
@@ -2041,7 +2037,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 100
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 0
@@ -2074,12 +2070,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 665673946}
     m_Modifications:
     - target: {fileID: 521653816747889816, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -70
-      objectReference: {fileID: 0}
-    - target: {fileID: 521653816747889816, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1374362052349971231, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_Group
@@ -2115,7 +2107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 660.8478
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2441,8 +2433,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 0, y: 360}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &1544563854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,7 +2470,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 460}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1906261393
 PrefabInstance:
@@ -2522,11 +2514,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 215.61592
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3441161678748029512, guid: 1ef530836aef044fe8bf11128c98ddb1, type: 3}
       propertyPath: m_LocalPosition.x
