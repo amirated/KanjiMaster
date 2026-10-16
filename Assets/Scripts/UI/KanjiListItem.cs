@@ -15,6 +15,7 @@ namespace KanjiMaster.UI
     /// </summary>
     public class KanjiListItem : MonoBehaviour
     {
+        [SerializeField] private TMP_Text serialText;   // 1-based position in the list (optional)
         [SerializeField] private TMP_Text characterText;
         [FormerlySerializedAs("meaningText")]
         [SerializeField] private TMP_Text englishText;  // English meaning
@@ -25,6 +26,7 @@ namespace KanjiMaster.UI
         public void Bind(LearnKanji item, int index, Action<int> onSelect)
         {
             var k = item.Kanji;
+            if (serialText) serialText.text = (index + 1).ToString(); // serial number (1-based)
             if (characterText) characterText.text = k.Character;
             if (englishText) englishText.text = k.PrimaryMeaning;
             if (romajiText) romajiText.text = k.Romaji;

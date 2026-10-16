@@ -22,6 +22,7 @@ namespace KanjiMaster.UI
     public class KanjiDetailView : MonoBehaviour
     {
         [Header("Text slots")]
+        [SerializeField] private TMP_Text positionText;   // serial position e.g. "35/200" (optional)
         [SerializeField] private TMP_Text levelChip;      // player-facing level (optional)
         [SerializeField] private TMP_Text characterText;  // large kanji glyph
         [SerializeField] private TMP_Text meaningText;    // English meaning(s)
@@ -37,8 +38,16 @@ namespace KanjiMaster.UI
 
         /// <summary>Render a kanji. <paramref name="level"/> is optional — pass null
         /// (e.g. from Revision) to hide the level chip.</summary>
-        public void Show(Data.Kanji kanji, IKanjiIllustrationProvider illustrations, PlayerLevel? level = null)
+        public void Show(Data.Kanji kanji, IKanjiIllustrationProvider illustrations, PlayerLevel? level = null,
+            int position = 0, int total = 0)
         {
+            if (positionText)
+            {
+                bool showPos = position > 0 && total > 0;
+                positionText.gameObject.SetActive(showPos);
+                if (showPos) positionText.text = $"{position}/{total}"; // e.g. 35/200
+            }
+
             if (levelChip)
             {
                 levelChip.gameObject.SetActive(level.HasValue);
