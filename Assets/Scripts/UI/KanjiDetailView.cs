@@ -22,6 +22,7 @@ namespace KanjiMaster.UI
     public class KanjiDetailView : MonoBehaviour
     {
         [Header("Text slots")]
+        [SerializeField] private TMP_Text positionText;   // serial position e.g. "35/200" (optional)
         [SerializeField] private TMP_Text levelChip;      // player-facing level (optional)
         [SerializeField] private TMP_Text characterText;  // large kanji glyph
         [SerializeField] private TMP_Text meaningText;    // English meaning(s)
@@ -37,21 +38,30 @@ namespace KanjiMaster.UI
 
         /// <summary>Render a kanji. <paramref name="level"/> is optional — pass null
         /// (e.g. from Revision) to hide the level chip.</summary>
-        public void Show(Data.Kanji kanji, IKanjiIllustrationProvider illustrations, PlayerLevel? level = null)
+        public void Show(Data.Kanji kanji, IKanjiIllustrationProvider illustrations, PlayerLevel? level = null,
+            int position = 0, int total = 0)
         {
+            if (positionText)
+            {
+                bool showPos = position > 0 && total > 0;
+                positionText.gameObject.SetActive(showPos);
+                if (showPos) positionText.text = $"{position}/{total}"; // e.g. 35/200
+            }
+
             if (levelChip)
             {
                 levelChip.gameObject.SetActive(level.HasValue);
                 if (level.HasValue) levelChip.text = LevelInfo.DisplayName(level.Value);
             }
 
-            Set(characterText, kanji != null ? kanji.Character : "—");
-            Set(meaningText, Join(kanji?.Meanings, ", "));
-            Set(romajiText, Value(kanji?.Romaji));
-            Set(kanaText, Value(kanji?.PrimaryReading));
-            Set(onyomiText, Join(kanji?.Onyomi, "、"));
-            Set(kunyomiText, Join(kanji?.Kunyomi, "、"));
-            Set(strokesText, (kanji != null && kanji.Strokes > 0) ? kanji.Strokes.ToString() : "—");
+            Set(characterText, kanji != null ? kanji.Character : "—"); // the big glyph stays unlabelled
+            Set(meaningText, Labeled("Meaning", Join(kanji?.Meanings, ", ")));
+            Set(romajiText, Labeled("Romaji", Value(kanji?.Romaji)));
+            Set(kanaText, Labeled("Kana", Value(kanji?.PrimaryReading)));
+            Set(onyomiText, Labeled("Onyomi", Join(kanji?.Onyomi, "、")));
+            Set(kunyomiText, Labeled("Kunyomi", Join(kanji?.Kunyomi, "、")));
+            Set(strokesText, Labeled("Number of strokes",
+                (kanji != null && kanji.Strokes > 0) ? kanji.Strokes.ToString() : "—"));
 
             Sprite sprite = (kanji != null && illustrations != null)
                 ? illustrations.Get(KanjiId.Of(kanji.Character))
@@ -70,6 +80,13 @@ namespace KanjiMaster.UI
         {
             if (field) field.text = value;
         }
+
+        // A small, muted caption on its own line above the value. Uses TMP rich text with a
+        // RELATIVE size so it adapts to whatever font size each value slot is styled at, and
+        // the value keeps the slot's own colour/style. Requires Rich Text enabled (TMP default).
+        private const string LabelColorHex = "#9198A5";
+        private static string Labeled(string label, string value)
+            => $"<size=65%><color={LabelColorHex}>{label}</color></size>\n<size=115%>{value}</size>";
 
         private static string Value(string s) => string.IsNullOrEmpty(s) ? "—" : s;
 

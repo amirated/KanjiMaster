@@ -171,7 +171,13 @@ namespace KanjiMaster.UI
         /// <summary>Cancel any tween currently running on this target. Safe on null.</summary>
         public static void Cancel(GameObject target)
         {
-            if (_shuttingDown || !target) return;
+            // No-op while quitting, when the target is gone, or when its scene is being torn
+            // down (scene.isLoaded == false). During a scene change each button's OnDisable
+            // calls here; cancelling then would re-initialise LeanTween and spawn its
+            // "~LeanTween" manager inside the closing scene — the "objects were not cleaned up
+            // when closing the scene" warning. A normal mid-scene disable (scene still loaded)
+            // still cancels as before.
+            if (_shuttingDown || !target || !target.scene.isLoaded) return;
 #if LEANTWEEN_PRESENT
             LeanTween.cancel(target);
 #endif

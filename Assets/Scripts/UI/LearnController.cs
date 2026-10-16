@@ -77,7 +77,11 @@ namespace KanjiMaster.UI
             _currentIndex = Mathf.Clamp(index, 0, _catalog.Count - 1);
 
             var item = _catalog.All[_currentIndex];
-            if (detailView) detailView.Show(item.Kanji, _illustrations, item.PlayerLevel);
+            // level: null → keep the level detail hidden for now (the view hides the chip when
+            // no level is passed). Pass item.PlayerLevel again to show it later.
+            // position/total drive the "35/200" serial indicator at the top of the detail screen.
+            if (detailView) detailView.Show(item.Kanji, _illustrations, level: null,
+                position: _currentIndex + 1, total: _catalog.Count);
 
             // Disable at the boundaries (no wrap-around).
             if (previousButton) previousButton.interactable = _currentIndex > 0;

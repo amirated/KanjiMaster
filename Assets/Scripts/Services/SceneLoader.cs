@@ -36,5 +36,6 @@ namespace KanjiMaster.Services
         public static void GoToGame() => Load(SceneNames.Game);
         public static void GoToResults() => Load(SceneNames.Results);
         public static void GoToLearn() => Load(SceneNames.Learn);
+        public static void GoToSettings() => Load(SceneNames.Settings); // Settings scene is not built yet
     }
 }

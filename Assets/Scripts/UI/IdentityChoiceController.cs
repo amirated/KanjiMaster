@@ -50,7 +50,10 @@ namespace KanjiMaster.UI
             Set(messageText, string.Empty);
 
             if (accountButton) accountButton.onClick.AddListener(OnContinueWithAccount);
+            else Debug.LogWarning("[Identity] accountButton is not assigned on IdentityChoiceController — the Account button will do nothing.");
+
             if (guestButton) guestButton.onClick.AddListener(OnContinueAsGuest);
+            else Debug.LogWarning("[Identity] guestButton is not assigned on IdentityChoiceController — the Guest button will do nothing. Assign it in the Inspector on _IdentityChoiceController.");
         }
 
         private void OnContinueAsGuest()
