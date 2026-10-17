@@ -203,6 +203,11 @@ namespace KanjiMaster.Gameplay
 
             view.SetFeedback(message, color);
 
+            // Answer feedback: sound + haptic (both honour their Settings toggles; sound is silent
+            // until the matching clip is assigned in Assets/Resources/GameAudio.asset).
+            if (correct) { AudioService.PlayAnswerCorrect(); HapticService.Success(); }
+            else         { AudioService.PlayAnswerWrong();   HapticService.Failure(); }
+
             _session.Results.Add(new QuestionResult
             {
                 KanjiCharacter = q.KanjiCharacter,

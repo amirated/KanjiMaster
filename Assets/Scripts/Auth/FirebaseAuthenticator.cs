@@ -29,6 +29,9 @@ namespace KanjiMaster.Auth
     public interface IFirebaseAuthenticator
     {
         Task<FirebaseSignInResult> SignInAsync(PlatformCredential credential);
+
+        /// <summary>Sign out of Firebase. Safe no-op if Firebase isn't compiled in or initialized.</summary>
+        void SignOut();
     }
 
     /// <summary>
@@ -96,6 +99,16 @@ namespace KanjiMaster.Auth
 #else
             await Task.CompletedTask;
             return FirebaseSignInResult.Fail("Account sign-in is not available in this build.");
+#endif
+        }
+
+        public void SignOut()
+        {
+#if FIREBASE_AUTH
+            // Only if Firebase was actually initialized this session; never force-init just to
+            // sign out. Signing out of Firebase does NOT sign the user out of Google Play Games.
+            try { FirebaseInitializer.Auth?.SignOut(); }
+            catch (System.Exception e) { Debug.LogWarning($"[Auth] Firebase sign-out failed: {e.Message}"); }
 #endif
         }
 

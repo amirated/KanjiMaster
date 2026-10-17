@@ -141,6 +141,6 @@ namespace KanjiMaster.UI
             SceneLoader.GoToGame();
         }
 
-        private void OnSettings() => Debug.Log("Settings pressed (not implemented yet).");
+        private void OnSettings() => SceneLoader.GoToSettings();
     }
 }

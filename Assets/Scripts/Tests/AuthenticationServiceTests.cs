@@ -55,6 +55,8 @@ namespace KanjiRush.Tests
             private readonly FirebaseSignInResult _result;
             public FakeFirebase(FirebaseSignInResult result) { _result = result; }
             public Task<FirebaseSignInResult> SignInAsync(PlatformCredential credential) => Task.FromResult(_result);
+            public bool SignedOut { get; private set; }
+            public void SignOut() => SignedOut = true;
         }
 
         private AuthOutcome Run(Func<IAuthenticationProvider> providerFactory, IFirebaseAuthenticator firebase)
@@ -157,6 +159,25 @@ namespace KanjiRush.Tests
         {
             // With Firebase installed and the FIREBASE_AUTH define set, the real backend is active.
             Assert.IsTrue(FirebaseInitializer.IsFirebaseCompiledIn);
+        }
+
+        // ---- sign out -----------------------------------------------------------
+        [Test]
+        public void SignOut_Resets_Identity_To_Unknown_And_Signs_Out_Firebase()
+        {
+            var firebase = new FakeFirebase(FirebaseSignInResult.Ok("uid-x"));
+            var svc = new AuthenticationService(
+                () => new FakeProvider(ProviderCredentialResult.Acquired(GoogleCred())), firebase, _identity);
+            svc.SignInWithPlatformAsync().GetAwaiter().GetResult();
+            Assert.IsTrue(_identity.IsAuthenticated, "precondition: signed in");
+
+            svc.SignOut();
+
+            Assert.IsTrue(firebase.SignedOut, "Firebase was signed out");
+            Assert.AreEqual(AuthState.Unknown, _identity.Current.state);
+            Assert.IsNull(_identity.Current.userId, "account id cleared");
+            Assert.IsNull(_identity.Current.provider, "provider cleared");
+            Assert.IsFalse(_identity.IsAuthenticated);
         }
 
         // ---- guest isolation ----------------------------------------------------

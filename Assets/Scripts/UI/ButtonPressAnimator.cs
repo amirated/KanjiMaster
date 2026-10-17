@@ -1,3 +1,4 @@
+using KanjiMaster.Services;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -42,6 +43,8 @@ namespace KanjiMaster.UI
         {
             if (_selectable != null && !_selectable.interactable) return;
             _pressed = true;
+            AudioService.PlayButtonClick();  // honours the Sound-effects setting; silent until a clip is assigned
+            HapticService.Light();           // honours the Haptics setting; no-op when off or unsupported
             UITween.ScaleTo(gameObject, _restScale * UITweenConfig.PressScale, UITweenConfig.PressDownDuration);
         }
 

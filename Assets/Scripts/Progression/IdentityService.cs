@@ -63,6 +63,22 @@ namespace KanjiMaster.Progression
             Save();
         }
 
+        /// <summary>
+        /// Sign out: reset identity to Unknown (clears the account userId/provider) so Boot routes
+        /// back to the Identity screen to choose again. Deliberately does NOT touch PlayerProgress
+        /// — local progress is preserved. The guestId is kept so a returning guest keeps the same
+        /// local id. Associating/merging progress with a different account is a separate, not-yet-
+        /// implemented flow and is never done here.
+        /// </summary>
+        public void SignOut()
+        {
+            var id = Current;
+            id.state = AuthState.Unknown;
+            id.userId = null;
+            id.provider = null;
+            Save();
+        }
+
         // --- app-wide default instance (local JSON store) --------------------------
         private static IdentityService _default;
 

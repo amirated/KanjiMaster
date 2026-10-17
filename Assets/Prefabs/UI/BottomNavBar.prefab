@@ -869,7 +869,7 @@ MonoBehaviour:
     selectedMark: {fileID: 1970531790270703131}
   selectedTint: {r: 1, g: 1, b: 1, a: 1}
   normalTint: {r: 1, g: 1, b: 1, a: 1}
-  settingsEnabled: 0
+  settingsEnabled: 1
 --- !u!1 &7461182142535020847
 GameObject:
   m_ObjectHideFlags: 0

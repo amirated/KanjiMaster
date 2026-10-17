@@ -56,6 +56,19 @@ namespace KanjiMaster.Auth
             return AuthOutcome.Success(signIn.FirebaseUid, cred.Credential.Provider);
         }
 
+        /// <summary>
+        /// Sign out of the current account: Firebase sign-out (if initialized) + reset the local
+        /// identity to Unknown. Local PlayerProgress is preserved. Note: this does NOT (and can
+        /// not) sign the user out of Google Play Games Services — v2 has no programmatic sign-out.
+        /// The UI should surface that caveat. There is no account-switch/merge here; "switch
+        /// account" is simply sign out, then sign in again from the Identity screen.
+        /// </summary>
+        public void SignOut()
+        {
+            _firebase.SignOut();
+            _identity.SignOut();
+        }
+
         // --- app-wide default instance --------------------------------------------
         private static AuthenticationService _default;
 
